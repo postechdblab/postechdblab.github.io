@@ -22,6 +22,8 @@ Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems 
         <li data-target="#carousel" data-slide-to="2"></li>
         <li data-target="#carousel" data-slide-to="3"></li>
         <li data-target="#carousel" data-slide-to="4"></li>
+        <li data-target="#carousel" data-slide-to="5"></li>
+        <li data-target="#carousel" data-slide-to="6"></li>
     </ol>
 
     <!-- Items -->
@@ -36,13 +38,16 @@ Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems 
             <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_1.jpeg" alt="Slide 3" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_3.jpeg" alt="Slide 4" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_7.jpeg" alt="Slide 4" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_2.jpeg" alt="Slide 5" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_3.jpeg" alt="Slide 5" />
         </div>
         <div class="item">
-            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_5.jpeg" alt="Slide 6" />
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_2.jpeg" alt="Slide 6" />
+        </div>
+        <div class="item">
+            <img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_5.jpeg" alt="Slide 7" />
         </div>     
     </div>
   <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
