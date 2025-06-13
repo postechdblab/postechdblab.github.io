@@ -469,8 +469,8 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 
 <div class="row">
 <div class="col-sm-6 clearfix">
-<h4>Phi-Minh-Tri Nguyen</h4>
-<i>Virginia Tech Uni., USA
+<h4>Daniel Tri Nguyen</h4>
+<i>Data Engineering Manager, Accenture
 </div>
 </div>
 
