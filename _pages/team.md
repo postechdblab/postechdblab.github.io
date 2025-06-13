@@ -509,7 +509,7 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="row">
 <div class="col-sm-6 clearfix">
 <h4>Joong-Won Hwang</h4>
-<i>We make price, Korea
+<i>Lead Developer, AmorePacific
 </div>
 </div>
 
