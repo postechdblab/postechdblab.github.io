@@ -20,7 +20,7 @@ Jump to [Professor](#professor), [Research Professor](#research-professor), [Pos
 <div class="col-sm-12 clearfix">
   <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/wshan-new.jpg" class="img-responsive" width="160px" style="float: left" />
   <h4>Wook-Shin Han</h4>
-  <i>Professor
+  <i>Distinguished University Professor
   <ul style="overflow: hidden">
   <li><a href="https://wscrony.github.io/">Detailed Information</a></li>
   </ul>
