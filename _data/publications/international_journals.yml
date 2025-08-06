@@ -38,6 +38,7 @@
   is_corresponding_author: true
   is_demo: true
   link: https://dl.acm.org/doi/10.14778/3685800.3685863
+  ppt: https://docs.google.com/presentation/d/1j7kTbD92SAC2aKdrkABIdJ2flYjPiAtk/edit?usp=sharing&ouid=107893369645455108100&rtpof=true&sd=true
   month: Aug.
   title: 'DoppelGanger++ in Action: A Database Replay System with Fast Dependency Graph Generation'
   year: 2024 
