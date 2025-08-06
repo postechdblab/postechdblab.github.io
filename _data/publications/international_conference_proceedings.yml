@@ -68,6 +68,7 @@
   is_corresponding_author: true
   is_demo: true
   link: https://dl.acm.org/doi/10.1145/3626246.3654728
+  ppt: https://docs.google.com/presentation/d/1P2kmRdEBzSFObxki1Ur5JXLglqGKJGNf/edit?usp=sharing&ouid=107893369645455108100&rtpof=true&sd=true
   month: June
   title: 'ASM in Action: Fast and Practical Learned Cardinality Estimation'
   year: 2024
