@@ -24,6 +24,7 @@
   is_corresponding_author: true
   is_demo: false
   link: https://dl.acm.org/doi/10.1145/3654950
+  ppt: https://docs.google.com/presentation/d/1fA5jJaOMIYOY6c8GH6kDs8Dg6woHj_f8/edit?usp=sharing&ouid=107893369645455108100&rtpof=true&sd=true
   month: June
   title: 'In-depth Analysis of Continuous Subgraph Matching in a Common Delta Query Compilation Framework'
   year: 2024
