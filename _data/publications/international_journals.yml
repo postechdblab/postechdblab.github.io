@@ -22,6 +22,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   link: https://dl.acm.org/doi/10.14778/3681954.3682019
+  ppt: https://docs.google.com/presentation/d/1hi5kdNyrbeUn_OaYcB7X7-0Fpd8qb8AX/edit?usp=sharing&ouid=107893369645455108100&rtpof=true&sd=true
   month: Aug.
   title: 'ReCG: Bottom-Up JSON Schema Discovery Using a Repetitive Cluster-and-Generalize Framework'
   year: 2024 
