@@ -70,7 +70,7 @@ For undergrads who are interested in big data, data management, and database sys
   **{{ publi.title }}** <br />
   <em>{{ publi.authors }} </em><br />
   {{publi.info}}, {{ publi.month }} {{ publi.year}}
-  {% if publi.is_demo == true %} (Demo){% endif %} {% if publi.ISSN != null %} (ISSN: {{publi.ISSN}}){% endif %} {% if publi.is_corresponding_author == true %} (Corresponding Author){% endif %} {% if publi.is_co-corresponding_author == true %} (Co-Corresponding Author){% endif %} {% if publi.link != null %} <a href="{{ publi.link }}">[PDF]</a> {% endif %} {% if publi.endmsg != null %} **{{ publi.endmsg }}** <br /> {% endif %}
+  {% if publi.is_demo == true %} (Demo){% endif %} {% if publi.ISSN != null %} (ISSN: {{publi.ISSN}}){% endif %} {% if publi.is_corresponding_author == true %} (Corresponding Author){% endif %} {% if publi.is_co-corresponding_author == true %} (Co-Corresponding Author){% endif %} {% if publi.link != null %} <a href="{{ publi.link }}">[PDF]</a> {% endif %}{% if publi.ppt != null %}<a href="{{ publi.ppt }}">[PPT]</a>{% endif %}{% if publi.git != null %}<a href="{{ publi.git }}">[GIT]</a>{% endif %}{% if publi.endmsg != null %} **{{ publi.endmsg }}** <br /> {% endif %}
 
 {% endfor %}
 
@@ -84,7 +84,7 @@ For undergrads who are interested in big data, data management, and database sys
   **{{ publi.title }}** <br />
   <em>{{ publi.authors }} </em><br />
   {{publi.info}}, {{ publi.month }} {{ publi.year }}
-  {% if publi.is_demo == true %} (Demo){% endif %} {% if publi.ISSN != null %} (ISSN: {{publi.ISSN}}){% endif %} {% if publi.is_corresponding_author == true %} (Corresponding Author){% endif %} {% if publi.is_co-corresponding_author == true %} (Co-Corresponding Author){% endif %} {% if publi.link != null %}<a href="{{ publi.link }}">[PDF]</a>{% endif %}{% if publi.ppt != null %}<a href="{{ publi.ppt }}">[PPT]</a>{% endif %} {% if publi.endmsg != null %}  **{{ publi.endmsg }}** <br /> {% endif %}
+  {% if publi.is_demo == true %} (Demo){% endif %} {% if publi.ISSN != null %} (ISSN: {{publi.ISSN}}){% endif %} {% if publi.is_corresponding_author == true %} (Corresponding Author){% endif %} {% if publi.is_co-corresponding_author == true %} (Co-Corresponding Author){% endif %} {% if publi.link != null %}<a href="{{ publi.link }}">[PDF]</a>{% endif %}{% if publi.ppt != null %}<a href="{{ publi.ppt }}">[PPT]</a>{% endif %}{% if publi.git != null %}<a href="{{ publi.git }}">[GIT]</a>{% endif %}{% if publi.endmsg != null %}  **{{ publi.endmsg }}** <br /> {% endif %}
 
 {% endfor %}
 
