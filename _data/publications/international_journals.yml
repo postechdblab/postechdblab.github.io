@@ -7,7 +7,7 @@
     (PVLDB)
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: 
+  link: https://dl.acm.org/doi/10.14778/3705829.3705856
   month: Sept.
   title: 'Themis: A GPU-accelerated Relational Query Execution Engine'
   year: 2025
@@ -21,7 +21,7 @@
     (PVLDB)
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: 
+  link: https://dl.acm.org/doi/10.14778/3681954.3682019
   month: Aug.
   title: 'ReCG: Bottom-Up JSON Schema Discovery Using a Repetitive Cluster-and-Generalize Framework'
   year: 2024 
@@ -36,7 +36,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: true
-  link: 
+  link: https://dl.acm.org/doi/10.14778/3685800.3685863
   month: Aug.
   title: 'DoppelGanger++ in Action: A Database Replay System with Fast Dependency Graph Generation'
   year: 2024 
