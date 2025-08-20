@@ -7,6 +7,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
+  link: null
   month: November
   title: 'TRIAL: Token Relations and Importance Aware Late-interaction for Accurate Text Retrieval'
   year: 2025
