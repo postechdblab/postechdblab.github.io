@@ -305,7 +305,7 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="row">  
 <div class="col-sm-6 clearfix">
 <h4><a href="https://www.linkedin.com/in/jihwan-lee-85827324">Jihwan Lee</a></h4> 
-<i>Software Engineer, Google Research
+<i>Software Engineer, Google Deepmind
 </div>
 </div>  
 
