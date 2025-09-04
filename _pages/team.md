@@ -381,7 +381,7 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="row">  
 <div class="col-sm-6 clearfix">
 <h4>Kijae Hong</h4> 
-<!-- <i>Assistant Professor, Kangwon National University, Korea -->
+<i>Researcher, Ceres Technologies, Korea
 </div>
 </div>
 
