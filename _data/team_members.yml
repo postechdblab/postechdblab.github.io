@@ -16,20 +16,20 @@
   email: sajang@dblab.postech.ac.kr
   number_educ: 1
   education1: Bachelor, Jeju National University, South Korea
-  
-- name: Jueun Kim
-  homepage: https://juevn.github.io/
-  photo: jekim.JPG
-  info: PhD (integrated), started September 2025
-  email: jekim@dblab.postech.ac.kr
-  number_educ: 1
-  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
 
 - name: HyukKyu Kang
   homepage: https://hyukkyukang.github.io
   photo: hkkang.jpeg
   info: PhD (integrated), started September 2019
   email: hkkang@dblab.postech.ac.kr
+  number_educ: 1
+  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
+
+- name: Jueun Kim
+  homepage: https://juevn.github.io/
+  photo: jekim.JPG
+  info: PhD (integrated), started September 2025
+  email: jekim@dblab.postech.ac.kr
   number_educ: 1
   education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
 
