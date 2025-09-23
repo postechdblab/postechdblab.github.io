@@ -12,18 +12,18 @@ Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems 
 
 We work at the intersection of data systems and natural language processing (NLP), with a team spanning systems researchers, AI scientists and AI engineers.
 
-** Data AI & Schema Discovery ** 
+<b> Data AI & Schema Discovery </b>
 We develop knowlede graph techniques and apply (large) language models to tabular and text data.<br>
 Short term: advanced analytics/processing systems and a fast, trustworthy RAG stack.<br>
 Long term: a cost-efficient, data-centric system progressing toward AGI-level capabilities.<br>
 
-** AI Scientists ** 
+<b> AI Scientists </b>
 We are building autonomous AI-scientist workflows to automate the research loop (idea &rarr; code &rarr; experiments &rarr; analysis &rarr; paper &rarr; review). We emphasize safety, reproducibility, and applicability to data systems × NLP problems, and integrate these agents into our lab’s benchmarking and ablation pipelines.<br>
 
-** Natural Language Interfaces to Data ** 
+<b> Natural Language Interfaces to Data </b>
 We’re building conversational database interfaces, letting users query and reason over data using natural language-marrying robust data-system backends with cutting-edge NLP.<br>
 
-** Self-Optimizing Data Systems ** 
+<b> Self-Optimizing Data Systems </b> 
 Our systems auto-adapt to workload and data distribution, delivering top performance without manual tuning, via AI-driven optimization and continuous feedback.<br>
 
 <!-- 1) Our research focuses on data AI, particularly in schema discovery techniques and the use of (large) language models for both tabular and text data. In the short term, we aim to develop advanced systems for data analysis and processing, offering valuable insights to businesses and organizations. Additionally, we are building a fast retrieval-augmented generation (RAG) system to ensure trustworthiness. In the long term, our goal is to create a cost-efficient, <em>data-centric system with artificial general intelligence capabilities</em>.<br>
