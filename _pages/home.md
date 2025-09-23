@@ -21,7 +21,7 @@ Long term: a cost-efficient, data-centric system progressing toward AGI-level ca
 We are building autonomous AI-scientist workflows to automate the research loop (idea &rarr; code &rarr; experiments &rarr; analysis &rarr; paper &rarr; review). We emphasize safety, reproducibility, and applicability to data systems × NLP problems, and integrate these agents into our lab’s benchmarking and ablation pipelines.<br>
 
 ** Natural Language Interfaces to Data ** 
-We’re building conversational database interfaces, letting users query and reason over data using natural language-—marrying robust data-system backends with cutting-edge NLP.<br>
+We’re building conversational database interfaces, letting users query and reason over data using natural language-marrying robust data-system backends with cutting-edge NLP.<br>
 
 ** Self-Optimizing Data Systems ** 
 Our systems auto-adapt to workload and data distribution, delivering top performance without manual tuning, via AI-driven optimization and continuous feedback.<br>
