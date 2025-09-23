@@ -12,7 +12,7 @@ Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems 
 
 We work at the intersection of data systems and natural language processing (NLP), with a team spanning systems researchers, AI scientists and AI engineers.
 
-<b>&#9679; Data AI & Schema Discovery </b><br>
+<b>&#9679; Data AI & Knowledge Graph Construction </b><br>
 We develop knowlede graph techniques and apply (large) language models to tabular and text data.<br>
 Short term: advanced analytics/processing systems and a fast, trustworthy RAG stack.<br>
 Long term: a cost-efficient, data-centric system progressing toward AGI-level capabilities.<br>
