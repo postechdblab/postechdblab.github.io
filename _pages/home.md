@@ -17,13 +17,13 @@ We develop knowlede graph techniques and apply (large) language models to tabula
 Short term: advanced analytics/processing systems and a fast, trustworthy RAG stack.<br>
 Long term: a cost-efficient, data-centric system progressing toward AGI-level capabilities.<br>
 
-<b> AI Scientists </b><br>
+<b>&#9679; AI Scientists </b><br>
 We are building autonomous AI-scientist workflows to automate the research loop (idea &rarr; code &rarr; experiments &rarr; analysis &rarr; paper &rarr; review). We emphasize safety, reproducibility, and applicability to data systems × NLP problems, and integrate these agents into our lab’s benchmarking and ablation pipelines.<br>
 
-<b> Natural Language Interfaces to Data </b><br>
+<b>&#9679; Natural Language Interfaces to Data </b><br>
 We’re building conversational database interfaces, letting users query and reason over data using natural language&mdash;marrying robust data-system backends with cutting-edge NLP.<br>
 
-<b> Self-Optimizing Data Systems </b><br>
+<b>&#9679; Self-Optimizing Data Systems </b><br>
 Our systems auto-adapt to workload and data distribution, delivering top performance without manual tuning, via AI-driven optimization and continuous feedback.<br>
 
 <!-- 1) Our research focuses on data AI, particularly in schema discovery techniques and the use of (large) language models for both tabular and text data. In the short term, we aim to develop advanced systems for data analysis and processing, offering valuable insights to businesses and organizations. Additionally, we are building a fast retrieval-augmented generation (RAG) system to ensure trustworthiness. In the long term, our goal is to create a cost-efficient, <em>data-centric system with artificial general intelligence capabilities</em>.<br>
