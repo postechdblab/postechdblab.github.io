@@ -7,7 +7,8 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: null
+  link: https://aclanthology.org/2025.emnlp-main.883/
+  ppt: https://drive.google.com/file/d/1Ba1w28YaXV7LkBz7SdIWvA8RRnviSOLA/view?usp=sharing
   month: November
   title: 'SAFE: Schema-Driven Approximate Distance Join for Efficient Knowledge Graph Querying'
   year: 2025
@@ -21,7 +22,9 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: null
+  link: https://aclanthology.org/2025.emnlp-main.1037
+  ppt: https://drive.google.com/file/d/1GVpR3exqIOw4JpHIIfxGA8ljNZkttceX/view?usp=sharing
+  git: https://github.com/joohyung00/lilac
   month: November
   title: 'LILaC: Late Interacting in Layered Component Graph for Open-domain Multimodal Multihop Retrieval'
   year: 2025
