@@ -35,7 +35,9 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: null
+  link: https://aclanthology.org/2025.emnlp-main.854
+  ppt: https://drive.google.com/file/d/1VJ7ByrzDWDUfV_8swlgTTgoKy5koD_RK/view?usp=sharing
+  git: https://github.com/postechdblab/TRIAL
   month: November
   title: 'TRIAL: Token Relations and Importance Aware Late-interaction for Accurate Text Retrieval'
   year: 2025
