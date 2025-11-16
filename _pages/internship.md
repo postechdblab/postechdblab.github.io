@@ -10,7 +10,7 @@ permalink: /internship
 
 Application deadline: 01 Nov, 2025 (extendable)
 
-Internship period: 29 Dec, 2025 - 23 Feb., 2026 (adjustable)
+Internship period: 29 Dec, 2025 - 23 Feb, 2026 (adjustable)
 
 ## Eligibility criteria
 
