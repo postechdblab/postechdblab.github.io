@@ -10,7 +10,7 @@ permalink: /internship
 
 Application deadline: 01 Nov, 2025 (extendable)
 
-Internship period: 29 Dec, 2025 - 15 Feb., 2026 (adjustable)
+Internship period: 29 Dec, 2025 - 23 Feb., 2026 (adjustable)
 
 ## Eligibility criteria
 
@@ -25,15 +25,6 @@ Please read [this article](https://m.blog.naver.com/lovehan/220388845800) carefu
 
 We are currently recruiting multiple student interns on topics related to intersection of (data) System, Theory, and ARtificial intelligence. The applicants should have a strong background in computer science in general. 
 
-Please fill [this application form](https://forms.gle/iHyReV6YQNdivn3f8) if you are interested. Your CV needs to contain various portfolios. You may refer to [this one](https://drive.google.com/file/d/1g1v7le9wb_8E4jj9GeexC-PT8zdz-KeI/view?usp=sharing).
+For the available projects, please refer to [this one](https://drive.google.com/file/d/1B6ghlracZYfGlNkgoHDxS8B4KIpQm4YG/view?usp=sharing).
 
-## Possible topics
-
-- Implementation of a component in a distributed graph database system (System)
-- Extending a large language model with an external database (NLP)
-- Implementation of a component in a GPU DBMS (System)
-- Anomaly detection (AI)
-- Development of an AI-powered optimizer for graph DBMS (AI+System)
-- Anomaly explanation using deep learning model (AI)
-- Implementation of graph partitioning algorithm using hash trie data structure (System)
-- Multi-modal vector index (AI + System)
+Please fill [this application form](https://forms.gle/iHyReV6YQNdivn3f8) if you are interested. Your CV needs to contain various portfolios. 
