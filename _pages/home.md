@@ -12,13 +12,15 @@ Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems 
 
 We work at the intersection of data systems and natural language processing (NLP), with a team spanning systems researchers, AI scientists and AI engineers.
 
-<b>&#9679; Data AI & Knowledge Graph Construction </b><br>
-We develop knowlede graph techniques and apply (large) language models to tabular and text data.<br>
-Short term: advanced analytics/processing systems and a fast, trustworthy RAG stack.<br>
-Long term: a cost-efficient, data-centric system progressing toward AGI-level capabilities.<br>
+<b>&#9679; Data AI & Multi-Modal RAG </b><br>
+We develop data-centric and knowledge-graph-based techniques and apply large multi-modal models across text, tabular, image, and other data types.<br>
+Short term: advanced analytics/processing systems and a fast, trustworthy multi-modal RAG stack.<br>
+Long term: a cost-efficient, data-centric platform that steadily progresses toward AGI-level capabilities.<br>
 
-<b>&#9679; AI Scientists </b><br>
-We are building autonomous AI-scientist workflows to automate the research loop (idea &rarr; code &rarr; experiments &rarr; analysis &rarr; paper &rarr; review). We emphasize safety, reproducibility, and applicability to data systems × NLP problems, and integrate these agents into our lab’s benchmarking and ablation pipelines.<br>
+<b>&#9679; AI Database & Semantic Predicates </b><br>
+We design and implement AI-native databases that treat semantic predicates, vector search, and knowledge-graph reasoning as first-class query operators across text, tabular, time-series, image, and log data, while addressing ambiguity, reliability, and cost-modeling challenges.<br>
+Short term: robust semantic filtering and multi-modal query processing with clear performance guarantees and explainable behavior.<br>
+Long term: a self-optimizing, AI-native data platform where learned operators, RAG, and agents are deeply integrated into storage, indexing, and query processing on the path toward AGI-level data systems.<br>
 
 <b>&#9679; Natural Language Interfaces to Data </b><br>
 We’re building conversational database interfaces, letting users query and reason over data using natural language&#8212;marrying robust data-system backends with cutting-edge NLP.<br>
