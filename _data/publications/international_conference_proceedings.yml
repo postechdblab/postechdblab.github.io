@@ -7,6 +7,8 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
+  git: https://github.com/seokjeongeum/MAD
+  ppt: https://drive.google.com/file/d/1mSXaDNrZxN4x3ZoRuokZqOjL5dv83y_P/view?usp=sharing
   month: December
   title: 'MAD: Multimodal Framework for Adaptive Time-Series Anomaly Detection'
   year: 2025
