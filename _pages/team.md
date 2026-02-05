@@ -344,6 +344,13 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 
 <div class="row">
 <div class="col-sm-6 clearfix">
+<h4>HyeonJi Kim</h4>
+<i>AI Developer, Meritz Fire, Korea 
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
 <h4><a href="https://kr.linkedin.com/in/kyoungmin-kim-60420ab1">Kyoungmin Kim</a></h4>
 <i>Post-Doctor, EPEL, Lausanne, Switzerland 
 </div>
@@ -368,6 +375,13 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="col-sm-6 clearfix">
 <h4><a href="https://www.linkedin.com/in/jinsoo-lee-570275122/">Jinsoo Lee</a></h4> 
 <i>Principal member of Technical Staff, Oracle Labs, Redwood Shores, USA
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4><a href="https://yukyounglee.github.io/online-cv/">YuKyoung Lee</a></h4>
+<i>Post Doc., POSTECH, Korea 
 </div>
 </div>
 
@@ -485,6 +499,13 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="col-sm-6 clearfix">
 <h4>Kyung-Yul Park</h4>
 <i>SAP Labs, Korea
+</div>
+</div>
+
+<div class="row">  
+<div class="col-sm-6 clearfix">
+<h4>Jeongeum Seok</h4>
+<i> Samsung Electoronics, Korea  
 </div>
 </div>
 
