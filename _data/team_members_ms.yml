@@ -1,8 +1,17 @@
 
-- name: Jeongeum Seok
-  homepage: https://seokjeongeum.github.io
-  photo: jeseok.png
-  info: Master
-  email: jeseok@dblab.postech.ac.kr
+- name: JooYoung Lee
+  homepage: https://leejyg.github.io
+  photo: jylee.png
+  info: PhD (integrated)
+  email: jylee@dblab.postech.ac.kr
   number_educ: 1
-  education1: Bachelor, Hanyang University, South Korea
+  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
+
+
+- name: HyoJeong Yun
+  homepage: https://hyojeongyunn.github.io/hyojeongyunn/
+  photo: hyojeongyun.jpeg
+  info: PhD (integrated)
+  email: hjyun@dblab.postech.ac.kr
+  number_educ: 1
+  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
