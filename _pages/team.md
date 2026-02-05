@@ -135,7 +135,14 @@ Jump to [Professor](#professor), [Research Professor](#research-professor), [Pos
 
 <div class="col-sm-6 clearfix">
   <img src="{{ site.url }}{{ site.baseurl }}/images/teampic/{{ member.photo }}" class="img-responsive" width="120px" style="float: left" />
-  <h4><a href="{{ member.homepage }}">{{ member.name }}</a></h4>
+  <!-- <h4><a href="{{ member.homepage }}">{{ member.name }}</a></h4> //-->
+  <h4>
+  {% if member.homepage %}
+    <a href="{{ member.homepage }}">{{ member.name }}</a>
+  {% else %}
+    {{ member.name }}
+  {% endif %}
+  </h4>
   <i>{{ member.info }} <!-- <br>email: <{{ member.email }}></i> -->
   <ul style="overflow: hidden">
 
