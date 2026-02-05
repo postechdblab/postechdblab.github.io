@@ -235,6 +235,9 @@ Jump to [Professor](#professor), [Research Professor](#research-professor), [Pos
 
 ## Bachelor Students
 
+<div class="row"><BR>
+</div>
+  
 <!-- <div class="row">
 <div class="col-sm-6 clearfix">
 <h4>Jueun Kim</h4>
