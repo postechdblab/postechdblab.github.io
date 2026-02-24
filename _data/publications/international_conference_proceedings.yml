@@ -1,4 +1,18 @@
 - ISSN: null
+  authors: Park, Y., Lee, T., Tak, B., and Han, W.
+  description: null
+  highlight: 0
+  image: null
+  info: In Proc., the 42nd IEEE International Conference on Data Engineering, IEEE ICDE, MOntreal, Canada
+  is_co-corresponding_author: false
+  is_corresponding_author: true
+  is_demo: false
+  link: 
+  month: May
+  title: 'Batcher: Learning to Construct Cost-Efficient Batches of Small Queries in Big Data Processing Platforms'
+  year: 2026
+
+- ISSN: null
   authors: Park, S., Kim, J., and Han, W.
   description: null
   highlight: 0
