@@ -8,7 +8,8 @@ permalink: /
 
 <br>
 Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems lab focuses on **STAR** (namely, **Systems, Theory, and ARtificial intelligence**) supported by major grants such as Star Lab. We have been endeavoring to solve challenging and real problems in computer/data science. <br><br>
-<b>Building Architects Through Systems.</b> We train our students to become system architects—not just coders—by having them design and build large-scale data infrastructure from the ground up. In an age where AI can generate code and pass test suites, the ability to make principled architectural decisions that generalize beyond any test remains an irreplaceably human skill, and it is the core of what we cultivate.
+<b>Building Architects Through Systems.</b> We train our students to become system architects—not just coders—by having them design and build large-scale data infrastructure from the ground up. In an age where AI can generate code and pass test suites, the ability to make principled architectural decisions that generalize beyond any test remains an irreplaceably human skill, and it is the core of what we cultivate.<br>
+
 <b>[Big News]</b> Our lab has been awarded over $6 million USD for the Global AI Frontier Lab between Korea and NYU. I am the director of this international program, which includes 8 additional professors from KAIST and Sungkyunkwan University. Many of our students will be dispatched to NYU each year to collaborate with world-leading researchers.
 
 We work at the intersection of data systems and natural language processing (NLP), with a team spanning systems researchers, AI scientists and AI engineers.
