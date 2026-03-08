@@ -4,8 +4,7 @@
   highlight: 0
   image: null
   info: CoRR
-  link: https://arxiv.org/abs/2512.20014
-  git: https://vap-project.github.io/
+  project: https://vap-project.github.io/
   month: December
   title: 'Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting'
   year: 2025
@@ -16,8 +15,7 @@
   highlight: 0
   image: null
   info: CoRR
-  link: https://arxiv.org/abs/2602.03432
-  git: https://failureisfeedback.github.io/
+  project: https://failureisfeedback.github.io/
   month: Feburary
   title: 'FAILURE IS FEEDBACK: History-Aware Backtracking for Agentic Traversal in Multimodal Graphs'
   year: 2026
