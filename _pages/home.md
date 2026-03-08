@@ -23,6 +23,9 @@ We design and implement AI-native databases that treat semantic predicates, vect
 Short term: robust semantic filtering and multi-modal query processing with clear performance guarantees and explainable behavior.<br>
 Long term: a self-optimizing, AI-native data platform where learned operators, RAG, and agents are deeply integrated into storage, indexing, and query processing on the path toward AGI-level data systems.<br>
 
+<b>&#9679; Embodied AI & Robot Manipulation </b><br>
+We are advancing Robot Foundation Models toward adaptive, human-inspired intelligence. In the short term, we focus on personalizing mobile manipulation, developing predictive world models for closed-loop planning, and solving critical VLA gaps like long-horizon drift and contact precision. In the long term, we aim to build a General Robot Brain—a system combining VLAs, agentic planning, and semantic memory to enable reliable, long-horizon reasoning and failure recovery in any unstructured real-world environment.<br>
+
 <b>&#9679; Natural Language Interfaces to Data </b><br>
 We’re building conversational database interfaces, letting users query and reason over data using natural language&#8212;marrying robust data-system backends with cutting-edge NLP.<br>
 
