@@ -3,10 +3,7 @@
   description: null
   highlight: 0
   image: null
-  info: CoRR abs/2512.20014
-  is_co-corresponding_author: false
-  is_corresponding_author: true
-  is_demo: false
+  info: CoRR
   link: https://arxiv.org/abs/2512.20014
   git: https://vap-project.github.io/
   month: December
@@ -18,10 +15,7 @@
   description: null
   highlight: 0
   image: null
-  info: CoRR abs/2602.03432
-  is_co-corresponding_author: false
-  is_corresponding_author: true
-  is_demo: false
+  info: CoRR
   link: https://arxiv.org/abs/2602.03432
   git: https://failureisfeedback.github.io/
   month: Feburary
