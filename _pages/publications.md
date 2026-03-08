@@ -88,7 +88,7 @@ For undergrads who are interested in big data, data management, and database sys
 
 {% endfor %}
 
-## Priprints
+## Preprints
 {% assign var_year = 2030 %}
 {% for publi in site.data.publications.preprints %}
   {% if var_year != publi.year and var_year > year_until%}
