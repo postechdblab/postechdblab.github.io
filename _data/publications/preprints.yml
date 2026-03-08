@@ -3,7 +3,7 @@
   description: null
   highlight: 0
   image: null
-  info: CoRR
+  info: CoRR abs/2512.20014
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
@@ -11,14 +11,14 @@
   git: https://vap-project.github.io/
   month: January
   title: 'Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting'
-  year: 2026
+  year: 2025
   
 - ISSN: null
   authors: Yun, J., Lee, D., and Han, W.
   description: null
   highlight: 0
   image: null
-  info: CoRR
+  info: CoRR abs/2602.03432
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
