@@ -1,0 +1,1270 @@
+---
+permalink: /venue_simulator/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGMOD 2028 @ COEX — Program Simulator</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--accent:#e91e63;--accent2:#1976d2;--ok:#4caf50;--warn:#ff9800;--err:#e53935;--border:#ddd;--text:#333;--muted:#888;--row-alt:#fafbfc;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:14px;}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:24px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+header h1{font-size:22px;font-weight:600;}
+header .badge{background:var(--accent);padding:4px 12px;border-radius:12px;font-size:12px;font-weight:600;}
+header .sub{font-size:13px;opacity:.8;margin-top:4px;}
+.container{max-width:1440px;margin:0 auto;padding:20px;}
+.tabs{display:flex;gap:4px;background:#e0e0e0;padding:4px;border-radius:10px;margin-bottom:20px;flex-wrap:wrap;}
+.tab{padding:10px 18px;border:none;background:transparent;cursor:pointer;border-radius:8px;font-size:13px;font-weight:500;color:#555;transition:all .2s;}
+.tab.active{background:#fff;color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.1);font-weight:600;}
+.tab:hover:not(.active){background:rgba(255,255,255,.5);}
+.panel{display:none;}.panel.active{display:block;}
+.card{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.card h2{font-size:16px;margin-bottom:12px;color:var(--accent);display:flex;align-items:center;gap:8px;}
+.card h3{font-size:14px;margin:12px 0 8px;color:var(--accent2);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#f0f2f5;padding:8px 10px;text-align:left;font-weight:600;border-bottom:2px solid var(--border);position:sticky;top:0;}
+td{padding:7px 10px;border-bottom:1px solid #eee;}
+tr:nth-child(even){background:var(--row-alt);}
+tr:hover{background:#e8f0fe;}
+.st{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;}
+.st.ok{background:#e8f5e9;color:#2e7d32;}
+.st.warn{background:#fff3e0;color:#e65100;}
+.st.err{background:#ffebee;color:#c62828;}
+.st.info{background:#e3f2fd;color:#1565c0;}
+.st.enforced{background:#f3e5f5;color:#7b1fa2;}
+.room-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;margin:12px 0;}
+.room-chip{padding:8px 12px;border-radius:8px;font-size:12px;text-align:center;border:1px solid var(--border);}
+.room-chip.used{background:#e8f5e9;border-color:#a5d6a7;}
+.room-chip .cap{font-weight:700;font-size:14px;display:block;}
+.settings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.setting{display:flex;flex-direction:column;gap:4px;}
+.setting label{font-weight:600;font-size:12px;color:#555;}
+.setting input{padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;}
+.setting input:focus{outline:none;border-color:var(--accent);}
+.btn{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;transition:all .2s;}
+.btn-primary{background:var(--accent);color:#fff;}.btn-primary:hover{background:#c2185b;}
+.btn-secondary{background:var(--accent2);color:#fff;}.btn-secondary:hover{background:#1565c0;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0;}
+.summary-box{background:#f8f9fa;border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center;}
+.summary-box .value{font-size:28px;font-weight:700;color:var(--accent);}
+.summary-box .label{font-size:12px;color:var(--muted);margin-top:4px;}
+.cl{list-style:none;}
+.cl li{padding:8px 12px;margin:4px 0;border-radius:6px;font-size:13px;}
+.cl li.err{background:#ffebee;border-left:3px solid var(--err);}
+.cl li.warn{background:#fff3e0;border-left:3px solid var(--warn);}
+.cl li.ok{background:#e8f5e9;border-left:3px solid var(--ok);}
+.cl li.info{background:#e3f2fd;border-left:3px solid var(--accent2);}
+.cl li.enforced{background:#f3e5f5;border-left:3px solid #7b1fa2;}
+.email-item{padding:12px 16px;margin:8px 0;background:#f8f9fa;border-radius:8px;border-left:3px solid var(--accent2);}
+.email-item .date{font-weight:700;font-size:12px;color:var(--accent);}
+.email-item .title{font-weight:600;margin:4px 0;}
+.email-item .body{font-size:12px;color:#555;}
+.gantt-row{display:flex;align-items:center;margin:2px 0;}
+.gantt-label{width:140px;flex-shrink:0;font-size:11px;font-weight:600;padding-right:8px;text-align:right;}
+.gantt-bar-area{flex:1;position:relative;height:24px;background:#f0f2f5;border-radius:4px;}
+.gantt-bar{position:absolute;height:20px;top:2px;border-radius:3px;font-size:10px;color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;padding:0 4px;}
+.gantt-header{display:flex;margin-bottom:4px;}
+.gantt-header .gantt-label{font-size:10px;color:#888;}
+.gantt-header .gantt-bar-area{display:flex;justify-content:space-between;font-size:10px;color:#888;}
+.enforce-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin:12px 0;}
+.enforce-card{padding:12px;border-radius:8px;border:1px solid var(--border);font-size:12px;}
+.enforce-card.pass{background:#e8f5e9;border-color:#a5d6a7;}
+.enforce-card.fail{background:#ffebee;border-color:#ef9a9a;}
+.enforce-card.partial{background:#fff3e0;border-color:#ffcc80;}
+.enforce-card .title{font-weight:700;margin-bottom:4px;}
+.enforce-card .clause{color:var(--muted);font-size:11px;}
+.enforce-card .result{margin-top:4px;font-weight:600;}
+/* ── Program-at-a-Glance Grid (SIGMOD 2025 style) ── */
+.pag-wrap{overflow-x:auto;margin:12px 0;}
+.pag{border-collapse:collapse;font-size:11px;min-width:100%;}
+.pag th,.pag td{border:1px solid #ccc;padding:0;text-align:center;vertical-align:top;position:relative;}
+.pag th{background:#2c3e50;color:#fff;padding:6px 4px;font-size:11px;min-width:100px;position:sticky;top:0;z-index:2;}
+.pag th.time-col{min-width:60px;width:60px;background:#1a252f;}
+.pag .time-cell{background:#f8f9fa;font-weight:700;font-size:11px;padding:2px 4px;color:#333;white-space:nowrap;width:60px;position:sticky;left:0;z-index:1;}
+.pag .empty{background:#f5f5f5;}
+.pag .session-cell{color:#fff;font-size:10px;font-weight:600;padding:3px 4px;line-height:1.3;cursor:default;overflow:hidden;}
+.pag .session-cell:hover{opacity:.85;}
+.pag .session-cell .s-name{display:block;overflow:hidden;text-overflow:ellipsis;}
+.pag .session-cell .s-cap{font-size:9px;opacity:.8;font-weight:400;}
+.pag-legend{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:11px;}
+.pag-legend span{display:inline-flex;align-items:center;gap:4px;}
+.pag-legend .swatch{width:14px;height:14px;border-radius:3px;display:inline-block;}
+@media(max-width:768px){.container{padding:12px;}.tabs{flex-direction:column;}.settings-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>SIGMOD 2028 @ COEX Seoul</h1>
+    <div class="sub">Program Simulator &amp; Contract Validator &mdash; Matches quotation from John Otero (CEC2025070020, 16/Mar/2026)</div>
+  </div>
+  <span class="badge">June 17&ndash;23, 2028</span>
+</header>
+<div class="container">
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" data-panel="overview">Overview</button>
+    <button class="tab" data-panel="contract">Contract</button>
+    <button class="tab" data-panel="settings">Settings</button>
+    <button class="tab" data-panel="day-sat">Sat 6/17</button>
+    <button class="tab" data-panel="day-sun">Sun 6/18</button>
+    <button class="tab" data-panel="day-mon">Mon 6/19</button>
+    <button class="tab" data-panel="day-tue">Tue 6/20</button>
+    <button class="tab" data-panel="day-wed">Wed 6/21</button>
+    <button class="tab" data-panel="day-thu">Thu 6/22</button>
+    <button class="tab" data-panel="day-fri">Fri 6/23</button>
+    <button class="tab" data-panel="assumptions">Assumptions</button>
+    <button class="tab" data-panel="costs">Costs</button>
+    <button class="tab" data-panel="conflicts">Validation</button>
+    <button class="tab" data-panel="history">History</button>
+  </div>
+  <div class="panel active" id="overview"></div>
+  <div class="panel" id="contract"></div>
+  <div class="panel" id="settings"></div>
+  <div class="panel" id="day-sat"></div>
+  <div class="panel" id="day-sun"></div>
+  <div class="panel" id="day-mon"></div>
+  <div class="panel" id="day-tue"></div>
+  <div class="panel" id="day-wed"></div>
+  <div class="panel" id="day-thu"></div>
+  <div class="panel" id="day-fri"></div>
+  <div class="panel" id="assumptions"></div>
+  <div class="panel" id="costs"></div>
+  <div class="panel" id="conflicts"></div>
+  <div class="panel" id="history"></div>
+</div>
+<script>
+// ══════════════════════════════════════════════════════════
+//  DATA — Matches contract quotation CEC2025070020 (16/Mar/2026)
+// ══════════════════════════════════════════════════════════
+const ROOMS = {
+  '101':     {floor:1,name:'Room 101',     cl:150,th:288,rd:100},
+  '102':     {floor:1,name:'Room 102',     cl:150,th:288,rd:100},
+  '103':     {floor:1,name:'Room 103',     cl:300,th:600,rd:200},
+  '104':     {floor:1,name:'Room 104',     cl:150,th:288,rd:100},
+  '105':     {floor:1,name:'Room 105',     cl:150,th:288,rd:150},
+  '101-102': {floor:1,name:'Rooms 101-102',cl:300,th:600,rd:200,parts:['101','102']},
+  '101-103': {floor:1,name:'Rooms 101-103',cl:450,th:1176,rd:400,parts:['101','102','103']},
+  '101-104': {floor:1,name:'Rooms 101-104',cl:750,th:1464,rd:730,parts:['101','102','103','104']},
+  '101-105': {floor:1,name:'Grand Ballroom (Full)',cl:900,th:1800,rd:1020,parts:['101','102','103','104','105']},
+  '201':     {floor:2,name:'Room 201',     cl:180,th:306,rd:120},
+  '202':     {floor:2,name:'Room 202',     cl:180,th:306,rd:120},
+  '203':     {floor:2,name:'Room 203',     cl:180,th:306,rd:120},
+  '201-202': {floor:2,name:'Rooms 201-202',cl:360,th:612,rd:240,parts:['201','202']},
+  '202-203': {floor:2,name:'Rooms 202-203',cl:360,th:612,rd:240,parts:['202','203']},
+  '201-203': {floor:2,name:'ASEM Ballroom (Full)',cl:540,th:918,rd:360,parts:['201','202','203']},
+  '204':     {floor:2,name:'Room 204 (Storage)',cl:12,th:24,rd:0},
+  '205':     {floor:2,name:'Room 205',     cl:90,th:160,rd:60},
+  '206':     {floor:2,name:'Room 206',     cl:36,th:60,rd:24},
+  '207':     {floor:2,name:'Room 207 (Multi)',cl:18,th:36,rd:0},
+  '209':     {floor:2,name:'Room 209',     cl:90,th:160,rd:60},
+  '210':     {floor:2,name:'Room 210',     cl:36,th:60,rd:24},
+  '211':     {floor:2,name:'Room 211 (Multi)',cl:18,th:36,rd:0},
+};
+
+// Contract quotation — exact line items from CEC2025070020
+const QUOTATION = {
+  '06-17':{label:'Sat (Setup)',rooms:{'201-203':{pax:540,krw:5040000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:10200000,remark:'D-1 prep discount'}}},
+  '06-18':{label:'Sun (Workshops)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-19':{label:'Mon (PODS)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-20':{label:'Tue (SIGMOD 1)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'210':{pax:32,krw:600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-21':{label:'Wed (SIGMOD 2)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:32,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-22':{label:'Thu (SIGMOD 3)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-23':{label:'Fri (Workshops)',rooms:{'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'207':{pax:18,krw:400000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+};
+
+const COLORS=['#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#00bcd4','#009688','#4caf50','#8bc34a','#ff9800','#ff5722','#795548','#607d8b','#f44336','#e040fb','#00e5ff'];
+
+// ── CONTRACT RULES — grouped by category ──
+// Source: COEX Contract CEC2025070020 (16/Mar/2026)
+//   Att.1: Quotation | Att.2: Terms & Conditions (T&C) | Att.3: Operation Regulation (Op.Reg.)
+//   + Key Terms and Guidelines
+const CONTRACT_RULES = [
+  // ─── A. RENTAL & PAYMENT ─────────────────────────────────
+  {id:'A1',cat:'Rental & Payment',clause:'Key Terms #1',title:'Rental hours: 09:00-18:00',desc:'Standard rental is full day 09:00-18:00. Extended hours require advance discussion and additional fees.',check:p=>{
+    let v=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){
+      const h=parseInt(sl.time.split('-')[0]);
+      const hasReal=sl.sessions.some(x=>x.need>0&&x.room!=='N/A');
+      if(hasReal&&(h<9||h>=18)){
+        const isEve=sl.label.includes('Evening')||sl.label.includes('Reception')||sl.label.includes('Banquet');
+        v.push(`${day} ${sl.time}: ${sl.label}${isEve?' — evening event, extended-hour arrangement needed':' — outside standard hours'}`);}
+    }}
+    return v.length?{pass:false,notes:v}:{pass:true,notes:['All daytime sessions within 09:00-18:00']};
+  }},
+  {id:'A2',cat:'Rental & Payment',clause:'T&C Art.1',title:'Payment schedule (10% / 40% / 50%+VAT)',desc:'Down payment 10% at signing; 40% by 3 months before; 50%+VAT by 7 days before.',check:()=>{
+    const today=new Date('2026-04-08'),due1=new Date('2026-03-23');
+    return today>due1?{pass:false,notes:[`Down payment KRW 25,944,000 due ${due1.toISOString().slice(0,10)} — OVERDUE. Contract shows Paid Amount = 0.`,`Interim KRW 103,776,000 due 2028-03-17`,`Balance KRW 155,664,000 due 2028-06-10`,`Bank: Shinhan Bank 140-011-634273, SWIFT: SHBKKRSE`]}:{pass:true,notes:['On schedule']};
+  }},
+  {id:'A3',cat:'Rental & Payment',clause:'Contract Note',title:'2026 rates — 3-5% annual increase',desc:'KRW 285,384,000 based on 2026 rates. Adjusted when 2028 official rates confirmed.',check:()=>({pass:'partial',notes:['Meeting Rooms KRW 259,440,000 + VAT 10% = KRW 285,384,000','Contract type: Meeting Room Rental Only, NO F&B required','2028 projected: +6-10% → KRW 302M-314M']})},
+  {id:'A4',cat:'Rental & Payment',clause:'T&C Art.3-4',title:'Cancellation & termination penalties',desc:'Full cancellation forfeits all payments. Partial reduction: 10% (90+ days), 50% (8-89 days), 100% (< 7 days).',check:()=>({pass:'partial',notes:['Full cancellation: all rent paid becomes penalty','Partial reduction 90+ days: 10% of difference','Partial reduction 8-89 days: 50%','Partial reduction < 7 days: 100%','Force majeure (Art.9): no penalty, rent returned']})},
+  // ─── B. SPACE & SETUP ────────────────────────────────────
+  {id:'B1',cat:'Space & Setup',clause:'Key Terms #2',title:'50% surcharge for non-meeting use',desc:'Exhibitions, posters, and other non-meeting uses incur 50% surcharge on rental.',check:p=>{
+    const items=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.style==='Flow'||s.name.includes('Poster'))items.push(`${day}: ${s.name} in ${s.room} — 50% surcharge`);
+      if(s.name.includes('Demo')&&s.style==='U-Shape')items.push(`${day}: ${s.name} in ${s.room} — verify if demo = exhibition`);
+    }}}
+    return items.length?{pass:false,notes:items}:{pass:true,notes:['No non-meeting use detected']};
+  }},
+  {id:'B2',cat:'Space & Setup',clause:'Op.Reg. Art.8',title:'Room setup: 1 free, changes cost extra',desc:'Initial setup included. Any reconfiguration during event incurs separate fees per change.',check:p=>{
+    const ch=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.name.includes('Partition')||(s.note&&s.note.includes('Partition')))ch.push(`${day} ${sl.time}: ${s.note||s.name}`);
+    }}}
+    return ch.length?{pass:false,notes:[`${ch.length} partition changes — each incurs extra fee:`,...ch]}:{pass:true,notes:['No reconfigurations']};
+  }},
+  {id:'B3',cat:'Space & Setup',clause:'Quotation',title:'Rooms 206, 209 unavailable on Friday',desc:'Per quotation, these rooms are not booked on June 23 (Friday).',check:p=>{
+    const fri=p['06-23'];if(!fri)return{pass:true,notes:[]};
+    for(const sl of fri.slots){for(const s of sl.sessions){
+      if(s.room&&(s.room.includes('206')||s.room.includes('209')))return{pass:false,notes:['Program uses 206/209 on Friday — NOT AVAILABLE']};
+    }}
+    return{pass:true,notes:['Friday correctly avoids 206 and 209']};
+  }},
+  // ─── C. LOBBY & INSTALLATIONS ────────────────────────────
+  {id:'C1',cat:'Lobby & Install.',clause:'Key Terms #5',title:'Lobby fee: KRW 20,000/sqm/day',desc:'Installations in lobby areas incur per-sqm daily fee. Install/dismantle only after 18:00.',check:p=>{
+    const items=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.room&&s.room.includes('Lobby')&&s.need>0)items.push(`${day} ${sl.time}: ${s.name} — lobby usage fee applies`);
+    }}}
+    return items.length?{pass:'partial',notes:items}:{pass:true,notes:['No lobby installations']};
+  }},
+  {id:'C2',cat:'Lobby & Install.',clause:'Op.Reg. Art.6',title:'Lobby noise restrictions',desc:'No noise-generating activities (woodworking etc.) in lobby during event prep/execution.',check:p=>{
+    const items=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.room&&s.room.includes('Lobby')&&s.style==='Standing')items.push(`${day}: Standing buffet in lobby — OK if no construction noise`);
+    }}}
+    return items.length?{pass:true,notes:items}:{pass:true,notes:['No lobby noise concerns']};
+  }},
+  {id:'C3',cat:'Lobby & Install.',clause:'Op.Reg. Art.11',title:'Promo materials: 14 days notice for structures',desc:'Banners, arches, signage structures require layout submission 14 days before (June 3, 2028). General materials 7 days.',check:()=>({pass:'partial',notes:['Structures (booths, banners, signboards): submit layout by June 3, 2028 (14 days)','General tech/equipment requests: submit by June 10, 2028 (7 days)','Unauthorized materials may be removed without notice (Op.Reg. Art.11-3)']})},
+  // ─── D. EQUIPMENT & SERVICES ─────────────────────────────
+  {id:'D1',cat:'Equipment & Svc.',clause:'Op.Reg. Art.14',title:'AV: included ONLY for rooms 205 & 209',desc:'Quotation includes Wireless Mic + Beam Projector for 205 and 209 only. All others need separate AV.',check:p=>{
+    const avR=new Set(['205','209']),need=new Set();
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(!s.need||s.room==='N/A'||s.room.includes('Lobby'))continue;
+      s.room.split(/[+,]/).map(r=>r.trim()).forEach(rp=>{expandRoom(rp).forEach(r=>{if(!avR.has(r)&&ROOMS[r])need.add(r);});});
+    }}}
+    return{pass:false,notes:[`Rooms needing separate AV: ${[...need].sort().join(', ')}`,`Apply at signing or submit "Application for Additional Use" (Art.14-2)`]};
+  }},
+  {id:'D2',cat:'Equipment & Svc.',clause:'Op.Reg. Art.12',title:'HVAC: rental hours only (09:00-18:00)',desc:'Air conditioning/heating during 09:00-18:00 only. Extended hours need separate arrangement.',check:p=>{
+    const items=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){
+      const h=parseInt(sl.time.split('-')[0]);
+      if(sl.sessions.some(x=>x.need>0&&x.room!=='N/A'&&!x.room.includes('Lobby'))&&(h<9||h>=18))
+        items.push(`${day} ${sl.time}: ${sl.label}`);
+    }}
+    return items.length?{pass:'partial',notes:[`${items.length} blocks outside HVAC hours:`,...items,'Arrange extended HVAC in advance']}:{pass:true,notes:['All within HVAC hours']};
+  }},
+  {id:'D3',cat:'Equipment & Svc.',clause:'Op.Reg. Art.10',title:'Wi-Fi & Telecom: client cost',desc:'All telecom/communication costs borne by client. Must use COEX-designated provider.',check:()=>({pass:'partial',notes:['Client pays all telecom costs','Must use COEX-designated provider','Budget for Wi-Fi: 840+ concurrent users','Includes installation and cable costs']})},
+  {id:'D4',cat:'Equipment & Svc.',clause:'Op.Reg. Art.18',title:'Broadcasting requires COEX approval',desc:'Recording or broadcasting requires prior approval and coordination with venue.',check:p=>{
+    const items=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.note&&/live|Live|broadcast|stream/i.test(s.note))items.push(`${day} ${sl.time}: ${s.name}`);
+    }}}
+    return items.length?{pass:'partial',notes:['COEX approval required:',...items,'Discuss location and facilities in advance']}:{pass:true,notes:['No broadcasting detected']};
+  }},
+  // ─── E. F&B & CATERING ──────────────────────────────────
+  {id:'E1',cat:'F&B & Catering',clause:'Key Terms #6 / Op.Reg. Art.17',title:'F&B: COEX-designated caterer only',desc:'All catering through COEX-designated partner (Shinsegae Food). No outside food. Standing buffet cannot enter Grand Ballroom.',check:()=>({pass:'partial',notes:['All F&B must use COEX-designated caterer (Shinsegae Food)','Standing buffet food CANNOT be brought into Grand Ballroom','Client may carry in food through designated provider with venue approval (Art.17-3)','No F&B minimum in contract (Meeting Room Rental Only)']})},
+  // ─── F. INSURANCE, SECURITY & LEGAL ─────────────────────
+  {id:'F1',cat:'Legal & Safety',clause:'Op.Reg. Art.5',title:'Insurance: KRW 100M/person, 500M/accident',desc:'Bodily injury insurance required 7 days before event (June 10, 2028).',check:()=>({pass:'partial',notes:['Proof due: June 10, 2028','Coverage: KRW 100,000,000/person, KRW 500,000,000/accident','Venue may also request facility damage deposit (Art.5-3)']})},
+  {id:'F2',cat:'Legal & Safety',clause:'Op.Reg. Art.15',title:'Security staff required (7-day event)',desc:'Client must deploy security guards at own cost for events spanning 2+ days.',check:()=>({pass:'partial',notes:['7-day event requires full-time security staff','Budget for guards June 17-23','Staff must comply with venue instructions (Art.15-3)']})},
+  {id:'F3',cat:'Legal & Safety',clause:'T&C Art.7',title:'No assignment or sublease',desc:'ACM cannot transfer, assign, or sublease rooms. PCO needs official request letter.',check:()=>({pass:'partial',notes:['ACM cannot assign/sublease conference rooms','PCO operating on behalf: submit official request letter','All ops through designated contact person']})},
+  {id:'F4',cat:'Legal & Safety',clause:'T&C Art.11-12',title:'Korean law, Seoul Central District Court',desc:'Contract governed by Korean law. Disputes resolved at Seoul Central District Court. Content is confidential.',check:()=>({pass:'partial',notes:['Governed by laws of Republic of Korea','Exclusive jurisdiction: Seoul Central District Court','Agreement content is confidential (Art.12)','Ethics compliance required (Art.13)']})},
+];
+
+// ── DEFAULT CONFIG ───────────────────────────────────────
+let CFG={
+  researchPapers:250,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90,
+  attendees:1200,numTutorials:11,numWorkshops:12,numPanels:2,numDemoGroups:2,
+  posterPapers:280,postersPerSession:140,posterSetupHours:3,
+  banquetCap:1020,lunchBoxedCap:1800,lunchRoundsCap:1020,overflowCap:300,
+  partitionMin:20,exchangeRate:1500,annualPct:4,
+};
+
+// ══════════════════════════════════════════════════════════
+//  PROGRAM BUILDER  — sequential numbering, slot tracking
+// ══════════════════════════════════════════════════════════
+function buildProgram(){
+  // Global counters — increment as sessions are placed
+  let rN=0; // research session #
+  let iN=0; // industry session #
+  const neededR=Math.ceil(CFG.researchPapers/CFG.papersPerSession);
+  const neededI=Math.ceil(CFG.industryPapers/CFG.papersPerSession);
+  // Helper: next research session name, or mark as empty slot
+  function R(cap,style,room,opts){
+    rN++;
+    const avail=rN<=neededR;
+    return{name:avail?`SIGMOD Session R${rN}`:`[Slot ${rN}] available`,
+           need:avail?cap:0,style,room,type:'research',slotNum:rN,filled:avail,...(opts||{})};
+  }
+  function I(cap,style,room,opts){
+    iN++;
+    const avail=iN<=neededI;
+    return{name:avail?`SIGMOD Industry ${iN}`:`[Ind. Slot ${iN}] available`,
+           need:avail?cap:0,style,room,type:'industry',slotNum:iN,filled:avail,...(opts||{})};
+  }
+
+  const P={
+  '06-17':{label:'Saturday — Setup / D-1',slots:[
+    {time:'09:00-18:00',label:'Setup',sessions:[
+      {name:'Grand Ballroom Setup',need:1800,style:'TH',room:'101-105'},
+      {name:'ASEM Ballroom Setup',need:918,style:'TH',room:'201-203'},
+      {name:'Office / Storage',need:18,style:'CL',room:'211'},
+    ]}
+  ]},
+  '06-18':{label:'Sunday — Workshops & Tutorials',slots:[
+    {time:'08:30-12:30',label:'Morning (6 parallel)',sessions:[
+      {name:'Workshop 1 (largest)',need:612,style:'TH',room:'201-203'},
+      {name:'Workshop 2',need:160,style:'TH',room:'205'},
+      {name:'Workshop 3',need:160,style:'TH',room:'209'},
+      {name:'Workshop 4',need:288,style:'TH',room:'102'},
+      {name:'Workshop 5 (AM only)',need:288,style:'TH',room:'104'},
+      {name:'Tutorial 1',need:306,style:'TH',room:'103'},
+    ]},
+    {time:'10:30-11:00',label:'AM Break',sessions:[{name:'Coffee Break',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'Lobby'}]},
+    {time:'12:30-13:30',label:'Lunch',sessions:[{name:'Lunch on your own',need:0,style:'N/A',room:'N/A'}]},
+    {time:'13:30-17:00',label:'Afternoon (6 parallel)',sessions:[
+      {name:'Workshop 1 (cont.)',need:612,style:'TH',room:'201-203'},
+      {name:'Workshop 2 (cont.)',need:160,style:'TH',room:'205'},
+      {name:'Workshop 3 (cont.)',need:160,style:'TH',room:'209'},
+      {name:'Workshop 4 (cont.)',need:288,style:'TH',room:'102'},
+      {name:'Workshop 6 (PM only)',need:288,style:'TH',room:'104'},
+      {name:'Tutorial 2',need:306,style:'TH',room:'103'},
+    ]},
+    {time:'17:00-18:30',label:'Evening',sessions:[
+      {name:'SIGMOD/PODS Warmup',need:612,style:'TH',room:'201-203'},
+    ]},
+    {time:'18:30-20:00',label:'PODS Reception',sessions:[
+      {name:'PODS Reception (Standing)',need:CFG.attendees,style:'Standing',room:'Lobby + 101-105'},
+    ]}
+  ]},
+  '06-19':{label:'Monday — PODS Day',note:'Per PODS agreement: only DaMoN workshop allowed on Monday (different target audience)',slots:[
+    {time:'08:00-09:30',label:'Plenary',sessions:[
+      {name:'PODS Opening & Keynote',need:1176,style:'TH',room:'101-104',note:'Partition: 101-105 → 101-104 + 105'},
+    ]},
+    {time:'09:30-10:30',label:'Morning A',sessions:[
+      {name:'DaMoN Workshop',need:160,style:'TH',room:'205',note:'Only workshop allowed on Monday per PODS agreement'},
+      {name:'PODS Session 1',need:612,style:'TH',room:'201-203'},
+    ]},
+    {time:'10:30-11:00',label:'AM Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.25),style:'Standing',room:'Lobby'}]},
+    {time:'11:00-12:30',label:'Morning B',sessions:[
+      {name:'DaMoN Workshop (cont.)',need:160,style:'TH',room:'205'},
+      {name:'PODS Session 2',need:612,style:'TH',room:'201-203'},
+    ]},
+    {time:'12:30-14:00',label:'Lunch (Standing Buffet)',sessions:[
+      {name:'Standing Buffet (Lobby)',need:Math.min(800,CFG.attendees),style:'Standing',room:'Lobby',note:'Grand Ballroom Lobby. COEX policy: standing buffet food CANNOT enter Grand Ballroom.'},
+      {name:'Standing Buffet (ASEM)',need:Math.max(0,CFG.attendees-800),style:'Standing',room:'201-203',note:'ASEM Ballroom overflow. Shinsegae Food (COEX-designated caterer).'},
+    ]},
+    {time:'14:00-15:30',label:'Afternoon A',sessions:[
+      {name:'DaMoN Workshop (cont.)',need:160,style:'TH',room:'205'},
+      {name:'PODS Session 3',need:612,style:'TH',room:'201-203'},
+    ]},
+    {time:'15:30-16:00',label:'PM Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.25),style:'Standing',room:'Lobby'}]},
+    {time:'16:00-18:00',label:'Afternoon B',sessions:[
+      {name:'DaMoN Workshop (cont.)',need:160,style:'TH',room:'205'},
+      {name:'PODS Session 4',need:612,style:'TH',room:'201-203'},
+    ]},
+    {time:'18:00-19:30',label:'Evening Events',sessions:[
+      {name:'SIGMOD Reception',need:CFG.attendees,style:'Standing',room:'Lobby + 101-105'},
+      {name:'PODS Business Meeting',need:612,style:'TH',room:'201-203'},
+    ]}
+  ]},
+  // ─── TUESDAY: SIGMOD Day 1 ─────────────────────────────
+  '06-20':{label:'Tuesday — SIGMOD Day 1 (Awards & Keynote)',slots:[
+    {time:'08:30-10:30',label:'Plenary',sessions:[
+      {name:'SIGMOD Opening & Keynote 1',need:CFG.attendees,style:'TH',room:'101-105'},
+    ]},
+    {time:'10:30-11:00',label:'Break + Partition',sessions:[
+      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A',note:'~20 min'},
+    ]},
+    {time:'11:00-12:30',label:'Morning Parallel',sessions:[
+      {name:'Student Research Comp. 1',need:1464,style:'TH',room:'101-104'},
+      R(288,'TH','105'),
+      {name:'PODS Tutorial 1',need:306,style:'TH',room:'201'},
+      R(306,'TH','202'),
+      R(306,'TH','203'),
+      R(160,'TH','205'),
+      R(60,'TH','206'),
+      {name:'Demo Group A',need:36,style:'U-Shape',room:'209'},
+    ]},
+    {time:'12:30-14:00',label:'Lunch with Awards (Boxed Meal / Dosirak)',sessions:[
+      {name:'Awards Lunch (Dosirak)',need:CFG.attendees,style:'TH',room:'101-105',note:`Theater seating + boxed meals. Cap 1,800 TH. Shinsegae Food. KRW ~61K-63K/person (2028). Korean/Western/Japanese. Vegan & Halal.`},
+    ]},
+    {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
+      {name:'SIGMOD Panel 1',need:1464,style:'TH',room:'101-104'},
+      R(288,'TH','105'),
+      {name:'PODS Tutorial 2',need:306,style:'TH',room:'201'},
+      R(612,'TH','202-203',{note:'202+203 merged'}),
+      I(160,'TH','205'),
+      R(60,'TH','206'),
+      R(60,'TH','210'),
+    ]},
+    {time:'15:30-16:00',label:'Break + Partition',sessions:[
+      {name:'Partition: 202-203→202,203 / 101-104→101-103,104',need:0,style:'N/A',room:'N/A',note:'~20 min each'},
+    ]},
+    {time:'16:00-17:30',label:'Late Afternoon Parallel',sessions:[
+      R(1176,'TH','101-103',{note:'101+102+103 combined'}),
+      R(288,'TH','104'),
+      R(288,'TH','105'),
+      {name:'PODS Tutorial 3',need:306,style:'TH',room:'201'},
+      {name:'SIGMOD Sponsor Talk',need:306,style:'TH',room:'202'},
+      R(306,'TH','203'),
+      R(160,'TH','205'),
+      R(60,'TH','206'),
+      R(60,'TH','210'),
+      {name:'Demo Group B',need:36,style:'U-Shape',room:'209'},
+    ]},
+    {time:'18:30-20:30',label:'Evening',sessions:[
+      {name:'New Researcher Symposium',need:306,style:'TH',room:'201'},
+    ]}
+  ]},
+  // ─── WEDNESDAY: SIGMOD Day 2 ───────────────────────────
+  '06-21':{label:'Wednesday — SIGMOD Day 2 (Banquet)',note:'Grand Ballroom Rounds ALL DAY for banquet prep (min 4hr setup). 206/209 in poster config (setup Tue evening).',slots:[
+    {time:'08:00-10:30',label:'Plenary (Rounds)',sessions:[
+      {name:'SIGMOD Keynote 2 & DEI Keynote',need:CFG.attendees,style:'RD',room:'101-105',note:'Round Table setup all day for banquet. Cap 1,020 RD — overflow to ASEM if needed.'},
+    ]},
+    {time:'10:30-11:00',label:'Break + Partition',sessions:[
+      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A'},
+      {name:'206/209 in poster config (setup Tue evening)',need:0,style:'N/A',room:'206, 209',note:'Poster boards set up Tuesday evening — rooms in poster configuration all day Wednesday'},
+    ]},
+    {time:'11:00-12:30',label:'Morning Parallel',sessions:[
+      R(730,'RD','101-104'),
+      R(150,'RD','105'),
+      {name:'PODS Tutorial 1',need:120,style:'RD',room:'201'},
+      R(306,'TH','202'),
+      R(306,'TH','203'),
+      {name:'DEI Bird-of-a-Feather',need:160,style:'TH',room:'205'},
+    ]},
+    {time:'12:30-14:00',label:'Lunch + Poster 1',sessions:[
+      {name:'Business Lunch (Main)',need:1020,style:'RD',room:'101-105',note:'Grand Ballroom Round Tables. Already set for banquet. Seated lunch.'},
+      {name:'Business Lunch (Overflow + Live Stream)',need:CFG.overflowCap,style:'RD',room:'201-203',
+       note:`ASEM overflow: seated lunch + live broadcast of business meeting. ~${CFG.overflowCap} pax. Total: ${1020+CFG.overflowCap}/${CFG.attendees}`,
+       warn:CFG.attendees>(1020+CFG.overflowCap)?`Lunch gap: need ${CFG.attendees}, have ${1020+CFG.overflowCap} (${CFG.attendees-1020-CFG.overflowCap} short)`:null},
+      {name:'Poster Session 1',need:Math.min(CFG.postersPerSession,40),style:'Flow',room:'206',note:`~40 posters`},
+      {name:'Poster Session 1',need:Math.min(CFG.postersPerSession,100),style:'Flow',room:'209',note:`~100 posters`},
+    ]},
+    {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
+      {name:'PODS Tutorial 2',need:120,style:'RD',room:'105'},
+      R(306,'TH','202'),
+      R(306,'TH','203'),
+      I(160,'TH','205'),
+    ]},
+    {time:'15:30-16:00',label:'PM Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.25),style:'Standing',room:'Lobby'}]},
+    {time:'16:00-17:30',label:'Late Afternoon + Poster 2',sessions:[
+      {name:'PODS Tutorial 3',need:120,style:'RD',room:'105'},
+      R(306,'TH','202'),
+      R(306,'TH','203'),
+      {name:'Student Research Comp. 2',need:160,style:'TH',room:'205'},
+      {name:'Poster Session 2',need:Math.min(CFG.postersPerSession,40),style:'Flow',room:'206',note:'~40 posters'},
+      {name:'Poster Session 2',need:Math.min(CFG.postersPerSession,100),style:'Flow',room:'209',note:'~100 posters'},
+    ]},
+    {time:'20:00-22:00',label:'Banquet (Onsite)',sessions:[
+      {name:'Conference Banquet',need:CFG.banquetCap,style:'RD',room:'101-105',
+       note:`Onsite (budget+transport). Rounds 1,020. Attendees: ${CFG.attendees}`},
+    ]}
+  ]},
+  // ─── THURSDAY: SIGMOD Day 3 (max parallel) ─────────────
+  '06-22':{label:'Thursday — SIGMOD Day 3 (Max Parallel)',slots:[
+    {time:'08:00-09:30',label:'Plenary',sessions:[
+      {name:'SIGMOD Award Talks',need:CFG.attendees,style:'TH',room:'101-105'},
+    ]},
+    {time:'09:30-10:00',label:'Break + Partition',sessions:[
+      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A'},
+    ]},
+    {time:'10:00-11:30',label:'Morning Parallel',sessions:[
+      R(612,'TH','201-202',{note:'201+202 merged'}),
+      {name:'Demo Group A',need:66,style:'U-Shape',room:'203'},
+      I(160,'TH','205'),
+      R(60,'TH','206'),
+      I(160,'TH','209'),
+      {name:'SIGMOD Panel 2',need:288,style:'TH',room:'105'},
+      R(288,'TH','101'),
+      R(288,'TH','104'),
+    ]},
+    {time:'12:00-13:30',label:'Lunch (Standing Buffet)',sessions:[
+      {name:'Standing Buffet (Lobby)',need:Math.min(800,CFG.attendees),style:'Standing',room:'Lobby',note:'Grand Ballroom Lobby. COEX policy: no standing buffet food inside Grand Ballroom.'},
+      {name:'Standing Buffet (ASEM)',need:Math.max(0,CFG.attendees-800),style:'Standing',room:'201-203',note:'ASEM Ballroom overflow. Partition during lunch: 101-104→individual, 201-202→individual.'},
+    ]},
+    {time:'14:00-15:30',label:'Afternoon Parallel (11) — MAX',sessions:[
+      {name:'Tutorial 1',need:306,style:'TH',room:'201'},
+      R(306,'TH','202'),
+      {name:'Demo Group B',need:66,style:'U-Shape',room:'203'},
+      {name:'Tutorial 2',need:160,style:'TH',room:'205'},
+      R(60,'TH','206'),
+      R(160,'TH','209'),
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
+      R(288,'TH','104'),
+      {name:'Tutorial 3',need:288,style:'TH',room:'105'},
+    ]},
+    {time:'15:30-16:00',label:'PM Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'Lobby'}]},
+    {time:'16:00-17:30',label:'Late Afternoon Parallel (11)',sessions:[
+      {name:'Tutorial 1 (cont.)',need:306,style:'TH',room:'201'},
+      I(306,'TH','202'),
+      R(306,'TH','203'),
+      {name:'Tutorial 2 (cont.)',need:160,style:'TH',room:'205'},
+      R(60,'TH','206'),
+      R(160,'TH','209'),
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
+      R(288,'TH','104'),
+      {name:'Tutorial 3 (cont.)',need:288,style:'TH',room:'105'},
+    ]}
+  ]},
+  '06-23':{label:'Friday — Workshops & Tutorials',note:'Rooms 206 and 209 UNAVAILABLE on this day',slots:[
+    {time:'08:30-12:30',label:'Morning (6 parallel)',sessions:[
+      {name:'Workshop 7 (AM only)',need:160,style:'TH',room:'205'},
+      {name:'Workshop 8 (all day)',need:288,style:'TH',room:'101'},
+      {name:'Workshop 9 (all day)',need:288,style:'TH',room:'102'},
+      {name:'Workshop 10 (AM only)',need:600,style:'TH',room:'103'},
+      {name:'Tutorial 4',need:288,style:'TH',room:'104'},
+      {name:'Tutorial 5',need:288,style:'TH',room:'105'},
+    ]},
+    {time:'10:30-11:00',label:'AM Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.4),style:'Standing',room:'Lobby'}]},
+    {time:'12:30-13:30',label:'Lunch',sessions:[{name:'Lunch on your own',need:0,style:'N/A',room:'N/A'}]},
+    {time:'13:30-17:00',label:'Afternoon (5 parallel)',sessions:[
+      {name:'Workshop 11 (PM only)',need:600,style:'TH',room:'103'},
+      {name:'Workshop 8 (cont.)',need:288,style:'TH',room:'101'},
+      {name:'Workshop 9 (cont.)',need:288,style:'TH',room:'102'},
+      {name:'Tutorial 6',need:288,style:'TH',room:'104'},
+      {name:'Tutorial 7',need:288,style:'TH',room:'105'},
+    ]}
+  ]}
+  };
+
+  // Store slot accounting in program metadata
+  P._slots={
+    research:{total:rN, needed:neededR, filled:Math.min(rN,neededR), empty:Math.max(0,rN-neededR), overflow:Math.max(0,neededR-rN)},
+    industry:{total:iN, needed:neededI, filled:Math.min(iN,neededI), empty:Math.max(0,iN-neededI), overflow:Math.max(0,neededI-iN)},
+  };
+  return P;
+}
+
+// ══════════════════════════════════════════════════════════
+//  VALIDATION
+// ══════════════════════════════════════════════════════════
+function validate(P){
+  const issues=[];
+  for(const[day,data]of Object.entries(P)){
+    if(day.startsWith('_'))continue;
+    const qDay=QUOTATION[day];
+    for(const slot of data.slots){for(const sess of slot.sessions){
+      if(!sess.need||sess.room==='N/A'||sess.room.includes('Lobby'))continue;
+      const rids=sess.room.split(/[ +,]+/).filter(r=>ROOMS[r]);
+      // ── Capacity check: SUM across all rooms in multi-room sessions ──
+      function getCap(rm,style){return style==='TH'?rm.th:style==='RD'?rm.rd:style==='CL'?rm.cl:style==='U-Shape'?Math.floor(rm.th*.4):rm.th;}
+      if(rids.length===1){
+        const rm=ROOMS[rids[0]];if(rm){
+          const cap=getCap(rm,sess.style);
+          if(sess.need>cap){const d=sess.need-cap;
+            issues.push({day,time:slot.time,sev:d>cap*.15?'err':'warn',
+              msg:`${sess.name}: needs ${sess.need} (${sess.style}) but ${rm.name} capacity is ${cap} — ${d} short`});}
+        }
+      } else if(rids.length>1){
+        const totalCap=rids.reduce((sum,rid)=>{const rm=ROOMS[rid];return sum+(rm?getCap(rm,sess.style):0);},0);
+        if(sess.need>totalCap){const d=sess.need-totalCap;
+          issues.push({day,time:slot.time,sev:d>totalCap*.15?'err':'warn',
+            msg:`${sess.name}: needs ${sess.need} (${sess.style}) but combined ${rids.join('+')} capacity is ${totalCap} — ${d} short`});}
+      }
+      // ── Quotation check: handle subset rooms (101-104 ⊂ 101-105, 202-203 ⊂ 201-203) ──
+      if(qDay){for(const rid of rids){
+        const inQ=qDay.rooms[rid];
+        // Check if rid is an individual room that's part of a booked combined room
+        const partOf=Object.keys(qDay.rooms).some(br=>{const r=ROOMS[br];return r&&r.parts&&r.parts.includes(rid);});
+        // Check if rid is a combined room whose parts are ALL covered by a booked larger room
+        const subsetOf=!inQ&&!partOf&&ROOMS[rid]&&ROOMS[rid].parts?
+          Object.keys(qDay.rooms).some(br=>{const r=ROOMS[br];return r&&r.parts&&ROOMS[rid].parts.every(p=>r.parts.includes(p));}):false;
+        if(!inQ&&!partOf&&!subsetOf){
+          issues.push({day,time:slot.time,sev:'warn',msg:`${sess.name}: Room ${rid} NOT in contract quotation for ${day}`});
+        }
+      }}
+      if(sess.warn)issues.push({day,time:slot.time,sev:'err',msg:sess.warn});
+    }}
+  }
+  // ── Room double-booking check (same time slot, overlapping rooms) ──
+  for(const[day,data]of Object.entries(P)){
+    if(day.startsWith('_'))continue;// skip metadata
+    for(const slot of data.slots){
+      const roomMap={};// room → session name
+      for(const sess of slot.sessions){
+        if(!sess.need&&!sess.name.includes('Workshop')&&!sess.name.includes('DaMoN')&&!sess.name.includes('Tutorial'))continue;
+        if(sess.room==='N/A'||sess.room.includes('Lobby'))continue;
+        const parts=sess.room.split(/[+,]/).map(r=>r.trim());
+        for(const rp of parts){
+          const expanded=expandRoom(rp);
+          if(!expanded.length&&ROOMS[rp])expanded.push(rp);
+          for(const phys of expanded){
+            if(roomMap[phys]){
+              issues.push({day,time:slot.time,sev:'err',
+                msg:`Room ${phys} double-booked: "${roomMap[phys]}" and "${sess.name}" both assigned`});
+            } else roomMap[phys]=sess.name;
+          }
+        }
+      }
+    }
+  }
+  // Structural checks
+  issues.push({day:'06-22',time:'14:00-17:30',sev:'info',msg:'11 parallel sessions use 11 session rooms. Backup: 204 (24 TH, storage), 207 (36 TH, organizing comm.) are booked but available if needed.'});
+  issues.push({day:'06-21',time:'ALL DAY',sev:'info',msg:'Rooms 206/209 in poster configuration all day (poster boards set up Tuesday evening). No regular sessions scheduled in these rooms.'});
+  if(CFG.attendees>CFG.banquetCap){
+    issues.push({day:'06-21',time:'20:00',sev:CFG.attendees>CFG.banquetCap*1.3?'err':'warn',
+      msg:`Banquet: ${CFG.banquetCap} seats vs ${CFG.attendees} expected attendees (${Math.round(CFG.banquetCap/CFG.attendees*100)}% coverage)`});
+  }
+  const lunchGap=CFG.attendees-(CFG.lunchRoundsCap+CFG.overflowCap);
+  if(lunchGap>0)issues.push({day:'06-21',time:'12:30',sev:'warn',msg:`Wednesday lunch: ${CFG.attendees} attendees vs ${CFG.lunchRoundsCap+CFG.overflowCap} seats (${lunchGap} short)`});
+
+  // ── Session slot capacity check (from _slots metadata) ──
+  const sl=P._slots||{research:{total:0,needed:0,overflow:0,empty:0},industry:{total:0,needed:0,overflow:0,empty:0}};
+  const rMargin=sl.research.total-sl.research.needed;
+  const iMargin=sl.industry.total-sl.industry.needed;
+
+  issues.push({day:'GLOBAL',time:'Tue-Thu',sev:rMargin<0?'err':rMargin<=2?'warn':'ok',
+    msg:`Research: ${sl.research.needed} sessions needed (${CFG.researchPapers} papers ÷ ${CFG.papersPerSession}/session @ ${CFG.minPerPaper}min), ${sl.research.total} slots available → ${rMargin>=0?'+':''}${rMargin} margin${rMargin<0?` — ${-rMargin} sessions CANNOT be scheduled!`:rMargin>0?` — ${sl.research.empty} slots shown as [available]`:''}`});
+  issues.push({day:'GLOBAL',time:'Tue-Thu',sev:iMargin<0?'err':iMargin<=1?'warn':'ok',
+    msg:`Industry: ${sl.industry.needed} sessions needed (${CFG.industryPapers} papers ÷ ${CFG.papersPerSession}/session), ${sl.industry.total} slots available → ${iMargin>=0?'+':''}${iMargin} margin${iMargin<0?` — ${-iMargin} sessions CANNOT be scheduled!`:''}`});
+
+  return issues;
+}
+
+// ══════════════════════════════════════════════════════════
+//  RENDER FUNCTIONS
+// ══════════════════════════════════════════════════════════
+function renderOverview(P){
+  const issues=validate(P);const ec=issues.filter(i=>i.sev==='err').length;const wc=issues.filter(i=>i.sev==='warn').length;
+  let maxP=0;for(const[k,d] of Object.entries(P)){if(k.startsWith('_'))continue;for(const s of d.slots){const n=s.sessions.filter(x=>x.need>0&&x.room!=='N/A'&&!x.room.includes('Lobby')).length;maxP=Math.max(maxP,n);}}
+  const gt=285384000;
+  document.getElementById('overview').innerHTML=`
+  <div class="card"><h2>SIGMOD/PODS 2028 — Dashboard</h2>
+    <div class="summary-grid">
+      <div class="summary-box"><div class="value">${CFG.attendees.toLocaleString()}</div><div class="label">Expected Attendees</div></div>
+      <div class="summary-box"><div class="value">${CFG.researchPapers+CFG.industryPapers}</div><div class="label">Papers (${CFG.researchPapers}R + ${CFG.industryPapers}I)</div></div>
+      <div class="summary-box"><div class="value">${Math.ceil(CFG.researchPapers/CFG.papersPerSession)+Math.ceil(CFG.industryPapers/CFG.papersPerSession)}</div><div class="label">Paper Sessions</div></div>
+      <div class="summary-box"><div class="value">${CFG.sessionLengthMin}min</div><div class="label">Session = ${CFG.papersPerSession} papers x ${CFG.minPerPaper}min</div></div>
+      <div class="summary-box"><div class="value">${CFG.numWorkshops}</div><div class="label">Workshops (6 Sun + 1 DaMoN + 5 Fri)</div></div>
+      <div class="summary-box"><div class="value">${CFG.numTutorials}</div><div class="label">Tutorials</div></div>
+      <div class="summary-box"><div class="value">${maxP}</div><div class="label">Max Parallel Sessions</div></div>
+      <div class="summary-box"><div class="value">KRW ${(gt/1e6).toFixed(1)}M</div><div class="label">Venue Cost (VAT incl.)</div></div>
+      <div class="summary-box"><div class="value">$${Math.round(gt/CFG.exchangeRate).toLocaleString()}</div><div class="label">USD (@ ${CFG.exchangeRate})</div></div>
+      <div class="summary-box" style="border-color:${ec?'var(--err)':'var(--ok)'}"><div class="value" style="color:${ec?'var(--err)':'var(--ok)'}">${ec}</div><div class="label">Critical Issues</div></div>
+      <div class="summary-box" style="border-color:${wc?'var(--warn)':'var(--ok)'}"><div class="value" style="color:${wc?'var(--warn)':'var(--ok)'}">${wc}</div><div class="label">Warnings</div></div>
+    </div>
+  </div>
+  <div class="card"><h2>Week at a Glance</h2><table>
+    <tr><th>Date</th><th>Day</th><th>Blocks</th><th>Max ||</th><th>Issues</th></tr>
+    ${Object.entries(P).filter(([day])=>!day.startsWith('_')).map(([day,d])=>{
+      let mp=0;d.slots.forEach(s=>{const n=s.sessions.filter(x=>x.need>0&&x.room!=='N/A'&&!x.room.includes('Lobby')).length;mp=Math.max(mp,n);});
+      const di=issues.filter(i=>i.day===day);const de=di.filter(i=>i.sev==='err').length;const dw=di.filter(i=>i.sev==='warn').length;
+      return`<tr><td>${day}</td><td>${d.label}</td><td>${d.slots.length}</td>
+        <td style="font-weight:700;color:${mp>=11?'var(--err)':mp>=8?'var(--warn)':'inherit'}">${mp}</td>
+        <td>${de?`<span class="st err">${de} critical</span> `:''}${dw?`<span class="st warn">${dw} warn</span>`:de?'':'<span class="st ok">OK</span>'}</td></tr>`;
+    }).join('')}
+  </table></div>
+  <div class="card"><h2>Session Slot Accounting (${CFG.minPerPaper}min/paper × ${CFG.papersPerSession} = ${CFG.sessionLengthMin}min/session)</h2>
+    <table><tr><th>Type</th><th>Papers</th><th>÷ Per Session</th><th>= Needed</th><th>Slots Available</th><th>Margin</th><th>Status</th></tr>
+    <tr><td>Research</td><td>${CFG.researchPapers}</td><td>${CFG.papersPerSession}</td>
+        <td><strong>${P._slots.research.needed}</strong></td><td><strong>${P._slots.research.total}</strong></td>
+        <td style="font-weight:700;color:${P._slots.research.total-P._slots.research.needed<0?'var(--err)':P._slots.research.total-P._slots.research.needed<=2?'var(--warn)':'var(--ok)'}">${P._slots.research.total-P._slots.research.needed>=0?'+':''}${P._slots.research.total-P._slots.research.needed}</td>
+        <td>${P._slots.research.total>=P._slots.research.needed?
+          (P._slots.research.empty>0?`<span class="st ok">${P._slots.research.empty} empty slots</span>`:'<span class="st warn">Exact fit</span>'):
+          `<span class="st err">${P._slots.research.overflow} sessions unschedulable!</span>`}</td></tr>
+    <tr><td>Industry</td><td>${CFG.industryPapers}</td><td>${CFG.papersPerSession}</td>
+        <td><strong>${P._slots.industry.needed}</strong></td><td><strong>${P._slots.industry.total}</strong></td>
+        <td style="font-weight:700;color:${P._slots.industry.total-P._slots.industry.needed<0?'var(--err)':P._slots.industry.total-P._slots.industry.needed<=1?'var(--warn)':'var(--ok)'}">${P._slots.industry.total-P._slots.industry.needed>=0?'+':''}${P._slots.industry.total-P._slots.industry.needed}</td>
+        <td>${P._slots.industry.total>=P._slots.industry.needed?
+          (P._slots.industry.empty>0?`<span class="st ok">${P._slots.industry.empty} empty slots</span>`:'<span class="st warn">Exact fit</span>'):
+          `<span class="st err">${P._slots.industry.overflow} sessions unschedulable!</span>`}</td></tr>
+    </table>
+    <ul class="cl" style="margin-top:8px;">
+    ${issues.filter(i=>i.day==='GLOBAL').map(i=>`<li class="${i.sev}"><strong>[${i.time}]</strong> ${i.msg}</li>`).join('')}
+    </ul>
+  </div>
+  <div class="card"><h2>Top Issues</h2><ul class="cl">
+    ${issues.filter(i=>i.sev==='err'&&i.day!=='GLOBAL').slice(0,5).map(i=>`<li class="err"><strong>[${i.day} ${i.time}]</strong> ${i.msg}</li>`).join('')}
+    ${issues.filter(i=>i.sev==='warn'&&i.day!=='GLOBAL').slice(0,5).map(i=>`<li class="warn"><strong>[${i.day} ${i.time}]</strong> ${i.msg}</li>`).join('')}
+  </ul></div>`;
+}
+
+function renderContract(P){
+  const el=document.getElementById('contract');
+  const results=CONTRACT_RULES.map(r=>({...r,result:r.check(P)}));
+  const passC=results.filter(r=>r.result.pass===true).length;
+  const failC=results.filter(r=>r.result.pass===false).length;
+  const partC=results.filter(r=>r.result.pass==='partial').length;
+  // Group by category
+  const cats=[];const seen=new Set();
+  results.forEach(r=>{if(!seen.has(r.cat)){seen.add(r.cat);cats.push(r.cat);}});
+  el.innerHTML=`
+  <div class="card"><h2>Contract Compliance Checker</h2>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">COEX Contract CEC2025070020 (16/Mar/2026). Attachments: 1. Quotation, 2. Terms &amp; Conditions (13 articles), 3. Operation Regulation (20 articles), + Key Terms and Guidelines.</p>
+    <div class="summary-grid">
+      <div class="summary-box" style="border-color:var(--ok)"><div class="value" style="color:var(--ok)">${passC}</div><div class="label">Compliant</div></div>
+      <div class="summary-box" style="border-color:var(--err)"><div class="value" style="color:var(--err)">${failC}</div><div class="label">Violations</div></div>
+      <div class="summary-box" style="border-color:var(--warn)"><div class="value" style="color:var(--warn)">${partC}</div><div class="label">Needs Attention</div></div>
+      <div class="summary-box"><div class="value">${CONTRACT_RULES.length}</div><div class="label">Total Rules</div></div>
+    </div>
+  </div>
+  ${cats.map(cat=>{
+    const catRules=results.filter(r=>r.cat===cat);
+    const catFail=catRules.filter(r=>r.result.pass===false).length;
+    const catColor=catFail?'var(--err)':catRules.some(r=>r.result.pass==='partial')?'var(--warn)':'var(--ok)';
+    return`<div class="card"><h2 style="border-left:4px solid ${catColor};padding-left:8px;">${cat} <span style="font-size:12px;font-weight:400;color:var(--muted);">(${catRules.length} rules)</span></h2>
+    <div class="enforce-grid">
+    ${catRules.map(r=>{
+      const cls=r.result.pass===true?'pass':r.result.pass===false?'fail':'partial';
+      const icon=r.result.pass===true?'PASS':r.result.pass===false?'VIOLATION':'ATTENTION';
+      return`<div class="enforce-card ${cls}">
+        <div class="title">[${r.id}] ${r.title}</div>
+        <div class="clause">${r.clause} — ${r.desc}</div>
+        <div class="result" style="color:${cls==='pass'?'var(--ok)':cls==='fail'?'var(--err)':'var(--warn)'}">${icon}</div>
+        <ul style="margin-top:6px;padding-left:16px;font-size:11px;">
+          ${r.result.notes.map(n=>`<li>${n}</li>`).join('')}
+        </ul>
+      </div>`;
+    }).join('')}
+    </div></div>`;
+  }).join('')}`;
+}
+
+function renderSettings(){
+  const el=document.getElementById('settings');
+  const fields=[
+    ['researchPapers','Research Papers'],['industryPapers','Industry Papers'],
+    ['minPerPaper','Minutes per Paper'],['sessionLengthMin','Session Length (min)'],['papersPerSession','Papers per Session (auto: session/paper)'],
+    ['attendees','Expected Attendees'],['numTutorials','Tutorials'],['numWorkshops','Workshops (incl. DaMoN)'],
+    ['numPanels','Panels'],['numDemoGroups','Demo Groups'],['posterPapers','Total Poster Papers'],
+    ['postersPerSession','Posters per Session'],['posterSetupHours','Poster Setup (hours)'],
+    ['banquetCap','Banquet Capacity (Rounds)'],['lunchRoundsCap','Wed Lunch Capacity (Rounds)'],
+    ['overflowCap','Overflow Capacity (ASEM)'],['partitionMin','Partition Time (min)'],
+    ['exchangeRate','Exchange Rate (KRW/USD)'],['annualPct','Annual Price Increase (%)'],
+  ];
+  el.innerHTML=`
+  <div class="card"><h2>Simulation Parameters</h2>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Adjust and click "Re-simulate" to update all views including contract enforcement checks.</p>
+    <div class="settings-grid">
+      ${fields.map(([k,lbl])=>`<div class="setting"><label>${lbl}</label><input type="number" id="s-${k}" value="${CFG[k]}" step="${k==='annualPct'?0.5:1}"></div>`).join('')}
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;">
+      <button class="btn btn-primary" onclick="applySettings()">Re-simulate</button>
+      <button class="btn btn-secondary" onclick="resetDefaults()">Reset Defaults</button>
+    </div>
+  </div>
+  <div class="card"><h2>COEX Room Inventory</h2><table>
+    <tr><th>ID</th><th>Name</th><th>Floor</th><th>Classroom</th><th>Theater</th><th>Rounds</th></tr>
+    ${Object.entries(ROOMS).filter(([id,r])=>!r.parts||['101-105','201-203','101-104','101-102','201-202','101-103','202-203'].includes(id)).map(([id,r])=>
+      `<tr><td><strong>${id}</strong></td><td>${r.name}</td><td>${r.floor}F</td><td>${r.cl}</td><td>${r.th}</td><td>${r.rd||'-'}</td></tr>`
+    ).join('')}
+  </table></div>`;
+}
+
+// Session type → color mapping (SIGMOD 2025 style)
+const TYPE_COLORS={
+  'Keynote':'#c0392b','Opening':'#c0392b','Award':'#c0392b','Plenary':'#c0392b',
+  'PODS Session':'#2980b9','PODS Tutorial':'#8e44ad','PODS Business':'#2c3e50','PODS Opening':'#2980b9',
+  'SIGMOD Session':'#27ae60','Research':'#27ae60','Industry':'#e67e22','Sponsor':'#e67e22',
+  'Tutorial':'#8e44ad','Workshop':'#16a085','DaMoN':'#16a085',
+  'Demo':'#d35400','Panel':'#2c3e50','DEI':'#e91e63','Student':'#9b59b6','SRC':'#9b59b6',
+  'Poster':'#e67e22','Lunch':'#607d8b','Coffee':'#78909c','Break':'#78909c','Buffet':'#607d8b',
+  'Reception':'#34495e','Banquet':'#c0392b','Warmup':'#34495e','Symposium':'#8e44ad',
+  'Partition':'#7f8c8d','Setup':'#546e7a','Office':'#607d8b','Storage':'#607d8b',
+  'default':'#7f8c8d',
+};
+function sessColor(name){
+  for(const[key,col]of Object.entries(TYPE_COLORS)){if(name.includes(key))return col;}
+  return TYPE_COLORS.default;
+}
+
+// Expand combined rooms to physical rooms used
+function expandRoom(rid){
+  // Map combined room IDs to their display columns
+  const combos={
+    '101-105':['101','102','103','104','105'],
+    '101-104':['101','102','103','104'],
+    '101-103':['101','102','103'],
+    '101-102':['101','102'],
+    '201-203':['201','202','203'],
+    '201-202':['201','202'],
+    '202-203':['202','203'],
+  };
+  if(combos[rid])return combos[rid];
+  if(ROOMS[rid])return[rid];
+  return[];
+}
+
+// All possible display columns for the grid (ordered by floor/number)
+const GRID_COLS_1F=['101','102','103','104','105'];
+const GRID_COLS_2F=['201','202','203','204','205','206','207','209','210','211'];
+
+function renderDay(dayKey,P){
+  const data=P[dayKey];if(!data)return;
+  const panelId='day-'+{'06-17':'sat','06-18':'sun','06-19':'mon','06-20':'tue','06-21':'wed','06-22':'thu','06-23':'fri'}[dayKey];
+  const el=document.getElementById(panelId);if(!el)return;
+  const qDay=QUOTATION[dayKey];const issues=validate(P).filter(i=>i.day===dayKey);
+
+  // Determine which rooms are booked this day
+  const bookedRooms=new Set();
+  if(qDay)for(const rid of Object.keys(qDay.rooms)){expandRoom(rid).forEach(r=>bookedRooms.add(r));}
+  // Columns = only rooms booked this day (keep order)
+  const cols=[...GRID_COLS_1F,...GRID_COLS_2F].filter(r=>bookedRooms.has(r));
+  // Also add Lobby as a virtual column
+  const hasLobby=data.slots.some(sl=>sl.sessions.some(s=>s.room&&s.room.includes('Lobby')&&s.need>0));
+  const allCols=hasLobby?[...cols,'Lobby']:cols;
+
+  // Build time grid: 30-min slots from earliest to latest
+  let minH=24,maxH=0;
+  for(const sl of data.slots){
+    const[s,e]=sl.time.split('-');
+    const sh=parseInt(s);const eh=parseInt(e);
+    if(sh<minH)minH=sh;if(eh>maxH)maxH=eh;
+  }
+  minH=Math.max(7,minH);maxH=Math.min(23,maxH+1);
+  const timeSlots=[];
+  for(let h=minH;h<maxH;h++){timeSlots.push(`${String(h).padStart(2,'0')}:00`);timeSlots.push(`${String(h).padStart(2,'0')}:30`);}
+
+  // Build cell map: grid[timeIdx][colIdx] = {session, rowspan, isStart}
+  const grid=Array.from({length:timeSlots.length},()=>Array(allCols.length).fill(null));
+  const occupied=Array.from({length:timeSlots.length},()=>Array(allCols.length).fill(false));
+
+  function timeToIdx(t){
+    const[h,m]=t.split(':').map(Number);
+    const target=`${String(h).padStart(2,'0')}:${m<30?'00':'30'}`;
+    return timeSlots.indexOf(target);
+  }
+  function timeToIdxEnd(t){
+    const[h,m]=t.split(':').map(Number);
+    const target=`${String(h).padStart(2,'0')}:${m<=0?'00':m<=30?'30':'30'}`;
+    let idx=timeSlots.indexOf(target);
+    if(idx<0)idx=timeSlots.length;
+    return idx;
+  }
+
+  for(const slot of data.slots){
+    const[startT,endT]=slot.time.split('-');
+    for(const sess of slot.sessions){
+      if(!sess.need&&!sess.name.includes('Partition')&&!sess.name.includes('Setup')&&!sess.name.includes('Office'))continue;
+      if(sess.room==='N/A')continue;
+
+      const sIdx=timeToIdx(startT.trim());
+      const eIdx=timeToIdxEnd(endT.trim());
+      if(sIdx<0)continue;
+      const rowspan=Math.max(1,eIdx-sIdx);
+
+      // Determine which columns this session spans
+      let sessCols=[];
+      const roomParts=sess.room.split(/[+,]/).map(r=>r.trim());
+      for(const rp of roomParts){
+        if(rp==='Lobby'||rp.includes('Lobby')){
+          const li=allCols.indexOf('Lobby');
+          if(li>=0)sessCols.push(li);
+        } else {
+          const expanded=expandRoom(rp);
+          for(const er of expanded){const ci=allCols.indexOf(er);if(ci>=0)sessCols.push(ci);}
+        }
+      }
+      if(!sessCols.length)continue;
+      sessCols.sort((a,b)=>a-b);
+
+      // Check if columns are contiguous for colspan
+      const minC=sessCols[0],maxC=sessCols[sessCols.length-1];
+      const colspan=maxC-minC+1;
+
+      // Place in grid
+      const isEmptySlot=sess.name.includes('[Slot')||sess.name.includes('[Ind.');
+      if(sIdx>=0&&sIdx<grid.length&&!occupied[sIdx][minC]){
+        grid[sIdx][minC]={
+          name:sess.name,need:sess.need,style:sess.style,
+          room:sess.room,note:sess.note,warn:sess.warn,
+          rowspan,colspan,
+          color:isEmptySlot?'#e0e0e0':sessColor(sess.name),
+          empty:isEmptySlot,
+        };
+        // Mark occupied cells
+        for(let r=sIdx;r<Math.min(sIdx+rowspan,grid.length);r++){
+          for(let c=minC;c<=maxC;c++){occupied[r][c]=true;}
+        }
+      }
+    }
+  }
+
+  // Render grid HTML
+  let gridHTML=`<table class="pag"><thead><tr><th class="time-col">Time</th>`;
+  // Column headers with floor grouping
+  let prevFloor=0;
+  for(const col of allCols){
+    const rm=ROOMS[col];
+    const floor=rm?rm.floor:0;
+    const label=col==='Lobby'?'Lobby':`${col}`;
+    const sub=rm?`<br><span style="font-size:9px;font-weight:400;opacity:.7">${rm.th}TH</span>`:'';
+    gridHTML+=`<th>${label}${sub}</th>`;
+  }
+  gridHTML+=`</tr></thead><tbody>`;
+
+  for(let r=0;r<timeSlots.length;r++){
+    gridHTML+=`<tr><td class="time-cell">${timeSlots[r]}</td>`;
+    for(let c=0;c<allCols.length;c++){
+      if(grid[r][c]){
+        const g=grid[r][c];
+        const capInfo=g.need?`${g.need} ${g.style}`:'';
+        const warnStyle=g.warn?'border:2px solid var(--err);':'';
+        const emptyStyle=g.empty?'border:2px dashed #999;color:#666;':'';
+        gridHTML+=`<td class="session-cell" rowspan="${g.rowspan}" colspan="${g.colspan}" style="background:${g.color};${warnStyle}${emptyStyle}" title="${g.name}\n${g.room} | ${capInfo}${g.note?'\n'+g.note:''}${g.warn?'\n⚠ '+g.warn:''}">
+          <span class="s-name">${g.name}</span>
+          ${capInfo?`<span class="s-cap">${capInfo}</span>`:''}
+        </td>`;
+      } else if(!occupied[r][c]){
+        // Empty cell — room available but unused
+        gridHTML+=`<td class="empty"></td>`;
+      }
+      // If occupied by a rowspan/colspan from above, skip (no <td>)
+    }
+    gridHTML+=`</tr>`;
+  }
+  gridHTML+=`</tbody></table>`;
+
+  // Legend
+  const legendTypes=['Keynote','SIGMOD Session','PODS Session','Tutorial','Workshop','Demo','Panel','Poster','Industry','Lunch','Reception','Banquet'];
+  const legendHTML=legendTypes.map(t=>`<span><span class="swatch" style="background:${sessColor(t)}"></span>${t}</span>`).join('');
+
+  el.innerHTML=`
+  <div class="card"><h2>${data.label}</h2>
+    ${data.note?`<p style="color:var(--warn);font-size:12px;margin-bottom:8px;font-weight:600;">${data.note}</p>`:''}
+    <h3>Rooms in Contract Quotation</h3>
+    <div class="room-grid">
+      ${qDay?Object.entries(qDay.rooms).map(([rid,info])=>{const rm=ROOMS[rid];
+        return`<div class="room-chip used"><span class="cap">${rid}</span>${rm?`CL:${rm.cl} TH:${rm.th}${rm.rd?' RD:'+rm.rd:''}`:''}<br>
+          <small>KRW ${(info.krw/1000000).toFixed(1)}M</small>${info.remark?`<br><small style="color:var(--accent)">${info.remark}</small>`:''}
+        </div>`;}).join(''):'<p>No rooms booked</p>'}
+    </div>
+    ${issues.length?`<h3>Issues</h3><ul class="cl">${issues.map(i=>`<li class="${i.sev}"><strong>[${i.time}]</strong> ${i.msg}</li>`).join('')}</ul>`
+      :'<p style="color:var(--ok);font-weight:600;margin-top:12px;">No issues for this day.</p>'}
+  </div>
+  <div class="card"><h2>Program at a Glance</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">Columns = rooms (from contract quotation). Grey cells = room booked but unused in this time slot. Red borders = issues.</p>
+    <div class="pag-legend">${legendHTML}<span><span class="swatch" style="background:#e0e0e0;border:2px dashed #999;"></span>Available Slot (unfilled)</span><span><span class="swatch" style="background:#f5f5f5;border:1px solid #ccc;"></span>Room Unused</span></div>
+    <div class="pag-wrap">${gridHTML}</div>
+  </div>
+  <div class="card"><h2>Schedule Detail</h2><table>
+    <tr><th>Time</th><th>Block</th><th>Session</th><th>Need</th><th>Style</th><th>Room</th><th>Cap</th><th>Status</th></tr>
+    ${data.slots.map(slot=>slot.sessions.map(sess=>{
+      let cap='-',status='';
+      const rids=sess.room.split(/[ +,]+/).filter(r=>ROOMS[r]);
+      if(rids.length&&sess.need>0){const rm=ROOMS[rids[0]];if(rm){
+        cap=sess.style==='TH'?rm.th:sess.style==='RD'?rm.rd:sess.style==='CL'?rm.cl:sess.style==='U-Shape'?Math.floor(rm.th*.4):rm.th;
+        status=sess.need<=cap?'<span class="st ok">OK</span>':sess.need<=cap*1.15?'<span class="st warn">Tight</span>':'<span class="st err">Over</span>';
+      }}
+      const isEmpty=sess.name&&(sess.name.includes('[Slot')||sess.name.includes('[Ind.'));
+      if(isEmpty)status='<span class="st info">AVAILABLE</span>';
+      else if(!sess.need)status='<span class="st info">Setup</span>';
+      const rowStyle=isEmpty?'style="background:#f0f0f0;color:#999;"':'';
+      return`<tr ${rowStyle}><td>${slot.time}</td><td>${slot.label}</td>
+        <td>${sess.name}${sess.note?` <small style="color:var(--muted)">(${sess.note})</small>`:''}</td>
+        <td>${sess.need||'-'}</td><td>${sess.style}</td><td><strong>${sess.room}</strong></td><td>${cap}</td><td>${status}</td></tr>`;
+    }).join('')).join('')}
+  </table></div>`;
+}
+
+function renderCosts(){
+  const sub=259440000,vat=25944000,gt=285384000;
+  const proj=Math.round(gt*Math.pow(1+CFG.annualPct/100,2));
+  document.getElementById('costs').innerHTML=`
+  <div class="card"><h2>Venue Cost Breakdown (Contract Quotation CEC2025070020)</h2><table class="cost-table">
+    <tr><th>Day</th><th>Date</th><th>Rooms</th><th>Cost (KRW)</th></tr>
+    ${Object.entries(QUOTATION).map(([day,q])=>{const tot=Object.values(q.rooms).reduce((a,b)=>a+b.krw,0);
+      return`<tr><td>${q.label}</td><td>2028-${day}</td><td>${Object.keys(q.rooms).join(', ')}</td><td style="text-align:right">KRW ${tot.toLocaleString()}</td></tr>`;}).join('')}
+    <tr style="font-weight:700;border-top:2px solid var(--border)"><td colspan="3">Sub Total</td><td style="text-align:right">KRW ${sub.toLocaleString()}</td></tr>
+    <tr><td colspan="3">VAT (10%)</td><td style="text-align:right">KRW ${vat.toLocaleString()}</td></tr>
+    <tr style="font-weight:700;font-size:15px;color:var(--accent)"><td colspan="3">Grand Total</td><td style="text-align:right">KRW ${gt.toLocaleString()}</td></tr>
+    <tr><td colspan="3">USD (@ KRW ${CFG.exchangeRate})</td><td style="text-align:right">$${Math.round(gt/CFG.exchangeRate).toLocaleString()}</td></tr>
+  </table></div>
+  <div class="card"><h2>Projected 2028 Cost (${CFG.annualPct}% annual increase, per contract note)</h2>
+    <div class="summary-grid">
+      <div class="summary-box"><div class="value">KRW ${(proj/1e6).toFixed(1)}M</div><div class="label">Projected Grand Total</div></div>
+      <div class="summary-box"><div class="value">$${Math.round(proj/CFG.exchangeRate).toLocaleString()}</div><div class="label">USD</div></div>
+      <div class="summary-box"><div class="value">+KRW ${((proj-gt)/1e6).toFixed(1)}M</div><div class="label">Increase</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Contract note: "This quotation is based on the 2026 venue rental rates and will be adjusted accordingly once the official rental rates for 2028 are confirmed. The annual increase is expected to be approximately 3-5%."</p>
+  </div>
+  <div class="card"><h2>Payment Schedule</h2><table>
+    <tr><th>Payment</th><th>Due Date</th><th>KRW</th><th>USD</th><th>Status</th></tr>
+    <tr><td>Down Payment (10%)</td><td>2026-03-23</td><td>KRW ${(25944000).toLocaleString()}</td><td>$${Math.round(25944000/CFG.exchangeRate).toLocaleString()}</td>
+        <td><span class="st err">OVERDUE (today: 2026-04-08)</span></td></tr>
+    <tr><td>Interim (40%)</td><td>2028-03-17</td><td>KRW ${(103776000).toLocaleString()}</td><td>$${Math.round(103776000/CFG.exchangeRate).toLocaleString()}</td>
+        <td><span class="st info">Upcoming</span></td></tr>
+    <tr><td>Balance (50%+VAT)</td><td>2028-06-10</td><td>KRW ${(155664000).toLocaleString()}</td><td>$${Math.round(155664000/CFG.exchangeRate).toLocaleString()}</td>
+        <td><span class="st info">Upcoming</span></td></tr>
+    <tr style="font-weight:700"><td colspan="2">Total</td><td>KRW ${gt.toLocaleString()}</td><td>$${Math.round(gt/CFG.exchangeRate).toLocaleString()}</td><td></td></tr>
+  </table></div>
+  <div class="card"><h2>Additional Costs (Not in Venue Contract)</h2><table>
+    <tr><th>Item</th><th>Details</th><th>Est. Cost</th></tr>
+    <tr><td>Lobby Usage Fee</td><td>KRW 20,000/sqm/day (excl. VAT) — for standing buffet, sponsor booths</td><td>TBD</td></tr>
+    <tr><td>F&B (Shinsegae Food)</td><td>COEX-designated caterer only. 2028 projected: Dosirak ~KRW 61K-63K/pax, Buffet/Reception ~KRW 85K-87K/pax (11-13% increase from 2026). Based on 1,000 attendees @ KRW 1,400/USD.</td><td>$467,286<br>(~KRW ${Math.round(467286*1400).toLocaleString()})</td></tr>
+    <tr><td>AV Equipment</td><td>Standard AV (Wireless Mic + Beam Projector) included ONLY for rooms <strong>205 and 209</strong> per quotation. All other rooms (101-105, 201-203, 206, 207, 210, 211) require separate AV arrangement (Op.Reg. Art.14).</td><td>TBD (major cost)</td></tr>
+    <tr><td>Wi-Fi / Telecom</td><td>Client responsible for all telecom costs (Op.Reg. Art.10). Must use COEX-designated provider. Need Wi-Fi for 840+ concurrent users.</td><td>TBD</td></tr>
+    <tr><td>Extended HVAC</td><td>HVAC provided during rental hours (09:00-18:00) only (Op.Reg. Art.12). Sessions at 08:00 and banquet until 22:00 need extended HVAC arrangement.</td><td>TBD</td></tr>
+    <tr><td>50% Surcharge</td><td>Poster sessions in 206/209 may trigger non-meeting surcharge (Key Terms #2)</td><td>~KRW ${(600000*0.5*4).toLocaleString()} (est.)</td></tr>
+    <tr><td>Insurance</td><td>Required: KRW 100M/person, KRW 500M/accident — proof due June 10</td><td>TBD</td></tr>
+    <tr><td>Hotel Blocks</td><td>PCO arranges separately (Grand InterContinental Seoul Parnas, etc.)</td><td>Separate contract</td></tr>
+    <tr><td>Room Setup Changes</td><td>Partition adjustments during event (Op.Reg. Art.8)</td><td>TBD per change</td></tr>
+    <tr><td>Security Staff</td><td>Required for 2+ day events (Op.Reg. Art.15)</td><td>TBD</td></tr>
+    <tr><td>Waste Disposal</td><td>KRW 80,000/cubic meter if not self-removed</td><td>TBD</td></tr>
+  </table></div>
+  <div class="card"><h2>F&B Plan by Day (Shinsegae Food / COEX-designated caterer)</h2>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Finalized Feb 9-11, 2026. Initial recommendation from Shinsegae Food (Sep 2025): all-Dosirak due to lobby congestion with 800-1,200 standing. Final plan differentiates by day based on space constraints.</p>
+    <table>
+    <tr><th>Day</th><th>Lunch Type</th><th>Location</th><th>Reason</th><th>Unit Price (2028 proj.)</th></tr>
+    <tr><td>Mon 6/19</td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>COEX policy: no buffet food inside Grand Ballroom</td><td>~KRW 85K-87K</td></tr>
+    <tr><td>Tue 6/20</td><td>Boxed Meal (Dosirak)</td><td>Grand Ballroom (Theater)</td><td>Awards ceremony needs Theater seating for 1,200+. Eat at seats. Korean/Western/Japanese rotating. Vegan &amp; Halal available.</td><td>~KRW 61K-63K</td></tr>
+    <tr><td>Wed 6/21</td><td>Seated Lunch (Rounds)</td><td>GBR (Main) + ASEM (Overflow)</td><td>Banquet prep: Round Tables all day. ASEM overflow with live stream of business meeting.</td><td>~KRW 85K-87K</td></tr>
+    <tr><td>Thu 6/22</td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>Same as Monday. COEX policy: no buffet food inside Grand Ballroom</td><td>~KRW 85K-87K</td></tr>
+    <tr><td>Sun/Fri</td><td>On your own</td><td>N/A</td><td>Workshop/tutorial days — no organized lunch</td><td>-</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">2026 baseline: Dosirak KRW 53,000, Buffet/Reception KRW 77,000. Shinsegae Food projects 11-13% increase by 2028. Total F&amp;B budget: <strong>$467,286</strong> (1,000 attendees, KRW 1,400/USD).</p>
+  </div>`;
+}
+
+function renderConflicts(P){
+  const issues=validate(P);const el=document.getElementById('conflicts');
+  const grouped={};issues.forEach(i=>{if(!grouped[i.day])grouped[i.day]=[];grouped[i.day].push(i);});
+  el.innerHTML=`
+  <div class="card"><h2>Program Validation Results</h2>
+    <div class="summary-grid">
+      <div class="summary-box" style="border-color:var(--err)"><div class="value" style="color:var(--err)">${issues.filter(i=>i.sev==='err').length}</div><div class="label">Critical</div></div>
+      <div class="summary-box" style="border-color:var(--warn)"><div class="value" style="color:var(--warn)">${issues.filter(i=>i.sev==='warn').length}</div><div class="label">Warnings</div></div>
+      <div class="summary-box" style="border-color:var(--ok)"><div class="value" style="color:var(--ok)">${7-Object.keys(grouped).length}</div><div class="label">Clean Days</div></div>
+    </div>
+  </div>
+  ${grouped['GLOBAL']?`<div class="card"><h2>Session Capacity Check (${CFG.minPerPaper}min/paper, ${CFG.sessionLengthMin}min/session = ${CFG.papersPerSession} papers/session)</h2><ul class="cl">${grouped['GLOBAL'].map(i=>`<li class="${i.sev}"><strong>[${i.time}]</strong> ${i.msg}</li>`).join('')}</ul></div>`:''}
+  ${Object.entries(grouped).filter(([d])=>d!=='GLOBAL').map(([day,di])=>`<div class="card"><h2>${QUOTATION[day]?.label||day}</h2><ul class="cl">${di.map(i=>`<li class="${i.sev}"><strong>[${i.time}]</strong> ${i.msg}</li>`).join('')}</ul></div>`).join('')}
+  <div class="card"><h2>Recommendations</h2><ul class="cl">
+    <li class="ok"><strong>Wed Poster Setup:</strong> Poster boards in 206/209 set up Tuesday evening — no morning conflict. Rooms in poster configuration all day Wednesday.</li>
+    <li class="warn"><strong>Wed Lunch Overflow:</strong> Confirm lobby seating covers the ~60-person gap, or reduce attendance assumption.</li>
+    <li class="info"><strong>Thu Backup Rooms:</strong> 11 session rooms fully used, but 204 (24 TH) and 207 (36 TH) are booked for storage/organizing and can serve as emergency backup. 210 is NOT booked on Thursday — add if needed (KRW 600,000).</li>
+    <li class="err"><strong>AV Equipment:</strong> Standard AV (mic + projector) included ONLY for rooms 205 &amp; 209. All other rooms (Grand Ballroom, ASEM, 206, 207, 210, 211) need separate AV — this is a major additional cost (Op.Reg. Art.14).</li>
+    <li class="err"><strong>Payment Status:</strong> Contract shows Paid Amount = 0 for ALL payments. Down payment KRW 25,944,000 due 2026-03-23 — confirmed UNPAID. Escalate immediately.</li>
+    <li class="warn"><strong>Wi-Fi / Telecom:</strong> Client responsible (Op.Reg. Art.10). Must use COEX-designated provider. Budget for 840+ concurrent Wi-Fi users.</li>
+    <li class="warn"><strong>Extended HVAC:</strong> HVAC provided 09:00-18:00 only (Op.Reg. Art.12). Sessions at 08:00 and banquet until 22:00 require extended arrangement.</li>
+    <li class="warn"><strong>Live Stream Approval:</strong> Wednesday ASEM overflow live broadcast requires COEX approval (Op.Reg. Art.18). Apply in advance.</li>
+    <li class="warn"><strong>Promotional Materials:</strong> Structures (booths, banners, signage) require layout submission 14 days before = June 3, 2028 (Op.Reg. Art.11). Other materials by June 10 (Key Terms #4).</li>
+    <li class="info"><strong>Poster Surcharge:</strong> Clarify with COEX whether poster sessions in 206/209 trigger the 50% non-meeting surcharge (Key Terms #2).</li>
+    <li class="info"><strong>No Assignment:</strong> ACM cannot assign/sublease rooms (T&amp;C Art.7). If PCO operates on behalf, may need official request letter.</li>
+    <li class="info"><strong>Contract Structure:</strong> Meeting Room Rental Only, NO F&amp;B required. Rates based on 2026, adjusted 3-5% annually for 2028. Governed by Korean law (Seoul Central District Court).</li>
+  </ul></div>`;
+}
+
+function renderHistory(){
+  document.getElementById('history').innerHTML=`
+  <div class="card"><h2>SIGMOD 2028 Email &amp; Decision History</h2>
+    <div>
+      <div class="email-item"><div class="date">Oct–Nov 2024</div><div class="title">1. Proposal &amp; Approval</div>
+        <div class="body">SIGMOD EC approached Prof. Wook-Shin Han and Prof. Kyuseok Shim about hosting SIGMOD 2028 or 2029 in Korea. Proposal submitted with COEX Seoul as venue. <strong>Approved November 2024</strong> for SIGMOD 2028.</div></div>
+      <div class="email-item"><div class="date">Jan–Feb 2026</div><div class="title">2. COEX Renovation — Space Redesign</div>
+        <div class="body">Major COEX renovation made Auditorium, Hall E, and The Platz unavailable. Complete layout redesign to use <strong>1F Grand Ballroom + 2F ASEM Ballroom</strong>. Poster sessions moved to enclosed rooms (206, 209) to reduce noise — a long-standing complaint at prior SIGMODs.</div></div>
+      <div class="email-item"><div class="date">Jan–Feb 2026</div><div class="title">3. Workshop Scheduling Rules</div>
+        <div class="body"><strong>12 workshops total:</strong> 6 on Sunday + 1 DaMoN on Monday + 5 on Friday.<br>
+          <strong>Periphery placement:</strong> Workshops on Sunday &amp; Friday to avoid conflicting with main conference.<br>
+          <strong>Monday restriction:</strong> Per PODS agreement, only DaMoN permitted on Monday (different target audience).<br>
+          <strong>Room sizes:</strong> 160–612 Theater-style in 2F conference rooms.</div></div>
+      <div class="email-item"><div class="date">Jan–Feb 2026</div><div class="title">3b. Tutorial Placement Debate</div>
+        <div class="body"><strong>Problem:</strong> Placing all 11 tutorials on periphery days only (Sun/Fri) means late-arriving or early-departing attendees miss them entirely (raised by Angela Bonifati).<br>
+          <strong>Constraint:</strong> Moving all tutorials to main days (Mon–Wed) would reduce research paper sessions due to space limits (Rachel Pottinger).<br>
+          <strong>Solution (Wook-Shin Han):</strong> Use Wednesday's Round Table setup (needed for banquet) to free up rooms for tutorials. The reduced Grand Ballroom capacity is handled via ASEM overflow with live stream.<br>
+          <strong>Result:</strong> Some tutorials placed within main conference days (PODS Tutorials Tue–Wed, Tutorials Thu), while remaining tutorials stay on periphery days. Business meeting moved to a parallel session slot; award talk time shortened to create space.</div></div>
+      <div class="email-item"><div class="date">Sep 2025</div><div class="title">4a. Shinsegae Food Initial Recommendation</div>
+        <div class="body">COEX-designated caterer (Shinsegae Food) strongly recommended <strong>all-Dosirak (boxed meals)</strong> for all days, citing severe lobby congestion and meal delays with 800-1,200 people in standing buffet format. Dosirak options: Korean/Western/Japanese rotating menus. Vegan &amp; Halal special meals available.</div></div>
+      <div class="email-item"><div class="date">Feb 2026 (early)</div><div class="title">4b. Buffet Option Explored &amp; Rejected</div>
+        <div class="body">Organizers explored upgrading Tue/Wed lunch from Dosirak to standard buffet for better attendee experience. Proposal v1.41 considered merging 101-105 into Round Tables for 1,000+ capacity. <strong>Rejected:</strong> Tuesday requires Theater-style for awards ceremony; buffet setup not compatible with 1,200+ plenary seating.</div></div>
+      <div class="email-item"><div class="date">Feb 9–11, 2026</div><div class="title">4c. F&amp;B Plan Finalized &amp; Reported to ACM</div>
+        <div class="body">Profs. Wook-Shin Han and Junghoon Lee reported final day-by-day plan to John Otero:<br>
+          <strong>Mon/Thu:</strong> Standing buffet in Grand Ballroom Lobby + ASEM 2F (COEX policy: no buffet food inside Grand Ballroom)<br>
+          <strong>Tue:</strong> Dosirak at seats in Theater-style Grand Ballroom (1,200+ during awards). <strong>Boxed meal confirmed as final.</strong><br>
+          <strong>Wed:</strong> Seated lunch in Grand Ballroom (Round Tables, already set for banquet) + ASEM overflow with live broadcast of business meeting<br>
+          <strong>Budget:</strong> Dosirak KRW 53K (2026) → ~61K-63K (2028). Buffet/Reception KRW 77K → ~85K-87K (2028). Shinsegae Food estimates 11-13% increase.<br>
+          <strong>Total F&amp;B: $467,286</strong> (1,000 attendees, KRW 1,400/USD)</div></div>
+      <div class="email-item"><div class="date">Jan–Feb 2026</div><div class="title">5. Banquet — Onsite Decision</div>
+        <div class="body">External venue option considered but rejected: <strong>budget constraints + late-night transportation issues</strong>. Banquet confirmed onsite in Grand Ballroom, Wednesday 8:00 PM. Rounds capacity: 1,020.</div></div>
+      <div class="email-item"><div class="date">Feb 2026</div><div class="title">6. Hotel Arrangement</div>
+        <div class="body">COEX has no sleeping rooms — cannot do single integrated contract like typical SIGMOD hotels. PCO will secure blocks at nearby hotels (Grand InterContinental Seoul Parnas, etc.). ACM to review hotel contracts separately.</div></div>
+      <div class="email-item" style="border-left-color:var(--accent)"><div class="date">Mar–Apr 2026 (Current)</div><div class="title">7. Venue Contract Received (CEC2025070020)</div>
+        <div class="body"><strong>Contract:</strong> "Conference Room Rental Agreement" dated 16/Mar/2026<br>
+          <strong>Client:</strong> Association for Computing Machinery (ACM), 1601 Broadway 10F, New York, NY 10019. President: Patricia M. Ryan<br>
+          <strong>Venue:</strong> Coex (President: Sang Hyeon Jo), 513 Yeongdong-daero, Gangnam-gu, Seoul<br>
+          <strong>Amount:</strong> KRW 285,384,000 (VAT incl.) = $190,128 (Meeting Rooms KRW 259,440,000 + VAT 10%)<br>
+          <strong>Overview Memo:</strong> Meeting Room Rental Only. NO F&amp;B required. Standard AV included (205 &amp; 209 only per quotation).<br>
+          <strong>Rate clause:</strong> 2028 official rates adjusted 3-5% annually vs 2026<br>
+          <strong>Bank:</strong> Shinhan Bank, World Trade Center Branch, Acct 140-011-634273, Beneficiary: Coex, SWIFT: SHBKKRSE<br>
+          <strong>Attachments:</strong> 1. Quotation, 2. Terms &amp; Conditions (13 articles), 3. Operation Regulation (20 articles)<br>
+          <strong>PAF approved:</strong> October 7, 2025<br>
+          <span style="color:var(--err);font-weight:600;">PAYMENT STATUS: Contract shows Paid Amount = 0 for ALL payments. Down payment KRW 25,944,000 due 2026-03-23 — UNPAID. Escalate immediately.</span></div></div>
+    </div>
+  </div>
+  <div class="card"><h2>Key Contacts</h2><table>
+    <tr><th>Role</th><th>Name</th><th>Note</th></tr>
+    <tr><td>General Co-Chair</td><td>Wook-Shin Han</td><td>Seoul National University</td></tr>
+    <tr><td>General Co-Chair</td><td>Kyuseok Shim</td><td>Seoul National University</td></tr>
+    <tr><td>Conference Coordinator</td><td>Christopher Re</td><td>CC on venue communications</td></tr>
+    <tr><td>ACM Contract Manager</td><td>John Otero</td><td>Venue contract negotiation</td></tr>
+    <tr><td>COEX Sales Manager</td><td>Lynn Kwak</td><td>Tel 02-6000-8126, lynn.kwak@coex.co.kr</td></tr>
+  </table></div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+//  SETTINGS & NAV
+// ══════════════════════════════════════════════════════════
+function applySettings(){
+  const fields=Object.keys(CFG);
+  for(const f of fields){const inp=document.getElementById('s-'+f);if(inp)CFG[f]=parseFloat(inp.value);}
+  // Auto-compute: papers per session = floor(sessionLength / minPerPaper)
+  CFG.papersPerSession=Math.floor(CFG.sessionLengthMin/CFG.minPerPaper);
+  if(CFG.papersPerSession<1)CFG.papersPerSession=1;
+  renderAll();
+}
+function resetDefaults(){
+  CFG={researchPapers:250,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90,attendees:1200,numTutorials:11,numWorkshops:12,numPanels:2,numDemoGroups:2,posterPapers:280,postersPerSession:140,posterSetupHours:3,banquetCap:1020,lunchBoxedCap:1800,lunchRoundsCap:1020,overflowCap:300,partitionMin:20,exchangeRate:1500,annualPct:4};
+  renderAll();
+}
+document.getElementById('mainTabs').addEventListener('click',e=>{
+  if(!e.target.classList.contains('tab'))return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById(e.target.dataset.panel).classList.add('active');
+});
+function renderAssumptions(){
+  document.getElementById('assumptions').innerHTML=`
+  <div class="card"><h2>Planning Assumptions &amp; Operational Considerations</h2>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">This page consolidates all assumptions behind the hypothetical program. These are based on email discussions (Oct 2024 - Apr 2026), COEX contract terms, and Shinsegae Food catering guidance.</p>
+  </div>
+
+  <div class="card"><h2>1. Day-by-Day Lunch Plan</h2>
+    <table>
+    <tr><th>Day</th><th>Type</th><th>Location</th><th>Capacity</th><th>Reason / Constraint</th></tr>
+    <tr><td><strong>Mon 6/19</strong></td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>~1,200</td><td>COEX policy: no buffet food inside Grand Ballroom. Lobby + ASEM split.</td></tr>
+    <tr><td><strong>Tue 6/20</strong></td><td>Boxed Meal (Dosirak)</td><td>Grand Ballroom (Theater)</td><td>1,800</td><td>Awards ceremony needs Theater seating. All eat at seats. Korean/Western/Japanese rotating. Vegan &amp; Halal available.</td></tr>
+    <tr><td><strong>Wed 6/21</strong></td><td>Seated Lunch (Rounds)</td><td>GBR (1,020) + ASEM Overflow (${CFG.overflowCap})</td><td>${1020+CFG.overflowCap}</td><td>GBR in Round Table all day for banquet. ASEM overflow with live stream of business meeting.</td></tr>
+    <tr><td><strong>Thu 6/22</strong></td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>~1,200</td><td>Same as Monday.</td></tr>
+    <tr><td>Sun / Fri</td><td>On your own</td><td>-</td><td>-</td><td>Workshop/tutorial days — no organized lunch.</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">Source: Shinsegae Food recommendation (Sep 2025) + final plan reported to John Otero (Feb 9-11, 2026). Shinsegae Food initially recommended all-Dosirak due to lobby congestion risk with 800-1,200 standing.</p>
+  </div>
+
+  <div class="card"><h2>2. Tutorial Placement Strategy</h2>
+    <table>
+    <tr><th>Where</th><th>When</th><th>Count</th><th>Rooms</th><th>Rationale</th></tr>
+    <tr><td>PODS Tutorials</td><td>Tue-Wed (during main conf.)</td><td>3 per day</td><td>201, 105 (RD)</td><td>PODS tutorials integrated into main days to maximize attendance.</td></tr>
+    <tr><td>Main Tutorials</td><td>Thu afternoon</td><td>3</td><td>201, 205, 105</td><td>Wednesday Round Table setup frees rooms. Reduced GBR capacity handled via ASEM overflow + live stream (Angela Bonifati concern addressed).</td></tr>
+    <tr><td>Periphery Tutorials</td><td>Fri</td><td>4</td><td>104, 105</td><td>Remaining tutorials on Friday with workshops.</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">Total: ${CFG.numTutorials} tutorials. Problem: all on periphery days = late-arriving attendees miss them. Solution (Wook-Shin Han): use Wed Rounds setup to free rooms for some tutorials on main days.</p>
+  </div>
+
+  <div class="card"><h2>3. Workshop Placement</h2>
+    <table>
+    <tr><th>Day</th><th>Count</th><th>Rooms</th><th>Notes</th></tr>
+    <tr><td>Sun 6/18</td><td>6 workshops</td><td>201-203, 205, 209, 102, 104, 103</td><td>Largest workshop in ASEM (612 TH). AM-only and PM-only variants.</td></tr>
+    <tr><td>Mon 6/19</td><td>1 (DaMoN only)</td><td>205</td><td>Per PODS agreement: only DaMoN allowed on Monday (different target audience).</td></tr>
+    <tr><td>Fri 6/23</td><td>5 workshops</td><td>101, 102, 103, 205</td><td>206/209 unavailable on Friday. AM-only and PM-only variants.</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">Total: ${CFG.numWorkshops} workshops (incl. DaMoN). Periphery placement (Sun + Fri) avoids conflict with main conference.</p>
+  </div>
+
+  <div class="card"><h2>4. Partition &amp; Room Reconfiguration Schedule</h2>
+    <table>
+    <tr><th>Day</th><th>Time</th><th>Change</th><th>Duration</th><th>Purpose</th></tr>
+    <tr><td>Tue 6/20</td><td>10:30</td><td>101-105 → 101-104 + 105</td><td>~${CFG.partitionMin} min (during break)</td><td>Split for parallel sessions after plenary</td></tr>
+    <tr><td>Tue 6/20</td><td>15:30</td><td>202-203 → 202, 203 / 101-104 → 101-103, 104</td><td>~${CFG.partitionMin} min each</td><td>More parallel tracks for late afternoon</td></tr>
+    <tr><td>Wed 6/21</td><td>10:30</td><td>101-105 → 101-104 + 105</td><td>~${CFG.partitionMin} min</td><td>Split for parallel (stays in Rounds all day)</td></tr>
+    <tr><td>Thu 6/22</td><td>09:30</td><td>101-105 → 101-104 + 105</td><td>~${CFG.partitionMin} min</td><td>Split after plenary for parallel sessions</td></tr>
+    <tr><td>Thu 6/22</td><td>12:00</td><td>101-104 → individual / 201-202 → individual</td><td>During lunch</td><td>Maximum parallelism for afternoon (11 rooms)</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">COEX charges per partition change (Op.Reg. Art.8). First setup free. Contract review (점검결과): COEX partition adjustment is ~10 min units, so ${CFG.partitionMin} min estimate is conservative.</p>
+  </div>
+
+  <div class="card"><h2>5. D-1 and Evening-Before Setup</h2>
+    <table>
+    <tr><th>When</th><th>What</th><th>Where</th><th>Notes</th></tr>
+    <tr><td><strong>Sat 6/17 (D-1)</strong></td><td>Full venue setup</td><td>Grand Ballroom (101-105), ASEM (201-203), Office (211)</td><td>D-1 discount on 101-105 (KRW 10.2M vs 25.5M). Initial room configuration + registration area.</td></tr>
+    <tr><td><strong>Tue evening</strong></td><td>Poster board setup</td><td>206, 209</td><td>Poster boards installed Tuesday evening after sessions. Rooms stay in poster config all day Wednesday. No 3hr morning setup needed.</td></tr>
+    <tr><td><strong>Wed morning</strong></td><td>Banquet Round Table setup</td><td>101-105 (Grand Ballroom)</td><td>Round Tables set from morning (min 4hr prep). GBR stays in Rounds all day through banquet at 20:00.</td></tr>
+    </table>
+  </div>
+
+  <div class="card"><h2>6. Poster Sessions</h2>
+    <table>
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Total posters</td><td>${CFG.posterPapers} papers across 2 sessions</td></tr>
+    <tr><td>Per session</td><td>${CFG.postersPerSession} posters (split: ~40 in 206, ~100 in 209)</td></tr>
+    <tr><td>Rooms</td><td>206 (CL:36, flow capacity ~40) + 209 (CL:90, flow capacity ~100)</td></tr>
+    <tr><td>Setup</td><td>Tuesday evening (boards stay overnight). No morning blocking needed.</td></tr>
+    <tr><td>Sessions</td><td>Poster 1: Wed 12:30-14:00 (during lunch). Poster 2: Wed 16:00-17:30.</td></tr>
+    <tr><td>Surcharge</td><td>50% surcharge may apply (Key Terms #2 — non-meeting use). Clarify with COEX.</td></tr>
+    <tr><td>Improvement</td><td>Enclosed rooms (206/209) reduce noise — a long-standing SIGMOD complaint.</td></tr>
+    </table>
+  </div>
+
+  <div class="card"><h2>7. Banquet</h2>
+    <table>
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Date/Time</td><td>Wednesday 6/21, 20:00-22:00</td></tr>
+    <tr><td>Location</td><td>Grand Ballroom (101-105) — onsite</td></tr>
+    <tr><td>Setup</td><td>Round Tables from Wednesday morning (min 4hr prep)</td></tr>
+    <tr><td>Capacity</td><td>${CFG.banquetCap} (Rounds) vs ${CFG.attendees} expected attendees (${Math.round(CFG.banquetCap/CFG.attendees*100)}%)</td></tr>
+    <tr><td>Decision</td><td>External venue rejected: budget constraints + late-night transportation issues.</td></tr>
+    <tr><td>HVAC</td><td>Extends to 22:00 — beyond standard 18:00 (Op.Reg. Art.12). Arrange in advance.</td></tr>
+    <tr><td>Broadcasting</td><td>If live-streamed to ASEM overflow, requires COEX approval (Op.Reg. Art.18).</td></tr>
+    </table>
+  </div>
+
+  <div class="card"><h2>8. F&amp;B Budget</h2>
+    <table>
+    <tr><th>Item</th><th>2026 Price</th><th>2028 Projected</th><th>Increase</th></tr>
+    <tr><td>Dosirak (Boxed Meal)</td><td>KRW 53,000</td><td>KRW 61,000-63,000</td><td>~15-19%</td></tr>
+    <tr><td>Buffet / Reception</td><td>KRW 77,000</td><td>KRW 85,000-87,000</td><td>~10-13%</td></tr>
+    <tr><td colspan="4" style="font-weight:700;">Total F&amp;B Budget: $467,286 (~KRW 654M at 1,400/USD) for 1,000 attendees</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">Caterer: Shinsegae Food (COEX-designated, mandatory). F&amp;B is NOT included in venue contract (Meeting Room Rental Only). Separate arrangement required.</p>
+  </div>
+
+  <div class="card"><h2>9. Room Roles by Day</h2>
+    <table>
+    <tr><th>Room</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>
+    <tr><td><strong>101-105</strong></td><td>Setup</td><td>Workshops</td><td>PODS Keynote</td><td>Plenary + Sessions</td><td>Rounds all day + Banquet</td><td>Plenary + Sessions</td><td>Workshops</td></tr>
+    <tr><td><strong>201-203</strong></td><td>Setup</td><td>Workshop (largest)</td><td>PODS Sessions</td><td>Sessions + Tutorials</td><td>Overflow lunch + live stream</td><td>Sessions + Tutorials</td><td>-</td></tr>
+    <tr><td><strong>204</strong></td><td>-</td><td>Storage</td><td>24hr Hold / Storage</td><td>24hr Hold</td><td>24hr Hold</td><td>24hr Hold</td><td>Storage</td></tr>
+    <tr><td><strong>205</strong></td><td>-</td><td>Workshop</td><td>DaMoN</td><td>Sessions</td><td>DEI / Sessions</td><td>Tutorials / Sessions</td><td>Workshop</td></tr>
+    <tr><td><strong>206</strong></td><td>-</td><td>Workshop</td><td>-</td><td>Sessions</td><td>Poster (all day)</td><td>Sessions</td><td style="color:var(--err);">N/A</td></tr>
+    <tr><td><strong>207</strong></td><td>-</td><td>Organizing Comm.</td><td>Organizing Comm.</td><td>Organizing Comm.</td><td>Organizing Comm.</td><td>Organizing Comm.</td><td>Organizing Comm.</td></tr>
+    <tr><td><strong>209</strong></td><td>-</td><td>Workshop</td><td>-</td><td>Demo / Sessions</td><td>Poster (all day)</td><td>Sessions</td><td style="color:var(--err);">N/A</td></tr>
+    <tr><td><strong>210</strong></td><td>-</td><td>-</td><td>-</td><td>Sessions</td><td>-</td><td>-</td><td>-</td></tr>
+    <tr><td><strong>211</strong></td><td>Office</td><td>Office</td><td>Office</td><td>Office</td><td>Office</td><td>Office</td><td>Office</td></tr>
+    </table>
+  </div>
+
+  <div class="card"><h2>10. Key Deadlines</h2>
+    <table>
+    <tr><th>Date</th><th>Item</th><th>Status</th></tr>
+    <tr style="color:var(--err);font-weight:600;"><td>2026-03-23</td><td>Down payment KRW 25,944,000 (10%)</td><td>OVERDUE — Paid Amount = 0</td></tr>
+    <tr><td>2028-03-17</td><td>Interim payment KRW 103,776,000 (40%)</td><td>Upcoming</td></tr>
+    <tr><td>2028-06-03</td><td>Promotional structures layout submission (14 days before)</td><td>Upcoming</td></tr>
+    <tr><td>2028-06-10</td><td>Balance payment KRW 155,664,000 (50%+VAT)</td><td>Upcoming</td></tr>
+    <tr><td>2028-06-10</td><td>Insurance proof due (7 days before)</td><td>Upcoming</td></tr>
+    <tr><td>2028-06-10</td><td>Technical requests, AV applications, layout drawings (7 days before)</td><td>Upcoming</td></tr>
+    <tr><td>2028-06-17</td><td>D-1 Setup day</td><td>-</td></tr>
+    <tr><td>2028-06-18</td><td>Conference begins (Sun workshops)</td><td>-</td></tr>
+    <tr><td>2028-06-23</td><td>Last day (Fri workshops) + restoration</td><td>-</td></tr>
+    </table>
+  </div>`;
+}
+
+function renderAll(){
+  const P=buildProgram();
+  renderOverview(P);renderContract(P);renderSettings();
+  ['06-17','06-18','06-19','06-20','06-21','06-22','06-23'].forEach(d=>renderDay(d,P));
+  renderAssumptions();renderCosts();renderConflicts(P);renderHistory();
+}
+renderAll();
+</script>
+</body>
+</html>
