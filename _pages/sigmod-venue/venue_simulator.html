@@ -487,7 +487,7 @@ function buildProgram(){
     {time:'11:00-12:30',label:'Morning Parallel',sessions:[
       R(1464,'TH','101-104'),
       R(288,'TH','105'),
-      {name:'PODS Tutorial 1',need:306,style:'TH',room:'201'},
+      {name:'PODS Session 1',need:306,style:'TH',room:'201'},
       R(306,'TH','202'),
       R(306,'TH','203'),
       R(160,'TH','205'),
@@ -504,7 +504,7 @@ function buildProgram(){
     {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
       {name:'SIGMOD Panel 1',need:1464,style:'TH',room:'101-104'},
       R(288,'TH','105'),
-      {name:'PODS Tutorial 2',need:306,style:'TH',room:'201'},
+      {name:'PODS Session 2',need:306,style:'TH',room:'201'},
       R(612,'TH','202-203',{note:'202+203 merged'}),
       I(160,'TH','205'),
       R(60,'TH','206'),
@@ -522,7 +522,7 @@ function buildProgram(){
       R(1176,'TH','101-103',{note:'101+102+103 combined'}),
       R(288,'TH','104'),
       R(288,'TH','105'),
-      {name:'PODS Tutorial 3',need:306,style:'TH',room:'201'},
+      {name:'PODS Session 3',need:306,style:'TH',room:'201'},
       {name:'SIGMOD Sponsor Talk',need:306,style:'TH',room:'202'},
       R(306,'TH','203'),
       R(160,'TH','205'),
@@ -557,7 +557,7 @@ function buildProgram(){
     {time:'11:00-12:30',label:'Morning Parallel',sessions:[
       R(730,'RD','101-104'),
       R(150,'RD','105'),
-      {name:'PODS Tutorial 4',need:120,style:'RD',room:'201'},
+      {name:'PODS Session 4',need:120,style:'RD',room:'201'},
       R(306,'TH','202'),
       R(306,'TH','203'),
       {name:'DEI Bird-of-a-Feather',need:160,style:'TH',room:'205'},
@@ -581,7 +581,7 @@ function buildProgram(){
       {name:'poster config 209',need:0,style:'N/A',room:'209',note:'Poster 2 setup (1hr). Reconfigure after Poster 1.'},
     ]},
     {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
-      {name:'PODS Tutorial 5',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs access for banquet prep'},
+      {name:'PODS Session 5',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs access for banquet prep'},
       R(306,'TH','202'),
       R(306,'TH','203'),
       I(160,'TH','205'),
@@ -594,7 +594,7 @@ function buildProgram(){
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
     ]},
     {time:'16:00-17:30',label:'Late Afternoon + Poster 2',sessions:[
-      {name:'PODS Tutorial 6',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs full access for banquet prep'},
+      {name:'PODS Session 6',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs full access for banquet prep'},
       R(306,'TH','202'),
       I(306,'TH','203'),
       R(160,'TH','205'),
@@ -964,7 +964,7 @@ function renderSettings(){
   </table></div>
   <div class="card"><h2>Lobby Capacity Simulation</h2>
     <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Interactive simulation of Grand Ballroom Lobby (1F, ~500 pax) and ASEM Ballroom Lobby (2F, ~300 pax) capacity for coffee breaks, standing buffets, and receptions.</p>
-    <a href="/sigmod-venue/coex-lobby-simulation/" target="_blank" class="btn btn-secondary" style="display:inline-block;text-decoration:none;">Open Lobby Simulation Tool</a>
+    <a href="coex-lobby-simulation.html" target="_blank" class="btn btn-secondary" style="display:inline-block;text-decoration:none;">Open Lobby Simulation Tool</a>
   </div>`;
 }
 
@@ -975,7 +975,7 @@ const TYPE_COLORS={
   'Poster Board':'#b0bec5','poster config':'#b0bec5','Partition':'#b0bec5','Office':'#b0bec5','Storage':'#b0bec5',
   // Session types
   'Keynote':'#c0392b','Opening':'#c0392b','Award':'#c0392b','Plenary':'#c0392b',
-  'PODS Session':'#2980b9','PODS Tutorial':'#8e44ad','PODS Business':'#2c3e50','PODS Opening':'#2980b9',
+  'PODS Session':'#2980b9','PODS Business':'#2c3e50','PODS Opening':'#2980b9',
   'SIGMOD Session':'#27ae60','Research':'#27ae60','Industry':'#e67e22','Sponsor':'#e67e22',
   'Tutorial':'#8e44ad','Workshop':'#16a085','DaMoN':'#16a085',
   'Demo':'#d35400','Panel':'#2c3e50','DEI':'#e91e63','Student':'#9b59b6','SRC':'#9b59b6',
@@ -1415,7 +1415,7 @@ function renderHistory(){
         <div class="body"><strong>Problem:</strong> Placing all 11 tutorials on periphery days only (Sun/Fri) means late-arriving or early-departing attendees miss them entirely (raised by Angela Bonifati).<br>
           <strong>Constraint:</strong> Moving all tutorials to main days (Mon–Wed) would reduce research paper sessions due to space limits (Rachel Pottinger).<br>
           <strong>Solution (Wook-Shin Han):</strong> Use Wednesday's Round Table setup (needed for banquet) to free up rooms for tutorials. The reduced Grand Ballroom capacity is handled via ASEM overflow with live stream.<br>
-          <strong>Result:</strong> Some tutorials placed within main conference days (PODS Tutorials Tue–Wed, Tutorials Thu), while remaining tutorials stay on periphery days. Business meeting moved to a parallel session slot; award talk time shortened to create space.</div></div>
+          <strong>Result:</strong> Some tutorials placed within main conference days (PODS Sessions Tue–Wed, Tutorials Thu), while remaining tutorials stay on periphery days. Business meeting moved to a parallel session slot; award talk time shortened to create space.</div></div>
       <div class="email-item"><div class="date">Sep 2025</div><div class="title">4a. Shinsegae Food Initial Recommendation</div>
         <div class="body">COEX-designated caterer (Shinsegae Food) strongly recommended <strong>all-Dosirak (boxed meals)</strong> for all days, citing severe lobby congestion and meal delays with 800-1,200 people in standing buffet format. Dosirak options: Korean/Western/Japanese rotating menus. Vegan &amp; Halal special meals available.</div></div>
       <div class="email-item"><div class="date">Feb 2026 (early)</div><div class="title">4b. Buffet Option Explored &amp; Rejected</div>
@@ -1492,14 +1492,14 @@ function renderAssumptions(){
     <tr><td>Sun / Fri</td><td>On your own</td><td>-</td><td>-</td><td>Workshop/tutorial days — no organized lunch.</td></tr>
     </table>
     <p style="font-size:11px;color:var(--muted);margin-top:8px;">Source: Shinsegae Food recommendation (Sep 2025) + final plan reported to John Otero (Feb 9-11, 2026). Shinsegae Food initially recommended all-Dosirak due to lobby congestion risk with 800-1,200 standing.
-    <br><a href="/sigmod-venue/coex-lobby-simulation/" target="_blank" style="color:var(--accent2);">→ Open Lobby Capacity Simulation Tool</a> (GBR Lobby ~500 pax, ASEM Lobby ~300 pax)</p>
+    <br><a href="coex-lobby-simulation.html" target="_blank" style="color:var(--accent2);">→ Open Lobby Capacity Simulation Tool</a> (GBR Lobby ~500 pax, ASEM Lobby ~300 pax)</p>
   </div>
 
   <div class="card"><h2>2. Tutorial Placement Strategy</h2>
     <table>
     <tr><th>Where</th><th>When</th><th>Count</th><th>Rooms</th><th>Rationale</th></tr>
-    <tr><td>PODS Tutorials 1-3</td><td>Tue (during main conf.)</td><td>3</td><td>201</td><td>PODS tutorials integrated into main days to maximize attendance.</td></tr>
-    <tr><td>PODS Tutorials 4-6</td><td>Wed (during main conf.)</td><td>3</td><td>201 (AM RD), 201 (PM TH)</td><td>Wed: 201 in RD for morning (banquet Rounds setup), TH for afternoon. Moved from 105 due to banquet prep.</td></tr>
+    <tr><td>PODS Sessions 1-3</td><td>Tue (during main conf.)</td><td>3</td><td>201</td><td>PODS sessions integrated into main days to maximize attendance.</td></tr>
+    <tr><td>PODS Sessions 4-6</td><td>Wed (during main conf.)</td><td>3</td><td>201 (AM RD), 201 (PM TH)</td><td>Wed: 201 in RD for morning (banquet Rounds setup), TH for afternoon. Moved from 105 due to banquet prep.</td></tr>
     <tr><td>SIGMOD Tutorials 1-3</td><td>Thu afternoon</td><td>3</td><td>201, 205, 105</td><td>Reduced GBR capacity handled via ASEM overflow + live stream.</td></tr>
     <tr><td>SIGMOD Tutorials 4-7</td><td>Fri</td><td>4</td><td>104, 105</td><td>Remaining tutorials on Friday with workshops.</td></tr>
     </table>
@@ -1582,7 +1582,7 @@ function renderAssumptions(){
     <table>
     <tr><th>Room</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>
     <tr><td><strong>101-105</strong></td><td>Setup</td><td>-</td><td>PODS Keynote (201-203)</td><td>Plenary + Sessions</td><td>Rounds all day + Banquet (19:00)</td><td>Plenary + Sessions</td><td>DEEM (101), GRADES-NDA (102), DataEd/Provenance (103)</td></tr>
-    <tr><td><strong>201-203</strong></td><td>Setup</td><td>HILDA (201), LLM-DPM (202), NOVAS/QData (203)</td><td>DaMoN (201), PODS Keynote→Ses (201-203/202-203)</td><td>Sessions + PODS Tutorials</td><td>Overflow lunch + live stream</td><td>Sessions + Tutorials</td><td>-</td></tr>
+    <tr><td><strong>201-203</strong></td><td>Setup</td><td>HILDA (201), LLM-DPM (202), NOVAS/QData (203)</td><td>DaMoN (201), PODS Keynote→Ses (201-203/202-203)</td><td>Sessions + PODS Sessions</td><td>Overflow lunch + live stream</td><td>Sessions + Tutorials</td><td>-</td></tr>
     <tr><td><strong>204</strong></td><td>-</td><td>Storage</td><td>24hr Hold / Storage</td><td>24hr Hold</td><td>24hr Hold</td><td>24hr Hold</td><td>Storage</td></tr>
     <tr><td><strong>205</strong></td><td>-</td><td>aiDM</td><td>-</td><td>Sessions</td><td>DEI / Sessions</td><td>Tutorials / Sessions</td><td>DBPL (AM)</td></tr>
     <tr><td><strong>206</strong></td><td>-</td><td>-</td><td>-</td><td>Sessions</td><td>Poster (prep+sessions)</td><td>Sessions</td><td style="color:var(--err);">N/A</td></tr>
