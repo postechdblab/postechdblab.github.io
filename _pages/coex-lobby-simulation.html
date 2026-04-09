@@ -1,0 +1,1084 @@
+---
+permalink: /coex-lobby-simulation/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COEX Coffee Reception Simulation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f1923;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  h1 { font-size: 1.6rem; font-weight: 600; margin-bottom: 6px; color: #fff; }
+  .subtitle { font-size: 0.9rem; color: #8899aa; margin-bottom: 16px; }
+
+  /* Tabs */
+  .venue-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    background: #1a2633;
+    border-radius: 12px;
+    padding: 4px;
+  }
+  .venue-tab {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #8899aa;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+  .venue-tab:hover { color: #ccc; }
+  .venue-tab.active {
+    background: #4fc3f7;
+    color: #0f1923;
+    box-shadow: 0 2px 12px rgba(79,195,247,0.3);
+  }
+  .venue-tab .tab-sub {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .venue-tab.active .tab-sub { opacity: 0.8; }
+
+  .main-container {
+    display: flex;
+    gap: 24px;
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .canvas-wrap {
+    background: #1a2633;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  canvas { display: block; border-radius: 8px; }
+  .controls {
+    background: #1a2633;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .control-group { display: flex; flex-direction: column; gap: 6px; }
+  .control-group label {
+    font-size: 0.8rem;
+    color: #8899aa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .slider-row { display: flex; align-items: center; gap: 10px; }
+  input[type="range"] {
+    flex: 1; -webkit-appearance: none; height: 6px;
+    border-radius: 3px; background: #2a3a4a; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 18px; height: 18px;
+    border-radius: 50%; background: #4fc3f7; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(79,195,247,0.4);
+  }
+  .slider-value {
+    min-width: 50px; text-align: right;
+    font-weight: 600; font-size: 1.1rem; color: #4fc3f7;
+  }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-card {
+    background: #0f1923; border-radius: 10px;
+    padding: 12px; text-align: center;
+  }
+  .stat-card .value { font-size: 1.4rem; font-weight: 700; color: #4fc3f7; }
+  .stat-card .label { font-size: 0.7rem; color: #8899aa; margin-top: 2px; }
+  .density-indicator {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem;
+  }
+  .density-indicator .dot {
+    width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+  }
+  .legend {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-top: 10px; border-top: 1px solid #2a3a4a;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: #aab;
+  }
+  .legend-color {
+    width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+  }
+  .preset-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+  .preset-btn {
+    flex: 1; min-width: 68px; padding: 8px 10px;
+    border: 1px solid #3a4a5a; border-radius: 8px;
+    background: #0f1923; color: #ccc;
+    font-size: 0.76rem; cursor: pointer;
+    transition: all 0.2s; text-align: center;
+  }
+  .preset-btn:hover {
+    border-color: #4fc3f7; color: #4fc3f7;
+    background: rgba(79,195,247,0.08);
+  }
+  .preset-btn.active {
+    border-color: #4fc3f7;
+    background: rgba(79,195,247,0.15);
+    color: #4fc3f7;
+  }
+
+  /* Comparison badge */
+  .compare-badge {
+    background: #0f1923;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    color: #8899aa;
+    line-height: 1.5;
+    border-left: 3px solid #4fc3f7;
+  }
+  .compare-badge strong { color: #4fc3f7; }
+</style>
+</head>
+<body>
+
+<h1>COEX Coffee Reception Simulation</h1>
+<p class="subtitle">Grand Ballroom vs ASEM Hall - Lobby Capacity Comparison</p>
+
+<div class="venue-tabs">
+  <button class="venue-tab active" data-venue="ballroom">
+    Grand Ballroom
+    <span class="tab-sub">Lobby ~1,350 m²</span>
+  </button>
+  <button class="venue-tab" data-venue="asem">
+    ASEM Hall
+    <span class="tab-sub">Lobby ~800 m²</span>
+  </button>
+</div>
+
+<div class="main-container">
+  <div class="canvas-wrap">
+    <canvas id="floorplan" width="700" height="520"></canvas>
+  </div>
+  <div class="controls">
+    <div class="control-group">
+      <label>Preset Scenarios</label>
+      <div class="preset-buttons" id="presetContainer"></div>
+    </div>
+
+    <div class="control-group">
+      <label>Number of People</label>
+      <div class="slider-row">
+        <input type="range" id="peopleSlider" min="50" max="1500" value="500" step="10">
+        <span class="slider-value" id="peopleValue">500</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>High Tables</label>
+      <div class="slider-row">
+        <input type="range" id="tableSlider" min="0" max="50" value="25">
+        <span class="slider-value" id="tableValue">25</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Coffee Stations</label>
+      <div class="slider-row">
+        <input type="range" id="stationSlider" min="2" max="15" value="8">
+        <span class="slider-value" id="stationValue">5</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Snack Tables (1.8m x 0.6m)</label>
+      <div class="slider-row">
+        <input type="range" id="snackSlider" min="0" max="8" value="3">
+        <span class="slider-value" id="snackValue">3</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Booths (2m x 3m each)</label>
+      <div class="slider-row">
+        <input type="range" id="boothSlider" min="0" max="10" value="5">
+        <span class="slider-value" id="boothValue">5</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Space Analysis</label>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="value" id="totalArea">1,350</div>
+          <div class="label">Total Area (m²)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="usableArea">1,020</div>
+          <div class="label">Usable Area (m²)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="perPerson">2.04</div>
+          <div class="label">Area per Person (m²)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="fillPercent">48%</div>
+          <div class="label">Space Utilization</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Density Rating</label>
+      <div class="density-indicator" id="densityIndicator">
+        <div class="dot"></div>
+        <span>매우 쾌적</span>
+      </div>
+    </div>
+
+    <div class="compare-badge" id="compareBadge">
+      <strong>Grand Ballroom</strong> lobby is <strong>1.7x</strong> larger<br>
+      than ASEM Hall (1,350 vs 800 m²)
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-color" style="background:#4fc3f7"></div> People (1 dot = 5 ppl)</div>
+      <div class="legend-item"><div class="legend-color" style="background:#ff7043"></div> Coffee Station</div>
+      <div class="legend-item"><div class="legend-color" style="background:#ffd54f"></div> High Table</div>
+      <div class="legend-item"><div class="legend-color" style="background:#66bb6a"></div> Snack Table</div>
+      <div class="legend-item"><div class="legend-color" style="background:#ab47bc"></div> Booth (2m x 3m)</div>
+      <div class="legend-item"><div class="legend-color" style="background:rgba(79,195,247,0.08); border:1px solid #4fc3f7"></div> Lobby Area</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('floorplan');
+const ctx = canvas.getContext('2d');
+const W = canvas.width;
+const H = canvas.height;
+
+// Polyfill roundRect
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    if (typeof r === 'number') r = [r, r, r, r];
+    this.moveTo(x + r[0], y);
+    this.lineTo(x + w - r[1], y);
+    this.quadraticCurveTo(x + w, y, x + w, y + r[1]);
+    this.lineTo(x + w, y + h - r[2]);
+    this.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
+    this.lineTo(x + r[3], y + h);
+    this.quadraticCurveTo(x, y + h, x, y + h - r[3]);
+    this.lineTo(x, y + r[0]);
+    this.quadraticCurveTo(x, y, x + r[0], y);
+    this.closePath();
+  };
+}
+
+// ============================================================
+// VENUE CONFIGS
+// ============================================================
+const VENUES = {
+  ballroom: {
+    name: 'Grand Ballroom',
+    totalAreaM2: 1350,
+    widthLabel: '~75m',
+    depthLabel: '~15m',
+    lobby: {
+      topY: 180, bottomY: 460,
+      topLeftX: 80, topRightX: 620,
+      bottomLeftX: 30, bottomRightX: 670,
+      curveDepth: 40,
+    },
+    presets: [
+      { label: 'Relaxed', people: 300, tables: 15, stations: 6, snacks: 2, booths: 3 },
+      { label: 'Recommended', people: 500, tables: 25, stations: 8, snacks: 3, booths: 5, active: true },
+      { label: 'Standard', people: 800, tables: 30, stations: 10, snacks: 4, booths: 5 },
+      { label: 'Max', people: 1100, tables: 35, stations: 12, snacks: 6, booths: 7 },
+    ],
+    drawVenue: drawBallroom,
+    lobbyBounds: ballroomLobbyBounds,
+    drawLobbyShape: drawBallroomLobbyShape,
+  },
+  asem: {
+    name: 'ASEM Hall',
+    totalAreaM2: 800,
+    widthLabel: '~60m',
+    depthLabel: '~12m',
+    lobby: {
+      topY: 240, bottomY: 430,
+      leftX: 100, rightX: 600,
+    },
+    presets: [
+      { label: 'Relaxed', people: 150, tables: 10, stations: 4, snacks: 2, booths: 2 },
+      { label: 'Recommended', people: 300, tables: 18, stations: 6, snacks: 3, booths: 5, active: true },
+      { label: 'Standard', people: 500, tables: 22, stations: 8, snacks: 4, booths: 5 },
+      { label: 'Max', people: 700, tables: 28, stations: 10, snacks: 5, booths: 7 },
+    ],
+    drawVenue: drawAsem,
+    lobbyBounds: asemLobbyBounds,
+    drawLobbyShape: drawAsemLobbyShape,
+  }
+};
+
+let currentVenue = 'ballroom';
+
+let state = {
+  people: 500, tables: 25, stations: 5, snacks: 3, booths: 5,
+  dots: [], tablePositions: [], stationPositions: [], snackPositions: [], boothPositions: [],
+  animFrame: 0,
+};
+
+// ============================================================
+// BALLROOM LOBBY GEOMETRY
+// ============================================================
+function ballroomLobbyBounds(y) {
+  const L = VENUES.ballroom.lobby;
+  const t = (y - L.topY) / (L.bottomY - L.topY);
+  const leftX = L.topLeftX + (L.bottomLeftX - L.topLeftX) * t;
+  const rightX = L.topRightX + (L.bottomRightX - L.topRightX) * t;
+  const curveT = Math.pow(t, 2);
+  const curveInset = L.curveDepth * curveT;
+  return { left: leftX + curveInset + 12, right: rightX - curveInset - 12 };
+}
+
+function drawBallroomLobbyShape() {
+  const L = VENUES.ballroom.lobby;
+  ctx.beginPath();
+  ctx.moveTo(L.topLeftX, L.topY);
+  ctx.lineTo(L.topRightX, L.topY);
+  ctx.quadraticCurveTo(L.bottomRightX + 10, (L.topY + L.bottomY) / 2, L.bottomRightX - L.curveDepth, L.bottomY);
+  ctx.quadraticCurveTo(W / 2, L.bottomY + 30, L.bottomLeftX + L.curveDepth, L.bottomY);
+  ctx.quadraticCurveTo(L.bottomLeftX - 10, (L.topY + L.bottomY) / 2, L.topLeftX, L.topY);
+  ctx.closePath();
+}
+
+function drawBallroom() {
+  const L = VENUES.ballroom.lobby;
+  // Ballroom rooms above
+  ctx.fillStyle = '#1a2633';
+  ctx.strokeStyle = '#3a4a5a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.rect(60, 20, 580, 150);
+  ctx.fill(); ctx.stroke();
+
+  // Room dividers
+  ctx.strokeStyle = '#2a3a4a';
+  ctx.setLineDash([5, 5]);
+  for (let i = 1; i < 4; i++) {
+    const x = 60 + 580 * i / 4;
+    ctx.beginPath(); ctx.moveTo(x, 20); ctx.lineTo(x, 170); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // Room labels
+  ctx.fillStyle = '#667788';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'center';
+  const rooms = [
+    { x: 100, y: 60, label: 'Room 101' },
+    { x: 250, y: 60, label: 'Room 102' },
+    { x: 400, y: 60, label: 'Room 103' },
+    { x: 540, y: 60, label: 'Room 104' },
+  ];
+  rooms.forEach(r => {
+    ctx.fillStyle = '#667788';
+    ctx.fillText(r.label, r.x, r.y);
+    ctx.fillStyle = 'rgba(79,195,247,0.08)';
+    for (let row = 0; row < 4; row++) ctx.fillRect(r.x - 45, r.y + 10 + row * 20, 90, 12);
+  });
+
+  ctx.fillStyle = '#556677';
+  ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('GRAND BALLROOM', W / 2, 100);
+
+  // Entrances
+  const entrances = [W / 2 - 120, W / 2, W / 2 + 120];
+  entrances.forEach(ex => {
+    ctx.beginPath();
+    ctx.moveTo(ex - 20, L.bottomY - 5);
+    ctx.lineTo(ex, L.bottomY + 10);
+    ctx.lineTo(ex + 20, L.bottomY - 5);
+    ctx.strokeStyle = 'rgba(79,195,247,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+  ctx.fillStyle = 'rgba(79,195,247,0.2)';
+  ctx.font = '10px sans-serif';
+  ctx.fillText('ENTRANCE', W / 2, L.bottomY + 25);
+
+  // Dimensions
+  ctx.fillStyle = '#556677';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('~75m', W / 2, L.topY - 8);
+  drawArrow(L.topLeftX + 5, L.topY - 10, L.topRightX - 5, L.topY - 10, '#556677');
+  ctx.save();
+  ctx.translate(L.topLeftX - 18, (L.topY + L.bottomY) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('~15m', 0, 0);
+  ctx.restore();
+}
+
+// ============================================================
+// ASEM HALL LOBBY GEOMETRY
+// ============================================================
+function asemLobbyBounds(y) {
+  const L = VENUES.asem.lobby;
+  // Slight trapezoidal widening toward bottom
+  const t = (y - L.topY) / (L.bottomY - L.topY);
+  const widen = t * 20;
+  return { left: L.leftX - widen + 12, right: L.rightX + widen - 12 };
+}
+
+function drawAsemLobbyShape() {
+  const L = VENUES.asem.lobby;
+  ctx.beginPath();
+  ctx.moveTo(L.leftX, L.topY);
+  ctx.lineTo(L.rightX, L.topY);
+  ctx.lineTo(L.rightX + 20, L.bottomY);
+  // Slight curve at bottom
+  ctx.quadraticCurveTo(W / 2, L.bottomY + 15, L.leftX - 20, L.bottomY);
+  ctx.closePath();
+}
+
+function drawAsem() {
+  const L = VENUES.asem.lobby;
+  const hallTop = 20;
+  const hallH = 200;
+
+  // Main Hall
+  ctx.fillStyle = '#1a2633';
+  ctx.strokeStyle = '#3a4a5a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.rect(120, hallTop, 460, hallH);
+  ctx.fill(); ctx.stroke();
+
+  // Seating rows in hall
+  ctx.fillStyle = 'rgba(79,195,247,0.06)';
+  for (let row = 0; row < 8; row++) {
+    ctx.fillRect(150, hallTop + 30 + row * 20, 400, 10);
+  }
+
+  // Stage area at top
+  ctx.fillStyle = 'rgba(171,130,255,0.12)';
+  ctx.beginPath();
+  ctx.rect(180, hallTop + 5, 340, 22);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(171,130,255,0.3)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(171,130,255,0.5)';
+  ctx.font = '9px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('STAGE', W / 2, hallTop + 19);
+
+  // Hall label
+  ctx.fillStyle = '#556677';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('HALL', W / 2, hallTop + hallH / 2 + 20);
+
+  // Side rooms - LEFT
+  const sideRoomColor = '#1a2633';
+  const sideBorder = '#3a4a5a';
+
+  // Room 301 (far left top)
+  ctx.fillStyle = sideRoomColor;
+  ctx.strokeStyle = sideBorder;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.rect(15, hallTop, 95, 60); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.font = '9px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('301', 62, hallTop + 35);
+
+  // Room 31A
+  ctx.fillStyle = sideRoomColor; ctx.strokeStyle = sideBorder;
+  ctx.beginPath(); ctx.rect(15, hallTop + 68, 95, 55); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.fillText('31A', 62, hallTop + 100);
+
+  // Room 31B/C
+  ctx.fillStyle = sideRoomColor; ctx.strokeStyle = sideBorder;
+  ctx.beginPath(); ctx.rect(15, hallTop + 130, 95, 70); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.fillText('31B/C', 62, hallTop + 170);
+
+  // Side rooms - RIGHT
+  // Room 32A/B
+  ctx.fillStyle = sideRoomColor; ctx.strokeStyle = sideBorder;
+  ctx.beginPath(); ctx.rect(590, hallTop, 95, 60); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.fillText('32A/B', 637, hallTop + 35);
+
+  // Room 32C
+  ctx.fillStyle = sideRoomColor; ctx.strokeStyle = sideBorder;
+  ctx.beginPath(); ctx.rect(590, hallTop + 68, 95, 55); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.fillText('32C', 637, hallTop + 100);
+
+  // Room 321
+  ctx.fillStyle = sideRoomColor; ctx.strokeStyle = sideBorder;
+  ctx.beginPath(); ctx.rect(590, hallTop + 130, 95, 70); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#667788'; ctx.fillText('321', 637, hallTop + 170);
+
+  // Escalators at bottom
+  ctx.strokeStyle = '#3a4a5a';
+  ctx.lineWidth = 1;
+  const escY = L.bottomY + 20;
+  // Left escalator
+  ctx.fillStyle = 'rgba(79,195,247,0.05)';
+  ctx.beginPath(); ctx.rect(W / 2 - 130, escY, 50, 50); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#556677'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+  // Escalator lines
+  for (let i = 0; i < 5; i++) {
+    ctx.beginPath();
+    ctx.moveTo(W / 2 - 128, escY + 5 + i * 10);
+    ctx.lineTo(W / 2 - 82, escY + 5 + i * 10);
+    ctx.strokeStyle = 'rgba(79,195,247,0.15)'; ctx.stroke();
+  }
+  // Right escalator
+  ctx.fillStyle = 'rgba(79,195,247,0.05)'; ctx.strokeStyle = '#3a4a5a';
+  ctx.beginPath(); ctx.rect(W / 2 + 80, escY, 50, 50); ctx.fill(); ctx.stroke();
+  for (let i = 0; i < 5; i++) {
+    ctx.beginPath();
+    ctx.moveTo(W / 2 + 82, escY + 5 + i * 10);
+    ctx.lineTo(W / 2 + 128, escY + 5 + i * 10);
+    ctx.strokeStyle = 'rgba(79,195,247,0.15)'; ctx.stroke();
+  }
+  ctx.fillStyle = 'rgba(79,195,247,0.2)';
+  ctx.font = '9px sans-serif';
+  ctx.fillText('Escalator', W / 2 - 105, escY + 62);
+  ctx.fillText('Escalator', W / 2 + 105, escY + 62);
+
+  // Entrance arrows
+  const entrances = [W / 2 - 40, W / 2 + 40];
+  entrances.forEach(ex => {
+    ctx.beginPath();
+    ctx.moveTo(ex - 15, L.bottomY - 3);
+    ctx.lineTo(ex, L.bottomY + 8);
+    ctx.lineTo(ex + 15, L.bottomY - 3);
+    ctx.strokeStyle = 'rgba(79,195,247,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+  ctx.fillStyle = 'rgba(79,195,247,0.2)';
+  ctx.font = '10px sans-serif';
+  ctx.fillText('ENTRANCE', W / 2, L.bottomY + 14);
+
+  // Dimensions
+  ctx.fillStyle = '#556677';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('~60m', W / 2, L.topY - 8);
+  drawArrow(L.leftX + 5, L.topY - 10, L.rightX - 5, L.topY - 10, '#556677');
+  ctx.save();
+  ctx.translate(L.leftX - 28, (L.topY + L.bottomY) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('~12m', 0, 0);
+  ctx.restore();
+}
+
+// ============================================================
+// SHARED FUNCTIONS
+// ============================================================
+function getVenue() { return VENUES[currentVenue]; }
+
+function generateStationPositions(count) {
+  const v = getVenue();
+  const L = v.lobby;
+  const topY = (L.topY || L.topY) + 25;
+  const midY = ((L.topY) + (L.bottomY)) / 2 - 15;
+  const positions = [];
+  const candidates = [];
+
+  // Top row
+  const topCount = Math.ceil(count / 2);
+  for (let i = 0; i < topCount; i++) {
+    const bounds = v.lobbyBounds(topY);
+    const x = bounds.left + (bounds.right - bounds.left) * (i + 1) / (topCount + 1);
+    candidates.push({ x, y: topY });
+  }
+  // Side positions
+  for (let i = 0; i < Math.floor(count / 2); i++) {
+    const bounds = v.lobbyBounds(midY);
+    const x = i % 2 === 0 ? bounds.left + 35 : bounds.right - 35;
+    candidates.push({ x, y: midY + i * 28 });
+  }
+  for (let i = 0; i < count; i++) positions.push(candidates[i % candidates.length]);
+  return positions;
+}
+
+function generateTablePositions(count) {
+  const v = getVenue();
+  const L = v.lobby;
+  const positions = [];
+  const cols = currentVenue === 'asem' ? 6 : 7;
+  const rows = Math.ceil(count / cols);
+  let idx = 0;
+  for (let r = 0; r < rows && idx < count; r++) {
+    const y = L.topY + 60 + r * 48;
+    if (y > L.bottomY - 25) break;
+    const bounds = v.lobbyBounds(y);
+    const c_count = Math.min(cols, count - idx);
+    for (let c = 0; c < c_count; c++) {
+      const x = bounds.left + 25 + (bounds.right - bounds.left - 50) * c / Math.max(c_count - 1, 1);
+      let tooClose = false;
+      for (const s of state.stationPositions) {
+        if (Math.hypot(x - s.x, y - s.y) < 42) { tooClose = true; break; }
+      }
+      if (!tooClose) {
+        for (const b of state.boothPositions) {
+          if (x > b.x - 15 && x < b.x + b.w + 15 && y > b.y - 15 && y < b.y + b.h + 15) { tooClose = true; break; }
+        }
+      }
+      if (!tooClose) { positions.push({ x, y }); idx++; }
+    }
+  }
+  return positions;
+}
+
+function generateBoothPositions(count) {
+  const v = getVenue();
+  const L = v.lobby;
+  const positions = [];
+  // Place booths along the left and right walls of the lobby
+  // Booth size in pixels: scale from meters
+  const refWidth = currentVenue === 'ballroom'
+    ? (VENUES.ballroom.lobby.topRightX - VENUES.ballroom.lobby.topLeftX) : (VENUES.asem.lobby.rightX - VENUES.asem.lobby.leftX);
+  const refM = currentVenue === 'ballroom' ? 75 : 60;
+  const pxPerM = refWidth / refM;
+  const bw = 3 * pxPerM; // 3m width
+  const bh = 2 * pxPerM; // 2m depth
+
+  const midY = (L.topY + L.bottomY) / 2;
+  const startY = midY - ((count - 1) * (bh + 8)) / 2;
+
+  for (let i = 0; i < count; i++) {
+    const y = startY + i * (bh + 8);
+    if (y < L.topY + 10 || y + bh > L.bottomY - 10) continue;
+    const bounds = v.lobbyBounds(y + bh / 2);
+    // Alternate left and right walls
+    if (i % 2 === 0) {
+      positions.push({ x: bounds.left + 2, y, w: bw, h: bh, side: 'left' });
+    } else {
+      positions.push({ x: bounds.right - bw - 2, y, w: bw, h: bh, side: 'right' });
+    }
+  }
+  return positions;
+}
+
+function generateSnackPositions(count) {
+  const v = getVenue();
+  const L = v.lobby;
+  const positions = [];
+  const refWidth = currentVenue === 'ballroom'
+    ? (VENUES.ballroom.lobby.topRightX - VENUES.ballroom.lobby.topLeftX) : (VENUES.asem.lobby.rightX - VENUES.asem.lobby.leftX);
+  const refM = currentVenue === 'ballroom' ? 75 : 60;
+  const pxPerM = refWidth / refM;
+  const sw = 1.8 * pxPerM; // 1.8m long
+  const sh = 0.6 * pxPerM; // 0.6m deep
+
+  // Place snack tables along the top edge of lobby (near hall entrance) evenly spaced
+  const yPos = L.topY + 18;
+  const bounds = v.lobbyBounds(yPos + sh / 2);
+  const availW = bounds.right - bounds.left - 40;
+
+  for (let i = 0; i < count; i++) {
+    const x = bounds.left + 20 + availW * (i + 0.5) / count - sw / 2;
+    // Check not overlapping with coffee stations
+    let tooClose = false;
+    for (const s of state.stationPositions) {
+      if (Math.abs((x + sw / 2) - s.x) < sw / 2 + 20 && Math.abs((yPos + sh / 2) - s.y) < 25) { tooClose = true; break; }
+    }
+    if (!tooClose) {
+      positions.push({ x, y: yPos, w: sw, h: sh });
+    }
+  }
+  return positions;
+}
+
+function generateDots(count) {
+  const v = getVenue();
+  const L = v.lobby;
+  const dots = [];
+  const dotCount = Math.ceil(count / 5);
+  let attempts = 0;
+  while (dots.length < dotCount && attempts < dotCount * 20) {
+    attempts++;
+    const y = L.topY + 15 + Math.random() * (L.bottomY - L.topY - 30);
+    const bounds = v.lobbyBounds(y);
+    const x = bounds.left + 8 + Math.random() * (bounds.right - bounds.left - 16);
+    let tooClose = false;
+    for (const s of state.stationPositions) {
+      if (Math.hypot(x - s.x, y - s.y) < 28) { tooClose = true; break; }
+    }
+    if (!tooClose) {
+      for (const t of state.tablePositions) {
+        if (Math.hypot(x - t.x, y - t.y) < 16) { tooClose = true; break; }
+      }
+    }
+    if (!tooClose) {
+      for (const b of state.boothPositions) {
+        if (x > b.x - 8 && x < b.x + b.w + 8 && y > b.y - 8 && y < b.y + b.h + 8) { tooClose = true; break; }
+      }
+    }
+    if (!tooClose) {
+      for (const sn of state.snackPositions) {
+        if (x > sn.x - 8 && x < sn.x + sn.w + 8 && y > sn.y - 10 && y < sn.y + sn.h + 10) { tooClose = true; break; }
+      }
+    }
+    if (!tooClose) {
+      dots.push({
+        x, y,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.2,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+  return dots;
+}
+
+function regenerate() {
+  state.stationPositions = generateStationPositions(state.stations);
+  state.snackPositions = generateSnackPositions(state.snacks);
+  state.boothPositions = generateBoothPositions(state.booths);
+  state.tablePositions = generateTablePositions(state.tables);
+  state.dots = generateDots(state.people);
+  updateStats();
+}
+
+function updateStats() {
+  const v = getVenue();
+  const stationArea = state.stations * 12;
+  const tableArea = state.tables * 3.5;
+  const snackArea = state.snacks * 4; // 1.08m² table + ~3m² access/queue buffer
+  const boothArea = state.booths * 9; // 6m² booth + 3m² access buffer
+  const circulationArea = v.totalAreaM2 * 0.18;
+  const usable = v.totalAreaM2 - stationArea - tableArea - snackArea - boothArea - circulationArea;
+  const perPerson = usable / state.people;
+  const fillPct = (state.people * 0.9) / v.totalAreaM2 * 100;
+
+  document.getElementById('totalArea').textContent = v.totalAreaM2.toLocaleString();
+  document.getElementById('usableArea').textContent = Math.round(usable).toLocaleString();
+  document.getElementById('perPerson').textContent = perPerson.toFixed(2);
+  document.getElementById('fillPercent').textContent = Math.round(fillPct) + '%';
+
+  const indicator = document.getElementById('densityIndicator');
+  const dot = indicator.querySelector('.dot');
+  const span = indicator.querySelector('span');
+
+  if (perPerson >= 1.5) {
+    indicator.style.background = 'rgba(76,175,80,0.15)';
+    dot.style.background = '#4caf50';
+    span.textContent = 'Very Comfortable - Free movement';
+    span.style.color = '#4caf50';
+  } else if (perPerson >= 1.0) {
+    indicator.style.background = 'rgba(79,195,247,0.15)';
+    dot.style.background = '#4fc3f7';
+    span.textContent = 'Comfortable - Standard reception';
+    span.style.color = '#4fc3f7';
+  } else if (perPerson >= 0.7) {
+    indicator.style.background = 'rgba(255,183,77,0.15)';
+    dot.style.background = '#ffb74d';
+    span.textContent = 'Moderate - Somewhat crowded';
+    span.style.color = '#ffb74d';
+  } else {
+    indicator.style.background = 'rgba(239,83,80,0.15)';
+    dot.style.background = '#ef5350';
+    span.textContent = 'Crowded - Difficult to move';
+    span.style.color = '#ef5350';
+  }
+
+  // Update compare badge
+  const badge = document.getElementById('compareBadge');
+  if (currentVenue === 'ballroom') {
+    badge.innerHTML = `<strong>Grand Ballroom</strong> lobby is <strong>1.7x</strong> larger<br>than ASEM Hall (1,350 vs 800 m²)<br>Much <strong>more spacious</strong> for the same headcount`;
+  } else {
+    badge.innerHTML = `<strong>ASEM Hall</strong> lobby is about <strong>59%</strong><br>the size of Grand Ballroom (800 vs 1,350 m²)<br><strong>Caution</strong> needed above 500 people`;
+  }
+}
+
+function drawArrow(x1, y1, x2, y2, color) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x1, y1 - 3); ctx.lineTo(x1, y1 + 3);
+  ctx.moveTo(x2, y2 - 3); ctx.lineTo(x2, y2 + 3);
+  ctx.stroke();
+}
+
+function draw() {
+  state.animFrame++;
+  const v = getVenue();
+  const L = v.lobby;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#0f1923';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(79,195,247,0.04)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 20) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 20) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Draw venue-specific elements
+  v.drawVenue();
+
+  // Draw lobby area
+  v.drawLobbyShape();
+  ctx.fillStyle = 'rgba(79,195,247,0.05)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(79,195,247,0.3)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Lobby label
+  ctx.fillStyle = 'rgba(79,195,247,0.25)';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('LOBBY', W / 2, L.bottomY - 12);
+
+  // Coffee stations
+  state.stationPositions.forEach((s, i) => {
+    const pulse = Math.sin(state.animFrame * 0.03 + i) * 3;
+    const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 22 + pulse);
+    grad.addColorStop(0, 'rgba(255,112,67,0.25)');
+    grad.addColorStop(1, 'rgba(255,112,67,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, 22 + pulse, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ff7043';
+    ctx.beginPath();
+    ctx.roundRect(s.x - 14, s.y - 10, 28, 20, 4);
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2615', s.x, s.y + 5);
+  });
+
+  // Snack tables
+  state.snackPositions.forEach((sn, i) => {
+    // Table glow
+    ctx.fillStyle = 'rgba(102,187,106,0.1)';
+    ctx.beginPath();
+    ctx.roundRect(sn.x - 4, sn.y - 4, sn.w + 8, sn.h + 8, 4);
+    ctx.fill();
+    // Table body
+    ctx.fillStyle = 'rgba(102,187,106,0.3)';
+    ctx.strokeStyle = '#66bb6a';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(sn.x, sn.y, sn.w, sn.h, 2);
+    ctx.fill(); ctx.stroke();
+    // Icon
+    ctx.fillStyle = '#a5d6a7';
+    ctx.font = '9px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('\uD83C\uDF70', sn.x + sn.w / 2, sn.y + sn.h / 2 + 4);
+  });
+
+  // High tables
+  state.tablePositions.forEach(t => {
+    ctx.fillStyle = 'rgba(255,213,79,0.15)';
+    ctx.beginPath(); ctx.arc(t.x, t.y, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#ffd54f';
+    ctx.beginPath(); ctx.arc(t.x, t.y, 5, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Booths
+  state.boothPositions.forEach((b, i) => {
+    // Booth shadow/glow
+    ctx.fillStyle = 'rgba(171,71,188,0.08)';
+    ctx.beginPath();
+    ctx.roundRect(b.x - 3, b.y - 3, b.w + 6, b.h + 6, 4);
+    ctx.fill();
+    // Booth body
+    ctx.fillStyle = 'rgba(171,71,188,0.25)';
+    ctx.strokeStyle = '#ab47bc';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(b.x, b.y, b.w, b.h, 3);
+    ctx.fill(); ctx.stroke();
+    // Booth label
+    ctx.fillStyle = '#ce93d8';
+    ctx.font = 'bold 8px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`B${i + 1}`, b.x + b.w / 2, b.y + b.h / 2 + 3);
+    // Dimension label on first booth only
+    if (i === 0) {
+      ctx.fillStyle = 'rgba(206,147,216,0.5)';
+      ctx.font = '7px sans-serif';
+      ctx.fillText('2m\u00D73m', b.x + b.w / 2, b.y - 4);
+    }
+  });
+
+  // People dots
+  ctx.save();
+  state.dots.forEach(d => {
+    d.x += Math.sin(state.animFrame * 0.01 + d.phase) * 0.15;
+    d.y += Math.cos(state.animFrame * 0.008 + d.phase) * 0.1;
+    const clampY = Math.max(L.topY + 8, Math.min(d.y, L.bottomY - 8));
+    const bounds = v.lobbyBounds(clampY);
+    if (d.x < bounds.left + 5) d.x = bounds.left + 5;
+    if (d.x > bounds.right - 5) d.x = bounds.right - 5;
+    const alpha = 0.5 + Math.sin(state.animFrame * 0.02 + d.phase) * 0.2;
+    ctx.fillStyle = `rgba(79,195,247,${alpha})`;
+    ctx.beginPath(); ctx.arc(d.x, d.y, 2.5, 0, Math.PI * 2); ctx.fill();
+  });
+  ctx.restore();
+
+  // People count overlay
+  ctx.fillStyle = 'rgba(15,25,35,0.85)';
+  ctx.beginPath();
+  ctx.roundRect(W / 2 - 70, L.topY + 6, 140, 36, 8);
+  ctx.fill();
+  ctx.fillStyle = '#4fc3f7';
+  ctx.font = 'bold 18px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`\uD83D\uDC64 ${state.people.toLocaleString()} ppl`, W / 2, L.topY + 30);
+
+  // Scale bar
+  const scaleX = 20;
+  const scaleY = H - 15;
+  const refWidth = currentVenue === 'ballroom'
+    ? (VENUES.ballroom.lobby.topRightX - VENUES.ballroom.lobby.topLeftX)
+    : (VENUES.asem.lobby.rightX - VENUES.asem.lobby.leftX);
+  const refM = currentVenue === 'ballroom' ? 75 : 60;
+  const scale10m = refWidth / refM * 10;
+  ctx.strokeStyle = '#556677'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(scaleX, scaleY); ctx.lineTo(scaleX + scale10m, scaleY);
+  ctx.moveTo(scaleX, scaleY - 4); ctx.lineTo(scaleX, scaleY + 4);
+  ctx.moveTo(scaleX + scale10m, scaleY - 4); ctx.lineTo(scaleX + scale10m, scaleY + 4);
+  ctx.stroke();
+  ctx.fillStyle = '#556677'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('10m', scaleX + scale10m / 2, scaleY - 8);
+
+  requestAnimationFrame(draw);
+}
+
+// ============================================================
+// PRESETS & UI
+// ============================================================
+function renderPresets() {
+  const v = getVenue();
+  const container = document.getElementById('presetContainer');
+  container.innerHTML = '';
+  v.presets.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'preset-btn' + (p.active ? ' active' : '');
+    btn.innerHTML = `${p.label}<br><small>${p.people.toLocaleString()} ppl</small>`;
+    btn.dataset.people = p.people;
+    btn.dataset.tables = p.tables;
+    btn.dataset.stations = p.stations;
+    btn.addEventListener('click', () => {
+      container.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyPreset(p);
+    });
+    container.appendChild(btn);
+  });
+}
+
+function applyPreset(p) {
+  state.people = p.people;
+  state.tables = p.tables;
+  state.stations = p.stations;
+  state.snacks = p.snacks !== undefined ? p.snacks : 3;
+  state.booths = p.booths !== undefined ? p.booths : 5;
+  document.getElementById('peopleSlider').value = state.people;
+  document.getElementById('peopleValue').textContent = state.people.toLocaleString();
+  document.getElementById('tableSlider').value = state.tables;
+  document.getElementById('tableValue').textContent = state.tables;
+  document.getElementById('stationSlider').value = state.stations;
+  document.getElementById('stationValue').textContent = state.stations;
+  document.getElementById('snackSlider').value = state.snacks;
+  document.getElementById('snackValue').textContent = state.snacks;
+  document.getElementById('boothSlider').value = state.booths;
+  document.getElementById('boothValue').textContent = state.booths;
+  // Update slider max based on venue
+  document.getElementById('peopleSlider').max = currentVenue === 'asem' ? 1000 : 1500;
+  regenerate();
+}
+
+function switchVenue(venue) {
+  currentVenue = venue;
+  document.querySelectorAll('.venue-tab').forEach(t => t.classList.toggle('active', t.dataset.venue === venue));
+  renderPresets();
+  const activePreset = getVenue().presets.find(p => p.active) || getVenue().presets[1];
+  applyPreset(activePreset);
+}
+
+// Tab clicks
+document.querySelectorAll('.venue-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchVenue(tab.dataset.venue));
+});
+
+// Sliders
+document.getElementById('peopleSlider').addEventListener('input', e => {
+  state.people = parseInt(e.target.value);
+  document.getElementById('peopleValue').textContent = state.people.toLocaleString();
+  document.getElementById('presetContainer').querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  regenerate();
+});
+document.getElementById('tableSlider').addEventListener('input', e => {
+  state.tables = parseInt(e.target.value);
+  document.getElementById('tableValue').textContent = state.tables;
+  regenerate();
+});
+document.getElementById('stationSlider').addEventListener('input', e => {
+  state.stations = parseInt(e.target.value);
+  document.getElementById('stationValue').textContent = state.stations;
+  regenerate();
+});
+document.getElementById('snackSlider').addEventListener('input', e => {
+  state.snacks = parseInt(e.target.value);
+  document.getElementById('snackValue').textContent = state.snacks;
+  document.getElementById('presetContainer').querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  regenerate();
+});
+document.getElementById('boothSlider').addEventListener('input', e => {
+  state.booths = parseInt(e.target.value);
+  document.getElementById('boothValue').textContent = state.booths;
+  document.getElementById('presetContainer').querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  regenerate();
+});
+
+// Init
+renderPresets();
+regenerate();
+draw();
+</script>
+</body>
+</html>
