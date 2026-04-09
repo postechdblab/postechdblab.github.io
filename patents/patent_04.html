@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neural-Network-Based Prediction of Columns and Tables Used for Translating Natural Language to SQL · DSLAB Patent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--bg:#0b1220;--card:#151f38;--border:#22304f;--fg:#e7ecf5;--muted:#9aa7c2;--accent:#6ea8ff;--accent2:#9b8cff;--good:#36d399;--warn:#fbbd23}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(ellipse at top,#0f1a33 0%,#0b1220 60%) fixed;color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.65}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:28px}
+  .back:hover{color:#fff}
+  .eyebrow{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:6px 12px;border:1px solid var(--border);border-radius:999px}
+  .eyebrow.hl{background:linear-gradient(90deg,#2b4bd4,#6b4bdd);color:#fff;border-color:transparent}
+  h1{font-size:38px;line-height:1.2;margin:16px 0 10px;letter-spacing:-.01em;color:#fff}
+  .lead{font-size:17px;color:#c9d3e8;max-width:720px}
+  .ko{font-size:14px;color:var(--muted);margin-top:6px;font-style:italic}
+  .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0 40px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+  .meta-grid .k{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  .meta-grid .v{font-size:14px;color:#fff;font-weight:600;margin-top:2px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  .meta-grid .v.plain{font-family:inherit;font-weight:500}
+  h2{font-size:22px;margin:36px 0 12px;color:#fff;letter-spacing:-.01em}
+  h2 .dot{display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;margin-right:10px;vertical-align:middle}
+  p{margin:0 0 14px;color:#d6deee}
+  ol,ul{padding-left:22px;color:#d6deee}
+  li{margin-bottom:10px}
+  .chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.05em;margin-right:4px}
+  .chip.reg{background:rgba(54,211,153,.15);color:#5ef1b3;border:1px solid rgba(54,211,153,.35)}
+  .chip.app{background:rgba(251,189,35,.12);color:#ffd566;border:1px solid rgba(251,189,35,.3)}
+  .chip.kr{background:rgba(110,168,255,.12);color:#9dc2ff;border:1px solid rgba(110,168,255,.35)}
+  .chip.us{background:rgba(155,140,255,.12);color:#c1b5ff;border:1px solid rgba(155,140,255,.35)}
+  .fig{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:12px 0}
+  .fig .lbl{font-size:12px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+  .fig .d{color:#c9d3e8;margin-top:4px}
+  footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;text-align:center}
+  .callout{background:linear-gradient(135deg,rgba(110,168,255,.12),rgba(155,140,255,.12));border:1px solid rgba(110,168,255,.35);border-radius:14px;padding:20px;margin:24px 0}
+  .callout .title{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);font-weight:800;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../DSLAB_Patents.html">← Back to DSLAB Patent Portfolio</a>
+  <div class="eyebrow ">Text-to-SQL</div>
+  <h1>Neural-Network-Based Prediction of Columns and Tables Used for Translating Natural Language to SQL</h1>
+  <div class="ko">신경망 기반 자연어로부터 SQL 질의 번역 시 사용되는 컬럼 및 테이블을 예측하는 방법</div>
+  <p class="lead" style="margin-top:18px">PCT filing of a neural-network model that predicts which database columns and tables are relevant to a given natural-language question.</p>
+
+  <div class="meta-grid">
+    <div><div class="k">Filing Number</div><div class="v">PCT/KR2019/018491</div></div>
+    <div><div class="k">Filing Date</div><div class="v">2019-12-26</div></div>
+    <div><div class="k">Jurisdiction</div><div class="v plain">United States (US)</div></div>
+    <div><div class="k">Status</div><div class="v plain"><span class="chip us">US</span><span class="chip app">Filed</span></div></div>
+    <div><div class="k">Research Theme</div><div class="v plain">Text-to-SQL</div></div>
+    <div><div class="k">Applicant</div><div class="v plain">POSTECH R&amp;BD Foundation</div></div>
+    <div style="grid-column:1/-1"><div class="k">Inventors</div><div class="v plain">W. Han, I. Na, H. Kang, H. Kim</div></div>
+  </div>
+
+  
+
+  <h2><span class="dot"></span>Problem</h2>
+  <p>Allowing non-expert users to query relational databases with natural language — a task that requires understanding both linguistic intent and complex database schemas.</p>
+
+  <h2><span class="dot"></span>Technical Approach</h2>
+  <p>Neural models (including transformer architectures) combined with schema linking, intermediate query-graph representations (QGM), and automated training-set curation.</p>
+
+  
+  
+
+  <h2><span class="dot"></span>Impact &amp; Applications</h2>
+  <p>Foundational building blocks for conversational data interfaces and enterprise analytics assistants, reducing the barrier between human questions and SQL.</p>
+
+  
+
+  <footer>
+    DSLAB · Data Systems Lab · Pohang University of Science and Technology (POSTECH)<br>
+    Prof. Wook-Shin Han · <a href="http://dblab.postech.ac.kr" target="_blank">dblab.postech.ac.kr</a>
+  </footer>
+</div>
+</body>
+</html>
