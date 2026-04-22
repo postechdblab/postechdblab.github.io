@@ -3,24 +3,84 @@
   description: null
   highlight: 0
   image: null
+  info: U.S. Patent No. 12,530,344 B2
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: https://drive.google.com/file/d/1acK2X_hJJDXt3i4AMDLeGagjV37xdgaq/view?usp=sharing
+  month: Jan.
+  title: Method for Enhancing Learning Data Set in Natural Language Processing System
+  year: 2026
+- ISSN: null
+  authors: Wook-Shin Han, Hyukkyu Kang, and Hyeonji Kim 
+  description: null
+  highlight: 0
+  image: null
   info: U.S. Patent No. US 12,505,098 B2
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: null
+  link: https://drive.google.com/file/d/1vzzbwZqaECb9094IshRRVUm7WM4mRlb9/view?usp=sharing
   month: Dec.
   title: Apparatus and Method for Processing Natural Language Query about Relational Database Using Transformer Neural Network
   year: 2025
 - ISSN: null
-  authors: Wook-Shin Han, Hyuk Kyu Kang, and Hyeonji Kim 
+  authors: Wook-Shin Han, Sungho Park, Juhyun Yun, and Jeong-Hoon Lee
   description: null
   highlight: 0
   image: null
-  info: U.S. App No. 18/725,248
+  info: U.S. App No. 19/283.091
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
-  month: June
-  title: Method for Enhancing Learning Data Set in Natural Language Processing System
+  month: Jul.
+  title: Technology-Integrated Apparatus and Method for Determining Semantic Correlation between Structured and Unstructured Data and for High-Accuracy Data Retrieval Relevant to Query
+  year: 2025
+- ISSN: null
+  authors: Wook-Shin Han, Taesung Lee, and Kijae Hong
+  description: null
+  highlight: 0
+  image: null
+  info: U.S. App No. 19/144.304
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: Jun.
+  title: GPU-Based Query Processing Accleration Method and Computing System
+  year: 2025
+- ISSN: null
+  authors: Wook-Shin Han, Sungho Park, Juhyun Yun, and Jeong-Hoon Lee
+  description: null
+  highlight: 0
+  image: null
+  info: App No. PCT/KR2025/003037
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: Mar.
+  title: Table and Document Search Device and Search Method According to Question
+  year: 2025
+- ISSN: null
+  authors: Wook-Shin Han, Hyukkyu Kang, and Jaehyun Ha
+  description: null
+  highlight: 0
+  image: null
+  info: U.S. App No. 18/935.330
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: Nov.
+  title: Method and Device for Detecting Anomaly in Log Data
+  year: 2024
+- ISSN: null
+  authors: Wook-Shin Han, Taesung Lee, and Jaehyun Ha
+  description: null
+  highlight: 0
+  image: null
+  info: App No. PCT/KR2024/015578
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: Oct.
+  title: Method and Device for Optimizing Query in Graph Database, and Graph Database System Including the Same
   year: 2024
 - ISSN: null
   authors: Wook-Shin Han, Hyukkyu Kang, and Sungho Park 
