@@ -3,11 +3,24 @@
   description: null
   highlight: 0
   image: null
+  info: DASFAA, Korea
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: April
+  title: The Long Journey from Subgraphs to Autonomous Agents: Evaluation of Graph Intelligence
+  year: 2026
+  
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
   info: ACM SIGMOD, China
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
-  month: Jun.
+  month: June
   title: Natural Language Exploration with Relational Databases in Chatbot
   year: 2021
 
@@ -20,7 +33,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
-  month: Apr.
+  month: April
   title: Efficient Evaluation of Partial Match Queries for XML Documents Using Information Retrieval Techniques 
   year: 2006
 
@@ -33,6 +46,6 @@
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
-  month: Jul.
+  month: July
   title: Prefetching Based on the Type-Level Access Pattern in Object-Relational DBMSs
   year: 2006
