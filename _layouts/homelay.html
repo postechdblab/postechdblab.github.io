@@ -2,11 +2,501 @@
 layout: default
 ---
 
-<div id="homeid" class="col-sm-8">
-  <h1>Welcome to the Data Systems Lab (Big data Lab)</h1>
+<div class="col-sm-12 home-page" id="homeid">
+  <h1 class="home-title">Welcome to the Data Systems Lab (Big Data Lab)</h1>
 
-  {{ content }}
+  <!-- ===== Top row: Poster/About slider  ·  News ===== -->
+  <div class="row home-grid-row">
+
+    <!-- Top-left: Poster ↔ About slider (7/12) -->
+    <div class="col-md-7 home-col">
+      <div class="home-card home-card--slider" id="homeSlider">
+        <div class="home-slide home-slide--poster is-active" data-panel="poster">
+          <a href="{{ site.url }}{{ site.baseurl }}/images/dslab_poster.png" target="_blank" rel="noopener" aria-label="Open DSLAB poster in a new tab">
+            <img src="{{ site.url }}{{ site.baseurl }}/images/dslab_poster.png" alt="DSLAB @ POSTECH Poster" class="home-poster-img" />
+          </a>
+        </div>
+
+        <div class="home-slide home-slide--about" data-panel="about">
+          <div class="home-about-text">
+            {{ content }}
+          </div>
+        </div>
+
+        <button type="button" class="home-slider-arrow home-slider-arrow--prev" aria-label="Previous">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="home-slider-arrow home-slider-arrow--next" aria-label="Next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </button>
+
+        <div class="home-slider-dots">
+          <button type="button" class="home-slider-dot is-active" data-target="poster" aria-label="Show poster">
+            <span class="home-slider-dot__bullet"></span>
+            <span class="home-slider-dot__text">Poster</span>
+          </button>
+          <button type="button" class="home-slider-dot" data-target="about" aria-label="Show about">
+            <span class="home-slider-dot__bullet"></span>
+            <span class="home-slider-dot__text">About</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top-right: News (5/12) -->
+    <div class="col-md-5 home-col">
+      {% include news.html %}
+    </div>
+  </div>
+
+  <!-- ===== Bottom row: Photo carousel  ·  Research participation ===== -->
+  <div class="row home-grid-row home-grid-row--matched">
+
+    <!-- Bottom-left: Photo carousel (7/12) -->
+    <div class="col-md-7 home-col">
+      <div class="home-card home-card--photos">
+        <div id="carousel" class="carousel slide home-carousel" data-ride="carousel" data-interval="4000" data-pause="hover">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+            <li data-target="#carousel" data-slide-to="4"></li>
+            <li data-target="#carousel" data-slide-to="5"></li>
+            <li data-target="#carousel" data-slide-to="6"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item active"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_4.jpeg" alt="Slide 1" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_6.jpeg" alt="Slide 2" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_1.jpeg" alt="Slide 3" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_7.jpeg" alt="Slide 4" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_3.jpeg" alt="Slide 5" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_2.jpeg" alt="Slide 6" /></div>
+            <div class="item"><img src="{{ site.url }}{{ site.baseurl }}/images/slider7001400/dblab_main_5.jpeg" alt="Slide 7" /></div>
+          </div>
+          <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom-right: Research Participation (5/12) -->
+    <div class="col-md-5 home-col">
+      <div class="home-internship">
+        <div class="home-internship__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="home-internship__label">Join us</div>
+        <h4 class="home-internship__title">연구참여 · Research Internship</h4>
+        <p class="home-internship__desc">
+          We are currently <a href="{{ site.url }}{{ site.baseurl }}/internship"><b>hiring interns (연구 참여학생 모집)</b></a>. An amazing opportunity for undergrads to experience world-class Big Data research and prepare for graduate school.
+        </p>
+        <p class="home-internship__tagline">You could be a rising-<b>STAR</b> of the future.</p>
+        <a href="{{ site.url }}{{ site.baseurl }}/internship" class="home-internship__cta">
+          자세히 보기 <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Below the grid: Collaborators box ===== -->
+  <div class="row home-collab-row">
+    <div class="col-sm-12">
+      <fieldset class="home-collab">
+        <legend class="home-collab__legend">Collaborators</legend>
+        <div class="home-collab__logos">
+          <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_oracle.png" alt="Oracle">
+          <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_sap.png" alt="SAP">
+          <img src="{{ site.url }}{{ site.baseurl }}/images/logopic/Logo_samsung.png" alt="Samsung">
+        </div>
+      </fieldset>
+    </div>
+  </div>
 </div>
-<div id="newsid" class="col-sm-4">
-  {% include news.html %}
-</div>
+
+<style>
+  /* ---------- Home 2x2 grid ---------- */
+  .home-title {
+    text-align: center;
+    margin: 10px 0 28px;
+    font-weight: 700;
+  }
+  .home-grid-row {
+    margin-bottom: 20px;
+  }
+  /* Row 1 & 2: columns in a row stretch to match heights */
+  @media (min-width: 992px) {
+    .home-grid-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+    .home-grid-row > .home-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .home-grid-row > .home-col > * {
+      flex: 1 1 auto;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    /* Row 1: fixed height; each card handles its own scroll */
+    .home-grid-row:not(.home-grid-row--matched) > .home-col > * {
+      height: 680px;
+      max-height: 680px;
+    }
+    /* Row 2: photo carousel and internship card stretch to match, capped height */
+    .home-grid-row--matched {
+      align-items: stretch;
+      max-height: 320px;
+    }
+    .home-grid-row--matched > .home-col {
+      display: flex;
+      flex-direction: column;
+      max-height: 320px;
+    }
+    .home-grid-row--matched > .home-col > * {
+      flex: 1 1 auto;
+      height: 100%;
+      max-height: 320px;
+      box-sizing: border-box;
+    }
+  }
+
+  .home-card {
+    background: #fafafa;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ---------- Poster / About slider ---------- */
+  .home-card--slider {
+    padding: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .home-slide {
+    display: none;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .home-slide.is-active { display: block; }
+
+  .home-slide--poster.is-active {
+    display: block;
+    overflow-y: auto;
+  }
+  .home-slide--poster a {
+    display: block;
+    width: 100%;
+  }
+  .home-poster-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 !important;
+    border-radius: 6px;
+  }
+  .home-slide--about.is-active {
+    display: block;
+    overflow-y: auto;
+    padding: 10px 22px 10px 10px;
+  }
+  .home-about-text {
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  .home-about-text p:first-child { margin-top: 0; }
+
+  .home-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    cursor: pointer;
+    opacity: 1;
+    transition: background .2s ease, transform .2s ease;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .home-slider-arrow:hover {
+    background: rgba(0,0,0,.8);
+    color: #fff;
+  }
+  .home-slider-arrow:hover.home-slider-arrow--prev { transform: translateY(-50%) translateX(-2px); }
+  .home-slider-arrow:hover.home-slider-arrow--next { transform: translateY(-50%) translateX(2px); }
+  .home-slider-arrow--prev { left: 14px; }
+  .home-slider-arrow--next { right: 14px; }
+  .home-slider-arrow .glyphicon { top: 0; font-size: 14px; }
+
+  .home-slider-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    z-index: 5;
+    padding: 4px;
+    background: rgba(0,0,0,.55);
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+  }
+  .home-slider-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px 4px 10px;
+    border-radius: 12px;
+    background: transparent;
+    color: rgba(255,255,255,.7);
+    border: none;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .4px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+  .home-slider-dot__bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .home-slider-dot:hover { color: #fff; }
+  .home-slider-dot.is-active {
+    background: #fff;
+    color: #222;
+  }
+
+  /* ---------- News (compact) ---------- */
+  .home-col .well {
+    padding: 14px 18px;
+    background: #fafafa;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: none;
+    overflow-y: auto;
+  }
+  .home-col .well h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .home-col .well p {
+    margin: 2px 0 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .home-col .well h4:last-child {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+  .home-col .well h4:last-child a {
+    color: #337ab7;
+    font-weight: 500;
+  }
+
+  /* ---------- Carousel ---------- */
+  .home-card--photos {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .home-carousel {
+    margin: 0 !important;
+    width: 100%;
+    height: 100%;
+  }
+  .home-carousel .carousel-inner {
+    width: 100%;
+    height: 100%;
+  }
+  .home-carousel .item,
+  .home-carousel .item.active {
+    height: 100%;
+  }
+  .home-carousel img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* ---------- Research internship card (matches other cards) ---------- */
+  .home-internship {
+    position: relative;
+    background: #fafafa;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  .home-internship__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eef2f6;
+    color: #5a7a98;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+  .home-internship__icon svg { width: 18px; height: 18px; }
+  .home-internship__label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 2px;
+  }
+  .home-internship__title {
+    margin: 0 0 8px;
+    font-weight: 700;
+    font-size: 17px;
+    color: #222;
+  }
+  .home-internship__desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  .home-internship__tagline {
+    font-size: 12.5px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .home-internship__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 5px 14px;
+    background: transparent;
+    color: #337ab7 !important;
+    border: 1px solid #cfd8e3;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .home-internship__cta:hover {
+    background: #337ab7;
+    border-color: #337ab7;
+    color: #fff !important;
+  }
+  .home-internship__cta span { transition: transform .15s ease; }
+  .home-internship__cta:hover span { transform: translateX(2px); }
+
+  /* ---------- Collaborators box (fieldset style) ---------- */
+  .home-collab-row {
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+  .home-collab {
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    padding: 20px 24px 16px;
+    margin: 0;
+    background: transparent;
+  }
+  .home-collab__legend {
+    width: auto;
+    margin: 0 auto;
+    padding: 0 12px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #666;
+    text-align: center;
+  }
+  .home-collab__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 8px 0 4px;
+  }
+  .home-collab__logos img {
+    width: 160px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(20%);
+    opacity: .9;
+    transition: filter .2s ease, opacity .2s ease;
+  }
+  .home-collab__logos img:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+</style>
+
+<script>
+(function() {
+  var slider = document.getElementById('homeSlider');
+  if (!slider) return;
+
+  var slides = slider.querySelectorAll('.home-slide');
+  var dots = slider.querySelectorAll('.home-slider-dot');
+  var panels = ['poster', 'about'];
+  var idx = 0;
+
+  function show(i) {
+    idx = (i + panels.length) % panels.length;
+    var target = panels[idx];
+    slides.forEach(function(s) {
+      s.classList.toggle('is-active', s.getAttribute('data-panel') === target);
+    });
+    dots.forEach(function(d) {
+      d.classList.toggle('is-active', d.getAttribute('data-target') === target);
+    });
+  }
+
+  slider.querySelector('.home-slider-arrow--prev').addEventListener('click', function() { show(idx - 1); });
+  slider.querySelector('.home-slider-arrow--next').addEventListener('click', function() { show(idx + 1); });
+  dots.forEach(function(d, i) {
+    d.addEventListener('click', function() { show(i); });
+  });
+})();
+</script>

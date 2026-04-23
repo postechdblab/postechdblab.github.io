@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home layout preview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <style>
+    body { padding: 20px; }
+    .container-fluid { max-width: 1000px; margin: 0 auto; }
+
+    /* ---------- Home 2x2 grid ---------- */
+    .home-title {
+      text-align: center;
+      margin: 10px 0 28px;
+      font-weight: 700;
+    }
+    .home-grid-row { margin-bottom: 20px; }
+    @media (min-width: 768px) {
+      .home-grid-row { display: flex; flex-wrap: wrap; }
+      .home-grid-row > .home-col { display: flex; flex-direction: column; }
+      .home-grid-row > .home-col > * { flex: 1 1 auto; height: 100%; }
+      .home-grid-row > .home-col > .well { margin-bottom: 0; }
+    }
+    .home-card {
+      background: #fafafa; border: 1px solid #e3e3e3; border-radius: 6px;
+      padding: 14px 16px; box-sizing: border-box;
+    }
+    /* Poster / About toggle */
+    .home-card--toggle { display: flex; flex-direction: column; }
+    .home-toggle-nav {
+      display: flex; gap: 6px; margin-bottom: 10px;
+      border-bottom: 1px solid #e1e1e1; padding-bottom: 8px;
+    }
+    .home-toggle-btn {
+      background: #fff; border: 1px solid #ccc; border-radius: 4px;
+      padding: 5px 14px; font-size: 14px; cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .home-toggle-btn:hover { background: #f0f0f0; }
+    .home-toggle-btn.active { background: #337ab7; border-color: #2e6da4; color: #fff; }
+    .home-toggle-panel { flex: 1 1 auto; }
+    .home-toggle-panel--poster a { display: block; }
+    .home-poster-img {
+      width: 100%; height: auto; display: block; margin: 0 !important;
+      border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    }
+    .home-about-text {
+      max-height: 720px; overflow-y: auto; padding-right: 6px;
+      font-size: 14px; line-height: 1.55;
+    }
+    .home-about-text p:first-child { margin-top: 0; }
+    /* Carousel */
+    .home-card--photos { padding: 8px; display: flex; align-items: center; justify-content: center; }
+    .home-carousel { margin: 0 !important; width: 100%; }
+    .home-carousel img { width: 100%; height: auto; margin: 0; border-radius: 4px; }
+    /* Internship */
+    .home-internship-box h4 { margin-top: 0; font-weight: 700; }
+    .home-internship-cta { margin-top: 12px; margin-bottom: 0; }
+    /* Sponsors */
+    .home-pub-sponsors { margin-top: 10px; }
+    .home-sponsor-logos { text-align: center; }
+    .home-sponsor-logos img { margin: 6px 10px; }
+    /* News (from news.html) */
+    #newsid p { text-align: left; }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 home-page" id="homeid">
+      <h1 class="home-title">Welcome to the Data Systems Lab (Big Data Lab)</h1>
+
+      <div class="row home-grid-row">
+
+        <!-- Poster / About toggle -->
+        <div class="col-sm-6 home-col">
+          <div class="home-card home-card--toggle">
+            <div class="home-toggle-nav" role="tablist">
+              <button type="button" class="home-toggle-btn active" data-target="poster" role="tab">Poster</button>
+              <button type="button" class="home-toggle-btn" data-target="about" role="tab">About</button>
+            </div>
+
+            <div class="home-toggle-panel home-toggle-panel--poster" data-panel="poster">
+              <a href="images/dslab_poster.png" target="_blank" rel="noopener">
+                <img src="images/dslab_poster.png" alt="DSLAB Poster" class="home-poster-img" />
+              </a>
+            </div>
+
+            <div class="home-toggle-panel home-toggle-panel--about" data-panel="about" style="display:none;">
+              <div class="home-about-text">
+                <p>Welcome to the Data Systems Lab (Big Data Lab) at the POSTECH. Our data systems lab focuses on <strong>STAR</strong> (namely, <strong>Systems, Theory, and ARtificial intelligence</strong>) supported by major grants such as Star Lab.</p>
+                <p><b>Building Architects Through Systems.</b> We train our students to become system architects—not just coders—by having them design and build large-scale data infrastructure from the ground up.</p>
+                <p><b>[Big News]</b> Our lab has been awarded over $6 million USD for the Global AI Frontier Lab between Korea and NYU.</p>
+                <p><b>&#9679; Enterprise Super Agents & Multi-Modal RAG</b><br>We build Enterprise Super Agents—autonomous, data-centric systems powered by Knowledge Graphs and advanced Multi-Modal RAG.</p>
+                <p><b>&#9679; AI Database & Semantic Predicates</b><br>We design and implement AI-native databases that treat semantic predicates, vector search, and knowledge-graph reasoning as first-class query operators.</p>
+                <p><b>&#9679; Next-Gen LLM Inference & Reasoning Optimization</b><br>We are launching a new research thrust dedicated to LLM inference optimization in the Reasoning Era.</p>
+                <p><b>&#9679; Embodied AI & Robot Manipulation</b><br>We are advancing Robot Foundation Models toward adaptive, human-inspired intelligence.</p>
+                <p><b>&#9679; Natural Language Interfaces to Data</b><br>We're building conversational database interfaces, letting users query and reason over data using natural language.</p>
+                <p><b>&#9679; Self-Optimizing Data Systems</b><br>Our systems auto-adapt to workload and data distribution, delivering top performance without manual tuning.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News -->
+        <div class="col-sm-6 home-col">
+          <div class="well">
+            <h4>News</h4>
+            <p>February 25, 2026</p>
+            <p>Five students have secured overseas internships and joint research positions at Google (Systems Research Group), Microsoft, Snowflake, UIUC, and NYU for this semester.</p>
+            <p>February 24, 2026</p>
+            <p>One paper is accepted to ICDE.</p>
+            <p>February 23, 2026</p>
+            <p>We heartily welcome Sunho Cha to our lab.</p>
+            <p>January 26, 2026</p>
+            <p>One paper is accepted to ICLR 2026.</p>
+            <p>January 16, 2026</p>
+            <p>A paper about our new graph analytics engine TurboLynx is accepted to VLDB 2026.</p>
+            <h4><a href="#">... see all News</a></h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row home-grid-row">
+        <!-- Carousel -->
+        <div class="col-sm-6 home-col">
+          <div class="home-card home-card--photos">
+            <div id="carousel" class="carousel slide home-carousel" data-ride="carousel" data-interval="4000" data-pause="hover">
+              <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="item active"><img src="images/slider7001400/dblab_main_4.jpeg" alt="Slide 1" /></div>
+                <div class="item"><img src="images/slider7001400/dblab_main_6.jpeg" alt="Slide 2" /></div>
+                <div class="item"><img src="images/slider7001400/dblab_main_1.jpeg" alt="Slide 3" /></div>
+              </div>
+              <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship -->
+        <div class="col-sm-6 home-col">
+          <div class="well home-internship-box">
+            <h4>연구참여 · Research Internship</h4>
+            <p>We are currently <a href="#"><b>hiring interns (연구 참여학생 모집)</b></a>. This is an amazing opportunity for undergrads to experience world-class research in Big Data and prepare for possible graduate school applications.</p>
+            <p>You could be a rising-<b>STAR</b> of the future if you stand out in our field.</p>
+            <p class="home-internship-cta">
+              <a href="#" class="btn btn-primary btn-sm">자세히 보기 →</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publications / Sponsors -->
+      <div class="row home-pub-sponsors">
+        <div class="col-sm-12">
+          <p>We are proud of strong publication records in top database venues such as having presented 24 papers at SIGMOD/VLDB/PODS/ICDE between 2019 and 2024. Many of our alumni work for top notch companies including Facebook, Oracle, SAP, Microsoft, and Amazon.</p>
+          <figure class="first home-sponsor-logos">
+            <img src="images/logopic/Logo_oracle.png" style="width: 180px;">
+            <img src="images/logopic/Logo_sap.png" style="width: 180px;">
+            <img src="images/logopic/Logo_samsung.png" style="width: 180px;">
+          </figure>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+(function() {
+  document.querySelectorAll('.home-toggle-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var card = btn.closest('.home-card--toggle');
+      if (!card) return;
+      var target = btn.getAttribute('data-target');
+      card.querySelectorAll('.home-toggle-btn').forEach(function(b) {
+        b.classList.toggle('active', b === btn);
+      });
+      card.querySelectorAll('.home-toggle-panel').forEach(function(p) {
+        p.style.display = p.getAttribute('data-panel') === target ? 'block' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
