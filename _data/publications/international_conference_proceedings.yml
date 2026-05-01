@@ -5,7 +5,7 @@
   image: null
   info: In Proc., the 43rd International Conference on Machine Learning, ICML, Seoul, South Korea
   link: 
-  git: https://vap-project.github.io/
+  git: https://github.com/Leesangoh/VAP
   month: July
   title: 'Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting'
   year: 2026
