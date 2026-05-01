@@ -5,7 +5,7 @@
   image: null
   info: In Proc., the 43rd International Conference on Machine Learning, ICML, Seoul, South Korea
   link: 
-  project: https://vap-project.github.io/
+  git: https://vap-project.github.io/
   month: July
   title: 'Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting'
   year: 2026
@@ -17,7 +17,7 @@
   image: null
   info: In Proc., the 43rd International Conference on Machine Learning, ICML, Seoul, South Korea
   link: 
-  project: https://failureisfeedback.github.io/
+  git: 
   month: July
   title: 'FAILURE IS FEEDBACK: History-Aware Backtracking for Agentic Traversal in Multimodal Graphs'
   year: 2026
