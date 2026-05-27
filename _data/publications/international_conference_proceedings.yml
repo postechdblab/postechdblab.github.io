@@ -23,7 +23,7 @@
   is_corresponding_author: true
   is_demo: false  
   link: 
-  git: 
+  git: https://failureisfeedback.github.io
   month: July
   title: 'FAILURE IS FEEDBACK: History-Aware Backtracking for Agentic Traversal in Multimodal Graphs'
   year: 2026
