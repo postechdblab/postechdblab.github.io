@@ -101,9 +101,10 @@ tr:hover{background:#e8f0fe;}
 <header>
   <div>
     <h1>SIGMOD 2028 @ COEX Seoul</h1>
-    <div class="sub">Program Simulator &amp; Contract Validator &mdash; Matches quotation from John Otero (CEC2025070020, 16/Mar/2026)</div>
+    <div class="sub">Program Simulator &amp; Contract Validator &mdash; <strong>v1.7 Auditorium-Enhanced</strong> &mdash; base CEC2025070020 (16/Mar/2026) + 3F Auditorium addendum (TH 1,080, LED 20m&times;6m)</div>
   </div>
   <span class="badge">June 17&ndash;23, 2028</span>
+  <span class="badge" style="background:#7b1fa2;">v1.7</span>
 </header>
 <div class="container">
   <div class="tabs" id="mainTabs">
@@ -164,17 +165,20 @@ const ROOMS = {
   '209':     {floor:2,name:'Room 209',     cl:90,th:160,rd:60},
   '210':     {floor:2,name:'Room 210',     cl:36,th:60,rd:24},
   '211':     {floor:2,name:'Room 211 (Multi)',cl:18,th:36,rd:0},
+  // ── v1.7 ADDENDUM (per addendum quotation 2025-07-01): 3F Auditorium ──
+  // Fixed-seat theater, no CL/RD reconfiguration possible. Built-in LED screen 20m×6m (3.9mm pitch).
+  'auditorium': {floor:3,name:'Auditorium (3F)',cl:0,th:1080,rd:0,fixed:true,note:'TH-only (fixed seats). LED 20m×6m incl. Plenary venue per v1.7.'},
 };
 
 // Contract quotation — exact line items from CEC2025070020
 const QUOTATION = {
-  '06-17':{label:'Sat (Setup)',rooms:{'201-203':{pax:540,krw:5040000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:10200000,remark:'D-1 prep discount'}}},
-  '06-18':{label:'Sun (Workshops)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
-  '06-19':{label:'Mon (PODS)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
-  '06-20':{label:'Tue (SIGMOD 1)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'210':{pax:32,krw:600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
-  '06-21':{label:'Wed (SIGMOD 2)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:32,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
-  '06-22':{label:'Thu (SIGMOD 3)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
-  '06-23':{label:'Fri (Workshops)',rooms:{'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'207':{pax:18,krw:400000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000}}},
+  '06-17':{label:'Sat (Setup — ASEM + Office only)',rooms:{'201-203':{pax:540,krw:5040000,remark:'For Sun workshop start'},'211':{pax:18,krw:400000,remark:'Office / registration prep'}}},
+  '06-18':{label:'Sun (Workshops + GBR/Auditorium Setup)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000,remark:'v1.7: GBR setup day (moved from Sat) + standby. No workshops in GBR.'},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: Setup day (moved from Sat). LED 20×6m incl.'}}},
+  '06-19':{label:'Mon (PODS)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: PODS Keynote venue'}}},
+  '06-20':{label:'Tue (SIGMOD 1)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'210':{pax:32,krw:600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: Opening + Keynote 1 + Awards'}}},
+  '06-21':{label:'Wed (SIGMOD 2)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:32,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: Keynote 2 + DEI Keynote'}}},
+  '06-22':{label:'Thu (SIGMOD 3)',rooms:{'201-203':{pax:540,krw:12600000},'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'206':{pax:36,krw:600000},'207':{pax:18,krw:400000},'209':{pax:90,krw:1600000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: Award Talks + Keynote 3 + Closing'}}},
+  '06-23':{label:'Fri (Workshops)',rooms:{'204':{pax:12,krw:300000},'205':{pax:90,krw:1600000},'207':{pax:18,krw:400000},'211':{pax:18,krw:400000},'101-105':{pax:900,krw:25500000},'auditorium':{pax:1080,krw:24000000,remark:'v1.7: Tutorial-day plenary'}}},
 };
 
 const COLORS=['#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#00bcd4','#009688','#4caf50','#8bc34a','#ff9800','#ff5722','#795548','#607d8b','#f44336','#e040fb','#00e5ff'];
@@ -200,7 +204,7 @@ const CONTRACT_RULES = [
     const today=new Date('2026-04-08'),due1=new Date('2026-03-23');
     return today>due1?{pass:false,notes:[`Down payment KRW 25,944,000 due ${due1.toISOString().slice(0,10)} — OVERDUE. Contract shows Paid Amount = 0.`,`Interim KRW 103,776,000 due 2028-03-17`,`Balance KRW 155,664,000 due 2028-06-10`,`Bank: Shinhan Bank 140-011-634273, SWIFT: SHBKKRSE`]}:{pass:true,notes:['On schedule']};
   }},
-  {id:'A3',cat:'Rental & Payment',vtype:'cost',clause:'Contract Note',title:'2026 rates — 3-5% annual increase',desc:'KRW 285,384,000 based on 2026 rates. Adjusted when 2028 official rates confirmed.',check:()=>({pass:'partial',notes:['Meeting Rooms KRW 259,440,000 + VAT 10% = KRW 285,384,000','Contract type: Meeting Room Rental Only, NO F&B required','2028 projected: +6-10% → KRW 302M-314M']})},
+  {id:'A3',cat:'Rental & Payment',vtype:'cost',clause:'Contract Note + v1.7 Addendum',title:'2026 rates + Auditorium addendum',desc:'Base KRW 285,384,000 (CEC2025070020) + Auditorium addendum KRW 168,960,000 (incl. VAT). v1.7 total KRW 454,344,000.',check:()=>({pass:'partial',notes:['Base contract: Meeting Rooms KRW 259,440,000 + VAT 10% = KRW 285,384,000','v1.7 Auditorium addendum: 9.6M (D-1 6/17) + 6×24M (6/18-6/23) = 153.6M + VAT 15.36M = KRW 168,960,000','v1.7 TOTAL: KRW 454,344,000 (≈ $302,896 @1,500/USD)','2028 projected with 3-5% annual: +6-10% → KRW 482M-500M','Contract type: Meeting Room Rental Only, NO F&B required']})},
   {id:'A4',cat:'Rental & Payment',vtype:'info',clause:'T&C Art.3-4',title:'Cancellation & termination penalties',desc:'Full cancellation forfeits all payments. Partial reduction: 10% (90+ days), 50% (8-89 days), 100% (< 7 days).',check:()=>({pass:'partial',notes:['Full cancellation: all rent paid becomes penalty','Partial reduction 90+ days: 10% of difference','Partial reduction 8-89 days: 50%','Partial reduction < 7 days: 100%','Force majeure (Art.9): no penalty, rent returned']})},
   // ─── B. SPACE & SETUP ────────────────────────────────────
   {id:'B1',cat:'Space & Setup',vtype:'cost',clause:'Key Terms #2',title:'50% surcharge for non-meeting use',desc:'Exhibitions, posters, and other non-meeting uses incur 50% surcharge on rental.',check:p=>{
@@ -226,7 +230,7 @@ const CONTRACT_RULES = [
     return{pass:true,notes:['Friday correctly avoids 206 and 209']};
   }},
   // ─── C. LOBBY & INSTALLATIONS ────────────────────────────
-  {id:'C1',cat:'Lobby & Install.',vtype:'cost',clause:'Key Terms #5',title:'Lobby fee: KRW 20,000/sqm/day',desc:'Installations in lobby areas incur per-sqm daily fee. Install/dismantle only after 18:00.',check:p=>{
+  {id:'C1',cat:'Lobby & Install.',vtype:'cost',clause:'Key Terms #5 + Addendum #3',title:'Lobby fee: KRW 20,000/sqm/day (incl. 3F Auditorium lobby)',desc:'Installations in lobby areas incur per-sqm daily fee (excl. VAT). Per addendum: only designated zones permitted, structures only after 18:00, floor protection (보양) mandatory.',check:p=>{
     const items=[];
     for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
       if(s.room&&s.room.includes('Lobby')&&s.need>0)items.push(`${day} ${sl.time}: ${s.name} — lobby usage fee applies`);
@@ -242,13 +246,13 @@ const CONTRACT_RULES = [
   }},
   {id:'C3',cat:'Lobby & Install.',vtype:'action',clause:'Op.Reg. Art.11',title:'Promo materials: 14 days notice for structures',desc:'Banners, arches, signage structures require layout submission 14 days before (June 3, 2028). General materials 7 days.',check:()=>({pass:'partial',notes:['Structures (booths, banners, signboards): submit layout by June 3, 2028 (14 days)','General tech/equipment requests: submit by June 10, 2028 (7 days)','Unauthorized materials may be removed without notice (Op.Reg. Art.11-3)']})},
   // ─── D. EQUIPMENT & SERVICES ─────────────────────────────
-  {id:'D1',cat:'Equipment & Svc.',vtype:'cost',clause:'Op.Reg. Art.14',title:'AV: included ONLY for rooms 205 & 209',desc:'Quotation includes Wireless Mic + Beam Projector for 205 and 209 only. All others need separate AV.',check:p=>{
-    const avR=new Set(['205','209']),need=new Set();
+  {id:'D1',cat:'Equipment & Svc.',vtype:'cost',clause:'Op.Reg. Art.14 + v1.7 Addendum',title:'AV: included ONLY for 205, 209, and Auditorium',desc:'Base contract: Wireless Mic + Beam Projector for 205/209 only. v1.7 Addendum: Auditorium includes built-in LED screen 20m×6m (3.9mm pitch) — premium plenary AV.',check:p=>{
+    const avR=new Set(['205','209','auditorium']),need=new Set();
     for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
       if(!s.need||s.room==='N/A'||s.room.includes('Lobby'))continue;
       s.room.split(/[+,]/).map(r=>r.trim()).forEach(rp=>{expandRoom(rp).forEach(r=>{if(!avR.has(r)&&ROOMS[r])need.add(r);});});
     }}}
-    return{pass:false,notes:[`Rooms needing separate AV: ${[...need].sort().join(', ')}`,`Apply at signing or submit "Application for Additional Use" (Art.14-2)`]};
+    return{pass:false,notes:[`Rooms needing separate AV: ${[...need].sort().join(', ')}`,`Auditorium (3F): LED 20m×6m + Wireless Mic + house PA included (per addendum quotation)`,`Apply at signing or submit "Application for Additional Use" (Art.14-2)`]};
   }},
   {id:'D2',cat:'Equipment & Svc.',vtype:'cost',clause:'Op.Reg. Art.12',title:'HVAC: rental hours only (09:00-18:00)',desc:'Air conditioning/heating during 09:00-18:00 only. Extended hours need separate arrangement.',check:p=>{
     const items=[];
@@ -274,6 +278,30 @@ const CONTRACT_RULES = [
   {id:'F2',cat:'Legal & Safety',vtype:'cost',clause:'Op.Reg. Art.15',title:'Security staff required (7-day event)',desc:'Client must deploy security guards at own cost for events spanning 2+ days.',check:()=>({pass:'partial',notes:['7-day event requires full-time security staff','Budget for guards June 17-23','Staff must comply with venue instructions (Art.15-3)']})},
   {id:'F3',cat:'Legal & Safety',vtype:'action',clause:'T&C Art.7',title:'No assignment or sublease',desc:'ACM cannot transfer, assign, or sublease rooms. PCO needs official request letter.',check:()=>({pass:'partial',notes:['ACM cannot assign/sublease conference rooms','PCO operating on behalf: submit official request letter','All ops through designated contact person']})},
   {id:'F4',cat:'Legal & Safety',vtype:'info',clause:'T&C Art.11-12',title:'Korean law, Seoul Central District Court',desc:'Contract governed by Korean law. Disputes resolved at Seoul Central District Court. Content is confidential.',check:()=>({pass:'partial',notes:['Governed by laws of Republic of Korea','Exclusive jurisdiction: Seoul Central District Court','Agreement content is confidential (Art.12)','Ethics compliance required (Art.13)']})},
+  // ─── G. v1.7 AUDITORIUM ADDENDUM ─────────────────────────
+  {id:'G1',cat:'Auditorium (v1.7)',vtype:'cost',clause:'Addendum Quotation (2025-07-01)',title:'Auditorium daily rate: KRW 24M (D-1: 9.6M)',desc:'3F Auditorium added as plenary venue. D-1 (6/17) at 9.6M discount; days 6/18-6/23 at 24M each. 7-day total: KRW 153,600,000 (excl. VAT).',check:()=>({pass:'partial',notes:['Sat 6/17 (D-1): KRW 9,600,000 (setup discount)','Sun-Fri 6/18-6/23: KRW 24,000,000 × 6 = 144,000,000','Subtotal: KRW 153,600,000','VAT 10%: KRW 15,360,000','Auditorium total (incl. VAT): KRW 168,960,000','Use Auditorium ONLY on plenary days to reduce cost (option to drop Sun/Fri if unused)']})},
+  {id:'G2',cat:'Auditorium (v1.7)',vtype:'conflict',clause:'Auditorium TH 1,080 vs attendees',title:'Auditorium capacity vs expected attendees',desc:'Auditorium capacity TH 1,080 (fixed seats). If attendees exceed 1,080, overflow live-stream needed.',check:p=>{
+    const overflow=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.room==='auditorium'&&s.need>1080)overflow.push(`${day} ${sl.time}: ${s.name} needs ${s.need} > 1,080 cap → overflow ${s.need-1080} pax`);
+    }}}
+    return overflow.length?{pass:'partial',notes:[`${overflow.length} sessions exceed Auditorium TH 1,080:`,...overflow,'Plan: live-stream overflow to ASEM 201-203 (918 TH) or GBR Lobby (standing)','Broadcast requires COEX approval (Op.Reg. Art.18) — see D4']}:{pass:true,notes:['All Auditorium sessions within 1,080 cap']};
+  }},
+  {id:'G3',cat:'Auditorium (v1.7)',vtype:'info',clause:'Addendum Quotation',title:'Auditorium AV: LED 20m×6m built-in (free)',desc:'Auditorium includes premium LED screen 20m × 6m at 3.9mm pitch as standard equipment (no extra cost in addendum).',check:()=>({pass:true,notes:['LED screen 20m × 6m, 3.9mm pitch — premium plenary display','Wireless hand mic + house PA included','No need to source separate projection AV','Suitable for keynotes, awards ceremony, business meeting','Stage and seating fixed — no reconfiguration possible']})},
+  {id:'G4',cat:'Auditorium (v1.7)',vtype:'info',clause:'Strategic Benefit',title:'Eliminates GBR Theater↔Rounds flips',desc:'With plenary in Auditorium, Grand Ballroom no longer needs Theater (1,800 TH) setup. CL (5-partition) ↔ RD (banquet) flips only — lighter and faster.',check:p=>{
+    const flips=[];
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.note&&(/Theater\s*→\s*Round|Round\s*→\s*Theater/i).test(s.note))flips.push(`${day} ${sl.time}: ${s.name}`);
+    }}}
+    return flips.length?{pass:false,notes:['Legacy Theater↔Round flips still present:',...flips,'v1.7 should use CL↔RD flips only']}:{pass:true,notes:['No Theater↔Round flips. v1.7 strategy applied correctly.','GBR strategy: CL Mon (initial) → CL Tue (parallel) → RD Wed (banquet) → CL Thu (parallel)','Saves overnight overtime hours and reduces flip risk']};
+  }},
+  {id:'G5',cat:'Auditorium (v1.7)',vtype:'action',clause:'Addendum + Op.Reg. Art.18',title:'Broadcast overflow approval (Auditorium → ASEM)',desc:'Auditorium plenaries with >1,080 attendees need live-stream to ASEM overflow. Requires advance COEX approval.',check:p=>{
+    let needBroadcast=false;
+    for(const[day,d]of Object.entries(p)){if(day.startsWith('_'))continue;for(const sl of d.slots){for(const s of sl.sessions){
+      if(s.room==='auditorium'&&s.need>1080)needBroadcast=true;
+    }}}
+    return needBroadcast?{pass:'partial',notes:['Apply for live-broadcast approval (Op.Reg. Art.18) at least 7 days before','Designate ASEM 201-203 (918 TH) as overflow venue','Procure encoder/multi-cam crew or use COEX-designated AV vendor','Test broadcast pipeline on D-1 (6/17) during Auditorium setup']}:{pass:true,notes:['No broadcast needed at current attendee count']};
+  }},
 ];
 
 // ── PROPOSAL v1.5 (from PPT) — static reference for comparison ──
@@ -350,11 +378,94 @@ const PROPOSAL={
 ],
 };
 
+// ── PROPOSAL v1.6 (computed program from venue_simulator_v1.6.html: 250 papers / 11 tutorials / 280 posters) ──
+const PROPOSAL_V16={
+'06-17':[
+["Time","211"],
+["09:00-18:00","Office / Storage","101-105:Grand Ballroom Setup","201-203:ASEM Ballroom Setup"],
+],
+'06-18':[
+["Time","201","202","203","205","209","ASEM Lobby"],
+["08:30-10:30","HILDA (all day)","LLM-DPM (all day)","NOVAS (AM only)","aiDM (all day)","MIDAS (all day)",""],
+["10:30-11:00","","","","","","Coffee"],
+["11:00-12:30","HILDA (cont.)","LLM-DPM (cont.)","NOVAS (cont.)","aiDM (cont.)","MIDAS (cont.)",""],
+["13:30-15:00","HILDA (cont.)","LLM-DPM (cont.)","QData (PM only)","aiDM (cont.)","MIDAS (cont.)",""],
+["15:00-15:30","","","","","","Coffee"],
+["15:30-17:00","HILDA (cont.)","LLM-DPM (cont.)","QData (cont.)","aiDM (cont.)","MIDAS (cont.)",""],
+["17:00-18:30","SIGMOD/PODS Warmup","","","","",""],
+["18:30-20:00","","","","","","PODS Reception (Standing)"],
+],
+'06-19':[
+["Time","GBR Lobby","201","ASEM Lobby"],
+["08:00-09:30","","","","201-203:PODS Opening & Keynote"],
+["09:30-10:00","","","Coffee"],
+["10:00-11:30","","DaMoN Workshop","","202-203:PODS Session 1"],
+["11:30-12:30","","DaMoN Workshop (cont.)","","202-203:PODS Session 2"],
+["12:30-14:00","Lunch (GBR Lobby)","",""],
+["14:00-15:30","","DaMoN Workshop (cont.)","","202-203:PODS Session 3"],
+["15:30-16:00","","","Coffee"],
+["17:00-18:00","Reception Preparation","",""],
+["16:00-18:00","","DaMoN Workshop (cont.)","","202-203:PODS Session 4"],
+["18:00-19:30","SIGMOD Reception","","","202-203:PODS Business Meeting"],
+],
+'06-20':[
+["Time","104","105","GBR Lobby","201","202","203","205","206","209","210","ASEM Lobby"],
+["09:00-11:00","","","","","","","","","Demo A Setup","",""],
+["08:30-10:30","","","","","","","","","","","","101-105:SIGMOD Opening & Keynote 1"],
+["10:30-11:00","","","Coffee (GBR Lobby)","","","","","","","","Coffee (ASEM Lobby)"],
+["11:00-12:30","","R2","","PODS Session 1","R3","R4","R5","R6","Demo Group A","R7","","101-104:R1"],
+["12:30-14:00","","","","","","","","","","","","101-105:Awards Lunch (Dosirak)"],
+["14:00-15:30","","R8","","PODS Session 2","","","SIGMOD Industry 1","R10","","SIGMOD Industry 2","","101-104:SIGMOD Panel 1","202-203:R9"],
+["15:00-16:00","","","","","","","","","Demo B Setup","",""],
+["15:30-16:00","","","Coffee (GBR Lobby)","","","","","","","","Coffee (ASEM Lobby)"],
+["16:00-17:30","R12","R13","","PODS Session 3","SIGMOD Sponsor Talk","R14","R15","R16","Demo Group B","R17","","101-103:R11"],
+["18:30-20:30","","","","New Researcher Symposium","","","","","","",""],
+["18:00-22:00","","","","","","","","","","","","101-105:Setup: Theater → Round Table"],
+],
+'06-21':[
+["Time","105","GBR Lobby","201","202","203","205","206","209","ASEM Lobby"],
+["08:00-09:30","","","","","","","","","","101-105:SIGMOD Keynote 2"],
+["09:30-10:30","","","","","","","","","","101-105:SIGMOD DEI Keynote"],
+["10:30-11:00","","Coffee (GBR Lobby)","","","","","","","Coffee (ASEM Lobby)"],
+["10:30-12:30","","","","","","","poster config 206","poster config 209",""],
+["11:00-12:30","R19","","PODS Session 4","R20","R21","DEI Bird-of-a-Feather","","","","101-104:R18"],
+["12:30-14:00","","","","","","","Poster Session 1","Poster Session 1","","101-105:Business Lunch (Main)","201-203:Business Lunch (Overflow + Live Stream)"],
+["14:00-15:00","","","","","","","poster config 206","poster config 209",""],
+["14:00-15:30","","","PODS Session 5","R22","R23","SIGMOD Industry 3","","",""],
+["15:00-19:00","","","","","","","","","","101-105:Banquet Prep"],
+["15:30-16:00","","Coffee (GBR Lobby)","","","","","","","Coffee (ASEM Lobby)"],
+["16:00-17:30","","","PODS Session 6","R24","SIGMOD Industry 4","R25","Poster Session 2","Poster Session 2",""],
+["19:00-22:00","","","","","","","","","","101-105:Conference Banquet"],
+["22:00-23:30","","","","","","","","","","101-105:Setup: Round Table → Theater"],
+],
+'06-22':[
+["Time","101","102","103","104","105","GBR Lobby","201","202","203","205","206","209","ASEM Lobby"],
+["08:00-10:00","","","","","","","","","Demo A Setup","","","",""],
+["08:00-09:30","","","","","","","","","","","","","","101-105:SIGMOD Award Talks"],
+["09:30-10:00","","","","","","Coffee (GBR Lobby)","","","","","","","Coffee (ASEM Lobby)"],
+["10:00-11:30","","","","","SIGMOD Panel 2","","","","Demo Group A","R27","R28","R29","","201-202:R26"],
+["12:00-13:30","","","","","","Standing Buffet (Lobby)","","","","","","","","201-203:Standing Buffet (ASEM)","101-104:Partition: 101-104 → 101,102,103,104","201-202:Partition: 201-202 → 201, 202"],
+["13:00-14:00","","","","","","","","","Demo B Setup","","","",""],
+["14:00-15:30","R33","R34","R35","R36","Tutorial 3","","Tutorial 1","R30","Demo Group B","Tutorial 2","R31","R32",""],
+["15:30-16:00","","","","","","Coffee (GBR Lobby)","","","","","","","Coffee (ASEM Lobby)"],
+["16:00-17:30","R40","R41","R42","","Tutorial 3 (cont.)","","Tutorial 1 (cont.)","SIGMOD Industry 5","R37","Tutorial 2 (cont.)","R38","R39",""],
+],
+'06-23':[
+["Time","101","102","103","104","105","GBR Lobby","205"],
+["08:30-10:30","DEEM (all day)","GRADES-NDA (all day)","DataEd (AM only)","Tutorial 4","Tutorial 5","","DBPL (AM only)"],
+["10:30-11:00","","","","","","Coffee",""],
+["11:00-12:30","DEEM (cont.)","GRADES-NDA (cont.)","DataEd (cont.)","Tutorial 4 (cont.)","Tutorial 5 (cont.)","","DBPL (cont.)"],
+["13:30-15:00","DEEM (cont.)","GRADES-NDA (cont.)","Provenance Week (PM only)","Tutorial 6","Tutorial 7","",""],
+["15:00-15:30","","","","","","Coffee",""],
+["15:30-17:00","DEEM (cont.)","GRADES-NDA (cont.)","Provenance Week (cont.)","Tutorial 6 (cont.)","Tutorial 7 (cont.)","",""],
+],
+};
+
 // ── DEFAULT CONFIG ───────────────────────────────────────
 let CFG={
-  researchPapers:250,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90,
-  attendees:1200,numTutorials:11,numWorkshops:12,numPanels:2,numDemoGroups:2,
-  posterPapers:280,postersPerSession:140,posterSetupHours:3,
+  researchPapers:350,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90, // v1.7: 350 papers (was 250) — paper surge from 2026 trend
+  attendees:1200,numTutorials:10,numWorkshops:12,numPanels:2,numDemoGroups:2, // v1.7: 11→10 (one tutorial dropped to add R session)
+  posterPapers:380,postersPerSession:95,posterSetupHours:3,
   banquetCap:1020,lunchBoxedCap:1800,lunchRoundsCap:1020,overflowCap:300,
   partitionMin:20,exchangeRate:1500,annualPct:4,
   // Lunch toggles (main conf. only): 0=none, 1=standing buffet, 2=dosirak, 3=seated rounds
@@ -388,14 +499,19 @@ function buildProgram(){
   }
 
   const P={
-  '06-17':{label:'Saturday — Setup / D-1',slots:[
+  '06-17':{label:'Saturday — Setup / D-1 (ASEM + Office only)',slots:[
     {time:'09:00-18:00',label:'Setup',sessions:[
-      {name:'Grand Ballroom Setup',need:1800,style:'TH',room:'101-105'},
-      {name:'ASEM Ballroom Setup',need:918,style:'TH',room:'201-203'},
-      {name:'Office / Storage',need:18,style:'CL',room:'211'},
+      // GBR 101-105 Setup moved to Sunday — Sun has no GBR program; saves Sat D-1 discount day (KRW 10.2M).
+      {name:'ASEM Ballroom Setup',need:918,style:'TH',room:'201-203',note:'Needed Sat for Sun 8:30 workshop start (HILDA/LLM-DPM/NOVAS).'},
+      // Auditorium Setup also moved to Sunday — Auditorium first used Mon. Sat booking dropped (saves KRW 9.6M).
+      {name:'Office / Storage',need:18,style:'CL',room:'211',note:'Registration/volunteer prep + storage from Sat.'},
     ]}
   ]},
-  '06-18':{label:'Sunday — Workshops',slots:[
+  '06-18':{label:'Sunday — Workshops + Setup',slots:[
+    {time:'09:00-12:00',label:'Auditorium + GBR Setup',sessions:[
+      {name:'Auditorium Setup (LED + AV check)',need:1080,style:'TH',room:'auditorium',note:'Moved from Saturday — Auditorium not used until Monday (PODS Keynote). LED 20×6m calibration, plenary stage AV check. Sat booking dropped → save KRW 9.6M.'},
+      {name:'Grand Ballroom Setup (CL/RD ready for Wed banquet)',need:900,style:'CL',room:'101-105',note:'Moved from Saturday — Sun has no GBR program (workshops on 2F). Same-floor activity on 1F does not interfere. Sat booking dropped → save KRW 10.2M (D-1 discount day).'},
+    ]},
     {time:'08:30-10:30',label:'Morning A',sessions:[
       {name:'HILDA (all day)',need:306,style:'TH',room:'201'},
       {name:'LLM-DPM (all day)',need:306,style:'TH',room:'202'},
@@ -436,7 +552,7 @@ function buildProgram(){
   ]},
   '06-19':{label:'Monday — PODS Day',note:'Per PODS agreement: only DaMoN workshop allowed on Monday (different target audience)',slots:[
     {time:'08:00-09:30',label:'Plenary',sessions:[
-      {name:'PODS Opening & Keynote',need:918,style:'TH',room:'201-203',note:'Full ASEM Ballroom (918 TH)'},
+      {name:'PODS Opening & Keynote',need:918,style:'TH',room:'auditorium',note:'v1.7: Moved from ASEM 201-203 (918 TH) to Auditorium (1,080 TH + LED 20×6m). Frees ASEM for parallel.'},
     ]},
     {time:'09:30-10:00',label:'AM Coffee Break',sessions:[{name:'Coffee',need:500,style:'Standing',room:'ASEM Lobby',note:'PODS day — ASEM Lobby (near 2F sessions)'}]},
     {time:'10:00-11:30',label:'Morning A',sessions:[
@@ -477,17 +593,21 @@ function buildProgram(){
       {name:'Demo A Setup',need:0,style:'N/A',room:'209',note:'Demo booth setup (2hr). U-Shape configuration.'},
     ]},
     {time:'08:30-10:30',label:'Plenary',sessions:[
-      {name:'SIGMOD Opening & Keynote 1',need:CFG.attendees,style:'TH',room:'101-105'},
+      {name:'SIGMOD Opening & Keynote 1',need:CFG.attendees,style:'TH',room:'auditorium',note:`v1.7: Moved to Auditorium (1,080 TH + LED 20×6m). Overflow live-stream to 201-203 (~120 pax) if attendees > 1,080.`},
     ]},
     {time:'10:30-11:00',label:'Coffee + Partition',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
-      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A',note:'~20 min'},
+      {name:'GBR already in 5-partition (CL)',need:0,style:'N/A',room:'N/A',note:'v1.7: No Theater→partition flip needed — GBR was in CL since Sat (plenary now in Auditorium).'},
     ]},
     {time:'11:00-12:30',label:'Morning Parallel',sessions:[
-      R(1464,'TH','101-104'),
+      // v1.7: GBR in 5-partition CL — individual rooms (no merging)
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
+      R(288,'TH','104'),
       R(288,'TH','105'),
-      {name:'PODS Session 1',need:306,style:'TH',room:'201'},
+      {name:'PODS Session 5',need:306,style:'TH',room:'201',note:'Renumbered: was duplicate "PODS Session 1" of Mon — now sequential (Mon=1-4, Tue=5-7, Wed=8-10)'},
       R(306,'TH','202'),
       R(306,'TH','203'),
       R(160,'TH','205'),
@@ -496,16 +616,22 @@ function buildProgram(){
       {name:'Demo Group A',need:36,style:'U-Shape',room:'209'},
     ]},
     {time:'12:30-14:00',label:'Lunch',sessions:CFG.lunchTue===0?[{name:'Lunch on your own',need:0,style:'N/A',room:'N/A'}]
-      :CFG.lunchTue===2?[{name:'Awards Lunch (Dosirak)',need:CFG.attendees,style:'TH',room:'101-105',note:`Theater seating + boxed meals. Cap 1,800 TH. Shinsegae Food. KRW ~${Math.round(CFG.priceDosirak/1000)}K/person. Korean/Western/Japanese. Vegan & Halal.`}]
+      :CFG.lunchTue===2?[{name:'Awards Lunch (Dosirak)',need:CFG.attendees,style:'TH',room:'auditorium',note:`v1.7: Awards ceremony in Auditorium (TH 1,080 + LED). Dosirak at fixed seats. Shinsegae Food KRW ~${Math.round(CFG.priceDosirak/1000)}K/person. Korean/Western/Japanese. Vegan & Halal. If attendees > 1,080, overflow live-stream to GBR Lobby standing.`}]
       :CFG.lunchTue===1?[
         {name:'Standing Buffet (Lobby)',need:Math.min(800,CFG.attendees),style:'Standing',room:'GBR Lobby'},
         {name:'Standing Buffet (ASEM)',need:Math.max(0,CFG.attendees-800),style:'Standing',room:'201-203'}]
       :[{name:'Seated Lunch (Rounds)',need:CFG.attendees,style:'RD',room:'101-105'}]},
     {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
-      {name:'SIGMOD Panel 1',need:1464,style:'TH',room:'101-104'},
+      // v1.7: Panel 1 moved to Auditorium (TH 1,080 + LED). GBR 5-partition free for parallel.
+      {name:'SIGMOD Panel 1',need:1000,style:'TH',room:'auditorium',note:'v1.7: Moved from GBR 101-104. Panel audience typically <1,000 so fits Auditorium TH 1,080.'},
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
+      R(288,'TH','104'),
       R(288,'TH','105'),
-      {name:'PODS Session 2',need:306,style:'TH',room:'201'},
-      R(612,'TH','202-203',{note:'202+203 merged'}),
+      {name:'PODS Session 6',need:306,style:'TH',room:'201',note:'Renumbered: was duplicate "PODS Session 2"'},
+      R(306,'TH','202'),
+      R(306,'TH','203'),
       I(160,'TH','205'),
       R(60,'TH','206'),
       I(60,'TH','210'),
@@ -513,16 +639,19 @@ function buildProgram(){
     {time:'15:00-16:00',label:'Demo B Prep',sessions:[
       {name:'Demo B Setup',need:0,style:'N/A',room:'209',note:'Demo booth reconfiguration (1hr). Same room as Demo A.'},
     ]},
-    {time:'15:30-16:00',label:'Coffee + Partition',sessions:[
+    {time:'15:30-16:00',label:'Coffee Break',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
-      {name:'Partition: 202-203→202,203 / 101-104→101-103,104',need:0,style:'N/A',room:'N/A',note:'~20 min each'},
+      {name:'No partition changes',need:0,style:'N/A',room:'N/A',note:'v1.7: GBR already in 5-partition since morning. No mid-day flips.'},
     ]},
     {time:'16:00-17:30',label:'Late Afternoon Parallel',sessions:[
-      R(1176,'TH','101-103',{note:'101+102+103 combined'}),
+      // v1.7: GBR in 5-partition CL — individual rooms (no merging)
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
       R(288,'TH','104'),
       R(288,'TH','105'),
-      {name:'PODS Session 3',need:306,style:'TH',room:'201'},
+      {name:'PODS Session 7',need:306,style:'TH',room:'201',note:'Renumbered: was duplicate "PODS Session 3"'},
       {name:'SIGMOD Sponsor Talk',need:306,style:'TH',room:'202'},
       R(306,'TH','203'),
       R(160,'TH','205'),
@@ -534,79 +663,86 @@ function buildProgram(){
       {name:'New Researcher Symposium',need:306,style:'TH',room:'201'},
     ]},
     {time:'18:00-22:00',label:'GBR Round Table Setup',sessions:[
-      {name:'Setup: Theater → Round Table',need:0,style:'N/A',room:'101-105',note:'Convert Grand Ballroom from Theater to Round Table (1,020 RD) for Wed keynotes + banquet. Overnight setup.'},
+      {name:'Setup: CL (parallel) → Round Table',need:0,style:'N/A',room:'101-105',note:'v1.7: GBR was in CL (5-partition parallel sessions) during day. Convert to Round Table (1,020 RD) for Wed banquet day. Simpler than Theater↔Round flip (just add round tables, remove chairs).'},
     ]},
   ]},
   // ─── WEDNESDAY: SIGMOD Day 2 ───────────────────────────
-  '06-21':{label:'Wednesday — SIGMOD Day 2 (Banquet)',note:'Grand Ballroom Rounds ALL DAY (setup Tue evening). 206/209 poster prep Wed morning.',slots:[
+  '06-21':{label:'Wednesday — SIGMOD Day 2 (Banquet)',note:'v1.7: Plenary in Auditorium. GBR in Rounds ALL DAY (banquet). 205/209 poster prep Wed morning (swap: posters moved from 206 → 205).',slots:[
     {time:'08:00-09:30',label:'SIGMOD Keynote 2',sessions:[
-      {name:'SIGMOD Keynote 2',need:CFG.attendees,style:'RD',room:'101-105',note:'Round Table setup all day for banquet. Cap 1,020 RD — overflow to ASEM if needed.'},
+      {name:'SIGMOD Keynote 2',need:CFG.attendees,style:'TH',room:'auditorium',note:'v1.7: Moved from GBR-RD to Auditorium (TH 1,080 + LED). Frees GBR for full-day Rounds.'},
     ]},
     {time:'09:30-10:30',label:'DEI Keynote',sessions:[
-      {name:'SIGMOD DEI Keynote',need:CFG.attendees,style:'RD',room:'101-105',note:'Round Table. Continues from Keynote 2.'},
+      {name:'SIGMOD DEI Keynote',need:CFG.attendees,style:'TH',room:'auditorium',note:'v1.7: Continues in Auditorium. No GBR conflict with banquet prep.'},
     ]},
     {time:'10:30-11:00',label:'Coffee + Partition',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
-      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A'},
+      {name:'GBR stays in Rounds all day',need:0,style:'N/A',room:'N/A',note:'v1.7: No partition flip — banquet Rounds already set.'},
     ]},
     {time:'10:30-12:30',label:'Poster 1 Prep (2hr)',sessions:[
-      {name:'poster config 206',need:0,style:'N/A',room:'206',note:'Poster 1 setup (2hr). Boards + signage arrangement.'},
+      {name:'poster config 205',need:0,style:'N/A',room:'205',note:'Poster 1 setup (2hr). Boards + signage arrangement. (swap: was 206)'},
       {name:'poster config 209',need:0,style:'N/A',room:'209',note:'Poster 1 setup (2hr). Boards + signage arrangement.'},
     ]},
     {time:'11:00-12:30',label:'Morning Parallel',sessions:[
-      R(730,'RD','101-104'),
-      R(150,'RD','105'),
-      {name:'PODS Session 4',need:120,style:'RD',room:'201'},
+      // GBR 101-105 in RD since Tue evening. NO sessions immediately before Business Lunch (12:30) — service prep on lunch tables.
+      {name:'GBR Standby (no session — Business Lunch service prep)',need:0,style:'N/A',room:'101-105',note:'GBR already in RD (set up Tue evening). 11:00-12:30: room standby for Business Lunch service prep at 12:30. No sessions immediately before lunch.'},
+      {name:'PODS Session 8',need:120,style:'RD',room:'201',note:'Renumbered: was duplicate "PODS Session 4" of Mon'},
       R(306,'TH','202'),
       R(306,'TH','203'),
-      {name:'DEI Bird-of-a-Feather',need:160,style:'TH',room:'205'},
+      // DEI Bird-of-a-Feather moved to 17:30-18:30 in room 203 (per user instruction).
     ]},
-    {time:'12:30-14:00',label:'Lunch + Poster 1',sessions:[
+    {time:'12:30-14:00',label:'Lunch + Posters 1 & 2',sessions:[
       ...(CFG.lunchWed===0?[{name:'Lunch on your own',need:0,style:'N/A',room:'N/A'}]
         :CFG.lunchWed===3?[
-          {name:'Business Lunch (Main)',need:1020,style:'RD',room:'101-105',note:'Grand Ballroom Round Tables. Already set for banquet. Seated lunch.'},
-          {name:'Business Lunch (Overflow + Live Stream)',need:CFG.overflowCap,style:'RD',room:'201-203',
-           note:`ASEM overflow: seated lunch + live broadcast. ~${CFG.overflowCap} pax. Total: ${1020+CFG.overflowCap}/${CFG.attendees}`,
+          {name:'Seated Lunch (Main)',need:1020,style:'RD',room:'101-105',note:'v1.7: Grand Ballroom Round Tables. Already set for banquet. Seated lunch.'},
+          {name:'Seated Lunch (Overflow)',need:CFG.overflowCap,style:'RD',room:'201-203',
+           note:`v1.7: ASEM overflow ~${CFG.overflowCap}. Total: ${1020+CFG.overflowCap}/${CFG.attendees}`,
            warn:CFG.attendees>(1020+CFG.overflowCap)?`Lunch gap: need ${CFG.attendees}, have ${1020+CFG.overflowCap} (${CFG.attendees-1020-CFG.overflowCap} short)`:null}]
         :CFG.lunchWed===1?[
           {name:'Standing Buffet (Lobby)',need:Math.min(800,CFG.attendees),style:'Standing',room:'GBR Lobby'},
           {name:'Standing Buffet (ASEM)',need:Math.max(0,CFG.attendees-800),style:'Standing',room:'201-203'}]
         :[{name:'Dosirak (Boxed Meal)',need:CFG.attendees,style:'RD',room:'101-105'}]),
-      {name:'Poster Session 1',need:Math.min(CFG.postersPerSession,40),style:'Flow',room:'206',note:'~40 posters'},
-      {name:'Poster Session 1',need:Math.min(CFG.postersPerSession,100),style:'Flow',room:'209',note:'~100 posters'},
+      {name:'Poster Session 1',need:95,style:'Flow',room:'205',note:'95 posters (95 double-sided boards / 2 rooms). Time slot total: 190 = 95+95 across 205+209.'},
+      {name:'Poster Session 2',need:95,style:'Flow',room:'209',note:'95 posters. Parallel with PS1 in 205. Time slot total: 190.'},
     ]},
     {time:'14:00-15:00',label:'Poster 2 Prep (1hr)',sessions:[
-      {name:'poster config 206',need:0,style:'N/A',room:'206',note:'Poster 2 setup (1hr). Reconfigure after Poster 1.'},
+      {name:'poster config 205',need:0,style:'N/A',room:'205',note:'Poster 2 setup (1hr). Reconfigure after Poster 1. (swap: was 206)'},
       {name:'poster config 209',need:0,style:'N/A',room:'209',note:'Poster 2 setup (1hr). Reconfigure after Poster 1.'},
     ]},
     {time:'14:00-15:30',label:'Afternoon Parallel',sessions:[
-      {name:'PODS Session 5',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs access for banquet prep'},
+      {name:'PODS Session 9',need:306,style:'TH',room:'201',note:'Renumbered (was "PODS Session 5"). Moved from 105: GBR needs access for banquet prep'},
       R(306,'TH','202'),
       R(306,'TH','203'),
-      I(160,'TH','205'),
+      I(120,'TH','auditorium',{note:'Moved from 206 → Auditorium R1 sub-section (~120 TH). 206 was too small (TH 60). Auditorium has free capacity in PM (used only AM for keynotes).'}),
+      // 103/104 NOT in session this slot — only active during 16:00-17:30 per user constraint.
     ]},
-    {time:'15:00-19:00',label:'Banquet Prep (4hr)',sessions:[
-      {name:'Banquet Prep',need:0,style:'N/A',room:'101-105',note:'GBR closed from 15:00 for banquet setup (4hr min): lighting, stage, decoration, table settings, AV, rehearsal.'},
+    {time:'15:00-19:00',label:'Banquet Prep (phased)',sessions:[
+      {name:'Banquet Prep (101/102/105 first)',need:0,style:'N/A',room:'101-105',note:'v1.7 fix: Phase 1 (15:00-17:30) — stage/lighting/decoration in 101, 102, 105 only. Rooms 103 & 104 keep running sessions. Phase 2 (17:30-19:00) — 103/104 join after session end; full GBR table flip TH→RD.'},
     ]},
     {time:'15:30-16:00',label:'PM Coffee Break',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
     ]},
-    {time:'16:00-17:30',label:'Late Afternoon + Poster 2',sessions:[
-      {name:'PODS Session 6',need:306,style:'TH',room:'201',note:'Moved from 105: GBR needs full access for banquet prep'},
+    {time:'16:00-17:30',label:'Late Afternoon + Posters 3 & 4',sessions:[
+      {name:'PODS Session 10',need:306,style:'TH',room:'201',note:'Renumbered (was "PODS Session 6"). Moved from 105: GBR needs full access for banquet prep'},
       R(306,'TH','202'),
       I(306,'TH','203'),
-      R(160,'TH','205'),
-      {name:'Poster Session 2',need:Math.min(CFG.postersPerSession,40),style:'Flow',room:'206',note:'~40 posters'},
-      {name:'Poster Session 2',need:Math.min(CFG.postersPerSession,100),style:'Flow',room:'209',note:'~100 posters'},
+      R(120,'TH','auditorium',{note:'Moved from 206 → Auditorium R1 sub-section (~120 TH). 206 was too small. Same Auditorium rental (no extra cost).'}),
+      // v1.7 fix: 103/104 still active until 17:30 — banquet prep on 101/102/105 only during this slot
+      R(600,'TH','103',{note:'v1.7 fix: 103 last session before 17:30 banquet flip'}),
+      R(288,'TH','104',{note:'v1.7 fix: 104 last session before 17:30 banquet flip'}),
+      {name:'Poster Session 3',need:95,style:'Flow',room:'205',note:'95 posters. Time slot total: 190 = 95+95 across 205+209.'},
+      {name:'Poster Session 4',need:95,style:'Flow',room:'209',note:'95 posters. Parallel with PS3 in 205. Time slot total: 190.'},
+    ]},
+    {time:'17:30-18:30',label:'DEI Bird-of-a-Feather',sessions:[
+      {name:'DEI Bird-of-a-Feather',need:160,style:'TH',room:'203',note:'Moved to 203 (TH 306) at 17:30–18:30. Last 30 min overlaps overtime window (18:00-18:30) — arrange extended HVAC + rental hours with COEX.'},
     ]},
     {time:'19:00-22:00',label:'Banquet (Onsite)',sessions:[
       {name:'Conference Banquet',need:CFG.banquetCap,style:'RD',room:'101-105',
        note:`Onsite. Rounds 1,020. Attendees: ${CFG.attendees}. Prep from 15:00 (4hr).`},
     ]},
-    {time:'22:00-23:30',label:'GBR Theater Restoration',sessions:[
-      {name:'Setup: Round Table → Theater',need:0,style:'N/A',room:'101-105',note:'Convert Grand Ballroom back from Round Table to Theater (1,800 TH) for Thu plenary. Overnight restoration.'},
+    {time:'22:00-23:30',label:'GBR Restoration (Rounds → CL)',sessions:[
+      {name:'Setup: Round Table → CL (5-partition)',need:0,style:'N/A',room:'101-105',note:'v1.7: Convert GBR back to CL (5-partition) for Thu parallel sessions. NO Theater restoration needed (Thu plenary now in Auditorium). Lighter conversion = lower overtime cost.'},
     ]}
   ]},
   // ─── THURSDAY: SIGMOD Day 3 (max parallel) ─────────────
@@ -615,29 +751,34 @@ function buildProgram(){
       {name:'Demo A Setup',need:0,style:'N/A',room:'203',note:'Demo booth setup (2hr). U-Shape configuration.'},
     ]},
     {time:'08:00-09:30',label:'Plenary',sessions:[
-      {name:'SIGMOD Award Talks',need:CFG.attendees,style:'TH',room:'101-105'},
+      {name:'SIGMOD Award Talks + Keynote 3',need:CFG.attendees,style:'TH',room:'auditorium',note:'v1.7: Moved from GBR-TH (1,800) to Auditorium (1,080 TH + LED). Combined Award Talks + Closing Keynote 3 in one venue.'},
     ]},
     {time:'09:30-10:00',label:'Coffee + Partition',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
-      {name:'Partition: 101-105 → 101-104, 105',need:0,style:'N/A',room:'N/A'},
+      {name:'GBR already in 5-partition (CL)',need:0,style:'N/A',room:'N/A',note:'v1.7: GBR was restored to CL overnight (Wed 22:00). No daytime partition flip needed.'},
     ]},
     {time:'10:00-11:30',label:'Morning Parallel',sessions:[
-      R(612,'TH','201-202',{note:'201+202 merged'}),
+      // v1.7: GBR in 5-partition CL since Wed 22:00 restoration — fully parallel
+      R(288,'TH','101'),
+      R(288,'TH','102'),
+      R(600,'TH','103'),
+      R(288,'TH','104'),
+      {name:'SIGMOD Panel 2',need:288,style:'TH',room:'105'},
+      R(306,'TH','201'),
+      R(306,'TH','202'),
       {name:'Demo Group A',need:66,style:'U-Shape',room:'203'},
       R(160,'TH','205'),
       R(60,'TH','206'),
       R(160,'TH','209'),
-      {name:'SIGMOD Panel 2',need:288,style:'TH',room:'105'},
     ]},
-    {time:'12:00-13:30',label:'Lunch + Partition',sessions:[
+    {time:'12:00-13:30',label:'Lunch',sessions:[
       ...(CFG.lunchThu===0?[{name:'Lunch on your own',need:0,style:'N/A',room:'N/A'}]
         :CFG.lunchThu===1?[
           {name:'Standing Buffet (Lobby)',need:Math.min(800,CFG.attendees),style:'Standing',room:'GBR Lobby',note:'Grand Ballroom Lobby. COEX policy: no standing buffet food inside Grand Ballroom.'},
           {name:'Standing Buffet (ASEM)',need:Math.max(0,CFG.attendees-800),style:'Standing',room:'201-203',note:'ASEM Ballroom overflow.'}]
         :[{name:'Dosirak (Boxed Meal)',need:CFG.attendees,style:'TH',room:'101-105'}]),
-      {name:'Partition: 101-104 → 101,102,103,104',need:0,style:'N/A',room:'101-104',note:'Split during lunch for 11 parallel rooms in afternoon'},
-      {name:'Partition: 201-202 → 201, 202',need:0,style:'N/A',room:'201-202',note:'Split during lunch for individual room sessions'},
+      // v1.7 fix: NO partition installation needed during lunch — GBR 101-105 already in 5-partition since Wed 22:00 restoration, and 201/202 used individually in morning.
     ]},
     {time:'13:00-14:00',label:'Demo B Prep',sessions:[
       {name:'Demo B Setup',need:0,style:'N/A',room:'203',note:'Demo booth reconfiguration (1hr). Same room as Demo A.'},
@@ -653,16 +794,16 @@ function buildProgram(){
       R(288,'TH','102'),
       R(600,'TH','103'),
       R(288,'TH','104'),
-      {name:'Tutorial 3',need:288,style:'TH',room:'105'},
+      R(288,'TH','105',{note:'Replaces former Tutorial 3 (reduced 11→10 tutorials) to absorb 350-paper allocation'}),
     ]},
     {time:'15:30-16:00',label:'PM Coffee Break',sessions:[
       {name:'Coffee (GBR Lobby)',need:Math.round(CFG.attendees*0.6),style:'Standing',room:'GBR Lobby'},
       {name:'Coffee (ASEM Lobby)',need:400,style:'Standing',room:'ASEM Lobby',note:'ASEM Ballroom Lobby'},
     ]},
-    {time:'16:00-17:30',label:'Late Afternoon Parallel (11)',sessions:[
+    {time:'16:00-17:30',label:'Late Afternoon Parallel',sessions:[
       {name:'Tutorial 1 (cont.)',need:306,style:'TH',room:'201'},
       I(306,'TH','202'),
-      R(306,'TH','203'),
+      // 203 EMPTY at 16:00-17:30 — Demo Group B (14:00-15:30) takedown impossible in 30-min coffee break. Session moved to 105.
       {name:'Tutorial 2 (cont.)',need:160,style:'TH',room:'205'},
       R(60,'TH','206'),
       R(160,'TH','209'),
@@ -670,42 +811,50 @@ function buildProgram(){
       R(288,'TH','102'),
       R(600,'TH','103'),
       R(288,'TH','104'),
-      {name:'Tutorial 3 (cont.)',need:288,style:'TH',room:'105'},
+      R(288,'TH','105',{note:'R session here — was originally R53 in 203 (Demo takedown conflict). 105 was the previously freed Tutorial 3 spot; merged into single R slot.'}),
     ]}
   ]},
-  '06-23':{label:'Friday — Workshops & Tutorials',note:'Rooms 206 and 209 UNAVAILABLE on this day',slots:[
-    {time:'08:30-10:30',label:'Morning A (6 parallel)',sessions:[
+  '06-23':{label:'Friday — Workshops & Tutorials',note:'Rooms 206, 207, 208, 209, 210, 211 UNAVAILABLE on this day (per contract). Tutorials 8-11 added per audit — 201/202 availability on Fri PENDING COEX inquiry.',slots:[
+    {time:'08:30-10:30',label:'Morning A (8 parallel)',sessions:[
       {name:'DBPL (AM only)',need:160,style:'TH',room:'205'},
       {name:'DEEM (all day)',need:288,style:'TH',room:'101'},
       {name:'GRADES-NDA (all day)',need:288,style:'TH',room:'102'},
       {name:'DataEd (AM only)',need:600,style:'TH',room:'103'},
       {name:'Tutorial 4',need:288,style:'TH',room:'104'},
       {name:'Tutorial 5',need:288,style:'TH',room:'105'},
+      {name:'Tutorial 8',need:306,style:'TH',room:'201',note:'Added per audit — was missing despite CFG.numTutorials=10'},
+      {name:'Tutorial 9',need:306,style:'TH',room:'202',note:'Added per audit'},
     ]},
     {time:'10:30-11:00',label:'AM Coffee Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.5),style:'Standing',room:'GBR Lobby'}]},
-    {time:'11:00-12:30',label:'Morning B (6 parallel)',sessions:[
+    {time:'11:00-12:30',label:'Morning B (8 parallel)',sessions:[
       {name:'DBPL (cont.)',need:160,style:'TH',room:'205'},
       {name:'DEEM (cont.)',need:288,style:'TH',room:'101'},
       {name:'GRADES-NDA (cont.)',need:288,style:'TH',room:'102'},
       {name:'DataEd (cont.)',need:600,style:'TH',room:'103'},
       {name:'Tutorial 4 (cont.)',need:288,style:'TH',room:'104'},
       {name:'Tutorial 5 (cont.)',need:288,style:'TH',room:'105'},
+      {name:'Tutorial 8 (cont.)',need:306,style:'TH',room:'201'},
+      {name:'Tutorial 9 (cont.)',need:306,style:'TH',room:'202'},
     ]},
     {time:'12:30-13:30',label:'Lunch',sessions:[{name:'Lunch on your own (workshop day)',need:0,style:'N/A',room:'N/A'}]},
-    {time:'13:30-15:00',label:'Afternoon A (5 parallel)',sessions:[
+    {time:'13:30-15:00',label:'Afternoon A (7 parallel)',sessions:[
       {name:'Provenance Week (PM only)',need:600,style:'TH',room:'103'},
       {name:'DEEM (cont.)',need:288,style:'TH',room:'101'},
       {name:'GRADES-NDA (cont.)',need:288,style:'TH',room:'102'},
       {name:'Tutorial 6',need:288,style:'TH',room:'104'},
       {name:'Tutorial 7',need:288,style:'TH',room:'105'},
+      {name:'Tutorial 10',need:306,style:'TH',room:'201',note:'Added per audit'},
+      {name:'Tutorial 11',need:306,style:'TH',room:'202',note:'Added per audit'},
     ]},
     {time:'15:00-15:30',label:'PM Coffee Break',sessions:[{name:'Coffee',need:Math.round(CFG.attendees*0.5),style:'Standing',room:'GBR Lobby'}]},
-    {time:'15:30-17:00',label:'Afternoon B (5 parallel)',sessions:[
+    {time:'15:30-17:00',label:'Afternoon B (7 parallel)',sessions:[
       {name:'Provenance Week (cont.)',need:600,style:'TH',room:'103'},
       {name:'DEEM (cont.)',need:288,style:'TH',room:'101'},
       {name:'GRADES-NDA (cont.)',need:288,style:'TH',room:'102'},
       {name:'Tutorial 6 (cont.)',need:288,style:'TH',room:'104'},
       {name:'Tutorial 7 (cont.)',need:288,style:'TH',room:'105'},
+      {name:'Tutorial 10 (cont.)',need:306,style:'TH',room:'201'},
+      {name:'Tutorial 11 (cont.)',need:306,style:'TH',room:'202'},
     ]}
   ]}
   };
@@ -1009,6 +1158,7 @@ function expandRoom(rid){
 // All possible display columns for the grid (ordered by floor/number)
 const GRID_COLS_1F=['101','102','103','104','105'];
 const GRID_COLS_2F=['201','202','203','204','205','206','207','209','210','211'];
+const GRID_COLS_3F=['auditorium']; // v1.7: 3F Auditorium (plenary venue)
 
 function renderDay(dayKey,P){
   const data=P[dayKey];if(!data)return;
@@ -1020,17 +1170,19 @@ function renderDay(dayKey,P){
   const bookedRooms=new Set();
   if(qDay)for(const rid of Object.keys(qDay.rooms)){expandRoom(rid).forEach(r=>bookedRooms.add(r));}
   // Columns = ALL rooms (show unbooked ones with red stripe)
-  const allPhysical=[...GRID_COLS_1F,...GRID_COLS_2F];
+  const allPhysical=[...GRID_COLS_1F,...GRID_COLS_2F,...GRID_COLS_3F];
   // Add GBR Lobby and ASEM Lobby as virtual columns
   const hasGBRLobby=data.slots.some(sl=>sl.sessions.some(s=>s.room&&s.room.includes('GBR Lobby')&&s.need>0));
   const c1=allPhysical.filter(c=>{const r=ROOMS[c];return r&&r.floor===1;});
-  const c2=allPhysical.filter(c=>{const r=ROOMS[c];return !r||r.floor!==1;});
+  const c2=allPhysical.filter(c=>{const r=ROOMS[c];return r&&r.floor===2;});
+  const c3=allPhysical.filter(c=>{const r=ROOMS[c];return r&&r.floor===3;}); // v1.7: Auditorium
   // Insert ASEM Lobby after 203 (always shown), GBR Lobby after 1F rooms
   const c2WithAsem=[];
   for(const col of c2){c2WithAsem.push(col);if(col==='203')c2WithAsem.push('ASEM Lobby');}
   if(!c2WithAsem.includes('ASEM Lobby'))c2WithAsem.push('ASEM Lobby');
   let allCols=[...c1];
   if(hasGBRLobby) allCols.push('GBR Lobby');
+  allCols.push(...c3); // Auditorium between 1F and 2F (highlighted as plenary venue)
   allCols.push(...c2WithAsem);
 
   // Build time grid: 30-min slots from earliest to latest
@@ -1118,9 +1270,9 @@ function renderDay(dayKey,P){
   for(const col of allCols){
     const rm=ROOMS[col];
     const booked=col==='GBR Lobby'||col==='ASEM Lobby'||bookedRooms.has(col);
-    const label=col==='GBR Lobby'?'GBR<br>Lobby':col==='ASEM Lobby'?'ASEM<br>Lobby':`${col}`;
-    const sub=rm?`<br><span style="font-size:9px;font-weight:400;opacity:.7">${rm.th}TH</span>`:'';
-    const hdrStyle=booked?'':`background:#e57373;color:#fff;`;
+    const label=col==='GBR Lobby'?'GBR<br>Lobby':col==='ASEM Lobby'?'ASEM<br>Lobby':col==='auditorium'?'Auditorium<br><span style="font-size:9px;opacity:.7">3F</span>':`${col}`;
+    const sub=rm?`<br><span style="font-size:9px;font-weight:400;opacity:.7">${rm.th}TH${col==='auditorium'?' · LED':''}</span>`:'';
+    const hdrStyle=booked?(col==='auditorium'?'background:#7b1fa2;color:#fff;':''):`background:#e57373;color:#fff;`;
     gridHTML+=`<th style="${hdrStyle}">${label}${sub}${booked?'':'<br><span style="font-size:8px;">NOT BOOKED</span>'}</th>`;
   }
   gridHTML+=`</tr></thead><tbody>`;
@@ -1162,6 +1314,21 @@ function renderDay(dayKey,P){
     +`<span><span class="swatch" style="background:${prepSwatch};border:1px dashed #bbb;"></span>Prep / Setup</span>`
     +`<span><span class="swatch" style="background:repeating-linear-gradient(45deg,#fce4ec,#fce4ec 3px,#fff 3px,#fff 6px);border:1px dashed #e57373;"></span>Not Booked</span>`;
 
+  // v1.6 proposal grid uses its own time range (v1.6 program differs from current v1.7)
+  let v16TimeSlots=timeSlots;
+  const v16Data=PROPOSAL_V16[dayKey];
+  if(v16Data){
+    let v16Min=24,v16Max=0;
+    for(let i=1;i<v16Data.length;i++){
+      const tr=v16Data[i][0].split('-');if(tr.length<2)continue;
+      const sh=parseInt(tr[0]),eh=parseInt(tr[1]);
+      if(sh<v16Min)v16Min=sh;if(eh>v16Max)v16Max=eh;
+    }
+    v16Min=Math.max(7,v16Min);v16Max=Math.min(23,v16Max+1);
+    v16TimeSlots=[];
+    for(let h=v16Min;h<v16Max;h++){v16TimeSlots.push(`${String(h).padStart(2,'0')}:00`);v16TimeSlots.push(`${String(h).padStart(2,'0')}:30`);}
+  }
+
   el.innerHTML=`
   <div class="card"><h2>${data.label}</h2>
     ${data.note?`<p style="color:var(--warn);font-size:12px;margin-bottom:8px;font-weight:600;">${data.note}</p>`:''}
@@ -1177,8 +1344,14 @@ function renderDay(dayKey,P){
   </div>
   <div class="card"><h2>Program at a Glance</h2>
     <div style="margin-bottom:8px;display:flex;gap:8px;">
-      <button class="btn btn-primary" style="padding:6px 14px;font-size:12px;" onclick="toggleProposal('${dayKey}',false)">Current</button>
-      <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;" onclick="toggleProposal('${dayKey}',true)">Proposal v1.5</button>
+      <button class="btn btn-primary" style="padding:6px 14px;font-size:12px;" onclick="toggleProposal('${dayKey}','current')">Current</button>
+      <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;" onclick="toggleProposal('${dayKey}','v16')">Proposal v1.6</button>
+      <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;" onclick="toggleProposal('${dayKey}','v15')">Proposal v1.5</button>
+    </div>
+    <div id="proposal16-${dayKey}" style="display:none;">
+      <p style="font-size:11px;color:var(--accent);margin-bottom:8px;font-weight:600;">Proposal v1.6 (computed program — 250 papers / 11 tutorials / 280 posters)</p>
+      <div class="pag-legend">${legendHTML}</div>
+      <div class="pag-wrap">${buildProposalGrid(dayKey,allCols,v16TimeSlots,bookedRooms,PROPOSAL_V16)}</div>
     </div>
     <div id="proposal-${dayKey}" style="display:none;">
       <p style="font-size:11px;color:var(--accent);margin-bottom:8px;font-weight:600;">Proposal v1.5 (from PPT) — original hypothetical program</p>
@@ -1211,12 +1384,16 @@ function renderDay(dayKey,P){
   </table></div>`;
 }
 
-function toggleProposal(dayKey,showProp){
+function toggleProposal(dayKey,view){
+  // Backward-compat: boolean true -> v1.5, false -> current
+  if(view===true)view='v15';else if(view===false||view===undefined)view='current';
   var cur=document.getElementById('current-'+dayKey);
-  var prop=document.getElementById('proposal-'+dayKey);
-  if(!cur||!prop)return;
-  cur.style.display=showProp?'none':'block';
-  prop.style.display=showProp?'block':'none';
+  var p15=document.getElementById('proposal-'+dayKey);
+  var p16=document.getElementById('proposal16-'+dayKey);
+  if(!cur)return;
+  cur.style.display=view==='current'?'block':'none';
+  if(p15)p15.style.display=view==='v15'?'block':'none';
+  if(p16)p16.style.display=view==='v16'?'block':'none';
 }
 function propColor(c){
   if(!c)return '';
@@ -1233,8 +1410,8 @@ function propColor(c){
   if(c.includes('Reception')||c.includes('Warmup'))return '#34495e';
   return '#27ae60';
 }
-function buildProposalGrid(dayKey,allCols,timeSlots,bookedRooms){
-  var pData=PROPOSAL[dayKey];
+function buildProposalGrid(dayKey,allCols,timeSlots,bookedRooms,dataset){
+  var pData=(dataset||PROPOSAL)[dayKey];
   if(!pData)return '<p style="color:var(--muted);">No proposal data for this day.</p>';
   // Build a cell map: propGrid[timeIdx][colIdx] = {text, rowspan, color}
   var propCols=pData[0].slice(1);// column headers from proposal
@@ -1311,18 +1488,27 @@ function buildProposalGrid(dayKey,allCols,timeSlots,bookedRooms){
 }
 
 function renderCosts(){
-  const sub=259440000,vat=25944000,gt=285384000;
+  // v1.7: auto-compute from QUOTATION (includes Auditorium addendum line items)
+  const sub=Object.values(QUOTATION).reduce((a,q)=>a+Object.values(q.rooms).reduce((s,r)=>s+r.krw,0),0);
+  const audSub=Object.values(QUOTATION).reduce((a,q)=>a+(q.rooms.auditorium?q.rooms.auditorium.krw:0),0);
+  const baseSub=sub-audSub;
+  const vat=Math.round(sub*0.1);
+  const gt=sub+vat;
   const proj=Math.round(gt*Math.pow(1+CFG.annualPct/100,2));
   document.getElementById('costs').innerHTML=`
-  <div class="card"><h2>Venue Cost Breakdown (Contract Quotation CEC2025070020)</h2><table class="cost-table">
+  <div class="card"><h2>Venue Cost Breakdown (v1.7: Base CEC2025070020 + Auditorium addendum)</h2><table class="cost-table">
     <tr><th>Day</th><th>Date</th><th>Rooms</th><th>Cost (KRW)</th></tr>
     ${Object.entries(QUOTATION).map(([day,q])=>{const tot=Object.values(q.rooms).reduce((a,b)=>a+b.krw,0);
       return`<tr><td>${q.label}</td><td>2028-${day}</td><td>${Object.keys(q.rooms).join(', ')}</td><td style="text-align:right">KRW ${tot.toLocaleString()}</td></tr>`;}).join('')}
+    <tr><td colspan="3" style="color:var(--muted);font-size:11px;">&nbsp;&nbsp;&nbsp;Base contract (excl. Auditorium)</td><td style="text-align:right;color:var(--muted);">KRW ${baseSub.toLocaleString()}</td></tr>
+    <tr><td colspan="3" style="color:#7b1fa2;font-size:11px;">&nbsp;&nbsp;&nbsp;Auditorium addendum (3F, LED 20×6m)</td><td style="text-align:right;color:#7b1fa2;">KRW ${audSub.toLocaleString()}</td></tr>
     <tr style="font-weight:700;border-top:2px solid var(--border)"><td colspan="3">Sub Total</td><td style="text-align:right">KRW ${sub.toLocaleString()}</td></tr>
     <tr><td colspan="3">VAT (10%)</td><td style="text-align:right">KRW ${vat.toLocaleString()}</td></tr>
-    <tr style="font-weight:700;font-size:15px;color:var(--accent)"><td colspan="3">Grand Total</td><td style="text-align:right">KRW ${gt.toLocaleString()}</td></tr>
+    <tr style="font-weight:700;font-size:15px;color:var(--accent)"><td colspan="3">Grand Total (v1.7)</td><td style="text-align:right">KRW ${gt.toLocaleString()}</td></tr>
     <tr><td colspan="3">USD (@ KRW ${CFG.exchangeRate})</td><td style="text-align:right">$${Math.round(gt/CFG.exchangeRate).toLocaleString()}</td></tr>
-  </table></div>
+  </table>
+  <p style="font-size:11px;color:var(--muted);margin-top:8px;">v1.7 = base contract (16/Mar/2026, KRW 285.38M incl. VAT) + Auditorium addendum quotation (2025-07-01). Auditorium subtotal: D-1 9.6M + 6×24M = 153.6M (excl. VAT) → 168.96M (incl. VAT).</p>
+  </div>
   <div class="card"><h2>Projected 2028 Cost (${CFG.annualPct}% annual increase, per contract note)</h2>
     <div class="summary-grid">
       <div class="summary-box"><div class="value">KRW ${(proj/1e6).toFixed(1)}M</div><div class="label">Projected Grand Total</div></div>
@@ -1331,21 +1517,23 @@ function renderCosts(){
     </div>
     <p style="font-size:12px;color:var(--muted);margin-top:8px;">Contract note: "This quotation is based on the 2026 venue rental rates and will be adjusted accordingly once the official rental rates for 2028 are confirmed. The annual increase is expected to be approximately 3-5%."</p>
   </div>
-  <div class="card"><h2>Payment Schedule</h2><table>
-    <tr><th>Payment</th><th>Due Date</th><th>KRW</th><th>USD</th><th>Status</th></tr>
-    <tr><td>Down Payment (10%)</td><td>2026-03-23</td><td>KRW ${(25944000).toLocaleString()}</td><td>$${Math.round(25944000/CFG.exchangeRate).toLocaleString()}</td>
+  <div class="card"><h2>Payment Schedule</h2>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px;">Base contract schedule (10/40/50 + VAT). Auditorium addendum payment schedule TBD — likely follows same proportions on confirmation.</p>
+    <table>
+    <tr><th>Payment</th><th>Due Date</th><th>Base KRW</th><th>+ Audit. KRW</th><th>Status</th></tr>
+    <tr><td>Down Payment (10%)</td><td>2026-03-23</td><td>KRW ${(25944000).toLocaleString()}</td><td>+KRW ${Math.round(audSub*1.1*0.1).toLocaleString()} (est.)</td>
         <td><span class="st err">OVERDUE (today: 2026-04-08)</span></td></tr>
-    <tr><td>Interim (40%)</td><td>2028-03-17</td><td>KRW ${(103776000).toLocaleString()}</td><td>$${Math.round(103776000/CFG.exchangeRate).toLocaleString()}</td>
+    <tr><td>Interim (40%)</td><td>2028-03-17</td><td>KRW ${(103776000).toLocaleString()}</td><td>+KRW ${Math.round(audSub*1.1*0.4).toLocaleString()} (est.)</td>
         <td><span class="st info">Upcoming</span></td></tr>
-    <tr><td>Balance (50%+VAT)</td><td>2028-06-10</td><td>KRW ${(155664000).toLocaleString()}</td><td>$${Math.round(155664000/CFG.exchangeRate).toLocaleString()}</td>
+    <tr><td>Balance (50%+VAT)</td><td>2028-06-10</td><td>KRW ${(155664000).toLocaleString()}</td><td>+KRW ${Math.round(audSub*1.1*0.5).toLocaleString()} (est.)</td>
         <td><span class="st info">Upcoming</span></td></tr>
-    <tr style="font-weight:700"><td colspan="2">Total</td><td>KRW ${gt.toLocaleString()}</td><td>$${Math.round(gt/CFG.exchangeRate).toLocaleString()}</td><td></td></tr>
+    <tr style="font-weight:700"><td colspan="2">Total (v1.7)</td><td colspan="2">KRW ${gt.toLocaleString()} ($${Math.round(gt/CFG.exchangeRate).toLocaleString()})</td><td></td></tr>
   </table></div>
   <div class="card"><h2>Additional Costs (Not in Venue Contract)</h2><table>
     <tr><th>Item</th><th>Details</th><th>Est. Cost</th></tr>
     <tr><td>Lobby Usage Fee</td><td>KRW 20,000/sqm/day (excl. VAT) — for standing buffet, sponsor booths</td><td>TBD</td></tr>
     <tr><td>F&B (Shinsegae Food)</td><td>COEX-designated caterer only. 2028 projected: Dosirak ~KRW 61K-63K/pax, Buffet/Reception ~KRW 85K-87K/pax (11-13% increase from 2026). Based on 1,000 attendees @ KRW 1,400/USD.</td><td>$467,286<br>(~KRW ${Math.round(467286*1400).toLocaleString()})</td></tr>
-    <tr><td>AV Equipment</td><td>Standard AV (Wireless Mic + Beam Projector) included ONLY for rooms <strong>205 and 209</strong> per quotation. All other rooms (101-105, 201-203, 206, 207, 210, 211) require separate AV arrangement (Op.Reg. Art.14).</td><td>TBD (major cost)</td></tr>
+    <tr><td>AV Equipment</td><td>Standard AV included for: <strong>205, 209</strong> (Wireless Mic + Beam Projector — base contract) and <strong>Auditorium 3F</strong> (LED 20m×6m, 3.9mm pitch + Wireless Mic — v1.7 addendum). All other rooms (101-105, 201-203, 206, 207, 210, 211) require separate AV arrangement (Op.Reg. Art.14).</td><td>TBD (reduced thanks to Auditorium LED)</td></tr>
     <tr><td>Wi-Fi / Telecom</td><td>Client responsible for all telecom costs (Op.Reg. Art.10). Must use COEX-designated provider. Need Wi-Fi for 840+ concurrent users.</td><td>TBD</td></tr>
     <tr><td>Extended HVAC</td><td>HVAC provided during rental hours (09:00-18:00) only (Op.Reg. Art.12). Sessions at 08:00 and banquet until 22:00 need extended HVAC arrangement.</td><td>TBD</td></tr>
     <tr><td>50% Surcharge</td><td>Poster sessions in 206/209 may trigger non-meeting surcharge (Key Terms #2)</td><td>~KRW ${(600000*0.5*4).toLocaleString()} (est.)</td></tr>
@@ -1360,7 +1548,7 @@ function renderCosts(){
     <table>
     <tr><th>Day</th><th>Lunch Type</th><th>Location</th><th>Reason</th><th>Unit Price (2028 proj.)</th></tr>
     <tr><td>Mon 6/19</td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>COEX policy: no buffet food inside Grand Ballroom</td><td>~KRW 85K-87K</td></tr>
-    <tr><td>Tue 6/20</td><td>Boxed Meal (Dosirak)</td><td>Grand Ballroom (Theater)</td><td>Awards ceremony needs Theater seating for 1,200+. Eat at seats. Korean/Western/Japanese rotating. Vegan &amp; Halal available.</td><td>~KRW 61K-63K</td></tr>
+    <tr><td>Tue 6/20</td><td>Boxed Meal (Dosirak)</td><td><strong>Auditorium 3F (v1.7)</strong></td><td>Awards ceremony in Auditorium (TH 1,080 fixed seats + LED 20×6m). Eat at seats. Korean/Western/Japanese rotating. Vegan &amp; Halal available. Overflow live-stream to GBR Lobby if >1,080 attendees.</td><td>~KRW 61K-63K</td></tr>
     <tr><td>Wed 6/21</td><td>Seated Lunch (Rounds)</td><td>GBR (Main) + ASEM (Overflow)</td><td>Banquet prep: Round Tables all day. ASEM overflow with live stream of business meeting.</td><td>~KRW 85K-87K</td></tr>
     <tr><td>Thu 6/22</td><td>Standing Buffet</td><td>GBR Lobby + ASEM 2F</td><td>Same as Monday. COEX policy: no buffet food inside Grand Ballroom</td><td>~KRW 85K-87K</td></tr>
     <tr><td>Sun/Fri</td><td>On your own</td><td>N/A</td><td>Workshop/tutorial days — no organized lunch</td><td>-</td></tr>
@@ -1442,6 +1630,49 @@ function renderHistory(){
           <strong>Attachments:</strong> 1. Quotation, 2. Terms &amp; Conditions (13 articles), 3. Operation Regulation (20 articles)<br>
           <strong>PAF approved:</strong> October 7, 2025<br>
           <span style="color:var(--err);font-weight:600;">PAYMENT STATUS: Contract shows Paid Amount = 0 for ALL payments. Down payment KRW 25,944,000 due 2026-03-23 — UNPAID. Escalate immediately.</span></div></div>
+      <div class="email-item"><div class="date">Apr 9–16, 2026</div><div class="title">8a. Paper Surge Identified &amp; Initial Options (Wook-Shin Han)</div>
+        <div class="body">Introduced an interactive <strong>Program Simulator &amp; Contract Validator</strong> tool to verify requirements against the COEX contract.<br>
+          <strong>Cost-saving suggestion:</strong> Move Grand Ballroom setup to Sunday to save <strong>KRW 25.5M</strong> (D-1 discount).<br>
+          <strong>Major issue flagged:</strong> Accepted papers increased from <strong>250 (2025) → 349 (2026)</strong>, requiring ~16.5 additional sessions — current COEX layout cannot absorb this.<br>
+          <strong>Three options proposed:</strong> 1) Move dates, 2) Limit papers to 250, or 3) Move to Jeju Island.</div></div>
+      <div class="email-item"><div class="date">Apr 10, 14, 2026</div><div class="title">8b. Program Format Concerns (Rachel Pottinger)</div>
+        <div class="body">Suggested labeling <strong>PODS sessions correctly</strong> in the simulator tool.<br>
+          Warned that moving the conference later would incur <strong>heavy cancellation fees</strong> under the existing COEX contract.<br>
+          Noted that if paper counts remain high, presentations must be <strong>very short</strong>, and <strong>poster space will be critical</strong>.</div></div>
+      <div class="email-item"><div class="date">Apr 11, 14, 2026</div><div class="title">8c. Schedule Conflict &amp; Multiplexing (Yannis Velegrakis)</div>
+        <div class="body">Identified a conflict between <strong>Wednesday's poster session and the business lunch</strong>.<br>
+          Proposed <strong>extending the conference by a day</strong> or <strong>multiplexing with workshops</strong> to handle more papers.</div></div>
+      <div class="email-item"><div class="date">Apr 11, 14, 2026</div><div class="title">8d. Visa Accessibility &amp; Trend Watch (Angela Bonifati)</div>
+        <div class="body">Suggested <strong>waiting for SIGMOD 2027 data</strong> to see if the paper surge continues before making structural changes.<br>
+          Raised the issue of <strong>visa accessibility</strong>: some authors might be unable to attend due to delays.<br>
+          Supported a location that allows <strong>visa-free entry for Chinese colleagues</strong>.</div></div>
+      <div class="email-item"><div class="date">Apr 13–14, 2026</div><div class="title">8e. Korean Visa Situation &amp; Jeju Option (Kyuseok Shim)</div>
+        <div class="body">Clarified the Korean visa situation (<strong>K-ETA vs. regular visas</strong>).<br>
+          Highlighted that <strong>Jeju Island offers visa-free entry</strong> for most nationalities and is more cost-effective with <strong>local government support</strong>.</div></div>
+      <div class="email-item" style="border-left-color:var(--accent)"><div class="date">Apr 14, 2026</div><div class="title">8f. EC Position — Brief Requested (Christopher Jermaine)</div>
+        <div class="body">Indicated the <strong>Executive Committee (EC) would likely support the General Chairs' choice</strong> regarding a venue move for visa reasons.<br>
+          Requested a <strong>1–2 page brief on Jeju Island</strong> to help the EC decide.<br>
+          Warned that <strong>venue contracts are very rigid once signed</strong>, making later changes difficult.</div></div>
+      <div class="email-item" style="border-left-color:var(--accent)"><div class="date">Apr 2026 (Current)</div><div class="title">9. Current Status &amp; Next Steps</div>
+        <div class="body"><strong>Venue Dilemma:</strong> Seoul (COEX) is already approved and attractive, but space is tight for 350+ papers. Jeju is visa-free and cheaper but requires <strong>EC re-approval</strong> and is <strong>less accessible from Europe/Americas</strong>.<br>
+          <strong>Logistics:</strong> The team is optimizing internal COEX space (Rooms <strong>205 / 209 / 208 / 210</strong>) to accommodate the paper surge.<br>
+          <strong>Action Items:</strong> Wook-Shin and Kyuseok are preparing a <strong>1–2 page brief on Jeju Island</strong> for the EC, while checking final <strong>date flexibilities</strong> to secure more space at COEX.</div></div>
+      <div class="email-item" style="border-left-color:#7b1fa2;"><div class="date">May 15, 2026</div><div class="title">10. v1.7 — 3F Auditorium Addendum (Plenary venue secured)</div>
+        <div class="body"><strong>Breakthrough:</strong> COEX confirmed availability of the <strong>3F Auditorium</strong> for all 7 days (6/17–6/23). Addendum quotation 2025-07-01 (still CEC2025070020) adds Auditorium as a separate line item — base contract retained unchanged.<br>
+          <strong>Auditorium specs:</strong> TH 1,080 fixed seats · <strong>LED 20m × 6m (3.9mm pitch) built-in</strong> · wireless mic + house PA included · 09:00–18:00 standard rental.<br>
+          <strong>Pricing:</strong> D-1 (6/17) KRW 9.6M; 6/18–6/23 KRW 24M/day. <strong>+KRW 153.6M (excl. VAT)</strong> on top of base contract → <strong>v1.7 total KRW 454.34M</strong> (≈$302.9K @1,500/USD).<br>
+          <strong>v1.7 strategic changes:</strong>
+          <ol style="margin:6px 0 6px 18px;">
+            <li>Plenary moved <strong>GBR (1,800 TH) → Auditorium (1,080 TH + LED)</strong>: SIGMOD Opening/Keynote 1, Awards Lunch, Keynote 2, DEI Keynote, Award Talks/Keynote 3, PODS Opening.</li>
+            <li><strong>Eliminates the Tue evening Theater↔Round flip</strong> on Grand Ballroom — only CL↔RD remains (faster, cheaper).</li>
+            <li><strong>Wed Business Meeting separately removed</strong> from lunch slot (not scheduled in Auditorium parallel either — kept simple: lunch + posters only during 12:30-14:00).</li>
+            <li>GBR (5-partition CL) freed for parallel sessions on Tue/Thu — absorbs paper surge (350+ papers).</li>
+            <li><strong>350-paper allocation:</strong> default <code>CFG.researchPapers</code> bumped 250→350. Splitting GBR + phased banquet prep + dropping Tutorial 3 yields <strong>60 R + 5 I slots</strong> (vs 59 needed) — 1-slot buffer. Wed 11:00-12:30 GBR in standby (no sessions immediately before Business Lunch — RD already set Tue evening). Wed 103/104 sessions only at 16:00-17:30. DEI moved to 203, Wed 17:30-18:30.</li>
+            <li><strong>Session-number audit (v1.7):</strong> Fixed (a) PODS Session number collisions — Tue 1/2/3 and Wed 4/5/6 duplicated Mon 1-4; renumbered to <strong>PODS 1-10 sequential</strong> (Mon 1-4, Tue 5-7, Wed 8-10). (b) Tutorials 8, 9, 10, 11 added to Fri 201/202. Final tutorial set: 1, 2, 4-11 (10 total, #3 dropped). (c) Posters numbered <strong>PS1-PS4</strong>.</li>
+            <li><strong>Review feedback (2026-05-15):</strong> (1) <strong>Sat Auditorium booking dropped</strong> + setup moved to Sun (saves KRW 9.6M). (2) <strong>Sat GBR (101-105) booking also dropped</strong> + setup moved to Sun (saves KRW 10.2M D-1 discount day; Sun has no GBR program, so setup fits there). <strong>Combined Sat savings: KRW 19.8M.</strong> (3) <strong>Wed Industry 3 + R33 moved 206 → Auditorium R1</strong> sub-section (~120 TH). (4) <strong>Thu R53 moved 203 → 105</strong> (Demo B takedown conflict). (5) <strong>Posters: 95 × 4 = 380 total</strong> (matches 350 R + 30 I). (6) Fri Tutorials 8-11 in 201/202 — <em>availability pending COEX inquiry</em>. <strong>v1.7 total now KRW 432.56M</strong> (≈$288.4K).</li>
+          </ol>
+          <strong>Constraints to respect (per addendum):</strong> 1) Auditorium rental hours 09:00–18:00 — evening plenaries need overtime arrangement. 2) Fixed seating, NO CL/RD reconfiguration. 3) Overflow live-stream to ASEM (918 TH) requires COEX approval (Op.Reg. Art.18). 4) Lobby installations only after 18:00, KRW 20,000/sqm/day. 5) Addendum quotation valid <strong>7 days from issue</strong> — must confirm to lock pricing.<br>
+          <strong>Files:</strong> simulator current = v1.7 (Auditorium-Enhanced); prior version saved as <code>venue_simulator_v1.6.html</code>.</div></div>
     </div>
   </div>
   <div class="card"><h2>Key Contacts</h2><table>
@@ -1466,7 +1697,7 @@ function applySettings(){
   renderAll();
 }
 function resetDefaults(){
-  CFG={researchPapers:250,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90,attendees:1200,numTutorials:11,numWorkshops:12,numPanels:2,numDemoGroups:2,posterPapers:280,postersPerSession:140,posterSetupHours:3,banquetCap:1020,lunchBoxedCap:1800,lunchRoundsCap:1020,overflowCap:300,partitionMin:20,exchangeRate:1500,annualPct:4,lunchMon:1,lunchTue:2,lunchWed:3,lunchThu:1,priceDosirak:62000,priceBuffet:86000};
+  CFG={researchPapers:350,industryPapers:30,papersPerSession:6,minPerPaper:15,sessionLengthMin:90,attendees:1200,numTutorials:10,numWorkshops:12,numPanels:2,numDemoGroups:2,posterPapers:380,postersPerSession:95,posterSetupHours:3,banquetCap:1020,lunchBoxedCap:1800,lunchRoundsCap:1020,overflowCap:300,partitionMin:20,exchangeRate:1500,annualPct:4,lunchMon:1,lunchTue:2,lunchWed:3,lunchThu:1,priceDosirak:62000,priceBuffet:86000};
   renderAll();
 }
 document.getElementById('mainTabs').addEventListener('click',e=>{
@@ -1480,6 +1711,60 @@ function renderAssumptions(){
   document.getElementById('assumptions').innerHTML=`
   <div class="card"><h2>Planning Assumptions &amp; Operational Considerations</h2>
     <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">This page consolidates all assumptions behind the hypothetical program. These are based on email discussions (Oct 2024 - Apr 2026), COEX contract terms, and Shinsegae Food catering guidance.</p>
+  </div>
+
+  <div class="card" style="border-left:4px solid #7b1fa2;"><h2 style="color:#7b1fa2;">0. v1.7 Auditorium-Centric Layout (NEW)</h2>
+    <p style="font-size:12px;margin-bottom:8px;">Added 3F Auditorium as the dedicated plenary venue. Base contract (CEC2025070020, 16/Mar/2026) retained; Auditorium comes from addendum quotation (2025-07-01).</p>
+    <table>
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Capacity</td><td><strong>TH 1,080</strong> (fixed seats — no CL/RD reconfiguration)</td></tr>
+    <tr><td>Built-in AV</td><td><strong>LED screen 20m × 6m, 3.9mm pitch</strong> + wireless mic + house PA (no extra cost)</td></tr>
+    <tr><td>Daily rate</td><td>6/18–6/23: KRW 24,000,000/day × 6 = 144,000,000. <strong>Sat (D-1) DROPPED</strong> per review — Auditorium not used until Mon, Sun setup is enough (saves KRW 9.6M D-1 discount day).</td></tr>
+    <tr><td>Auditorium subtotal</td><td>KRW 144,000,000 (excl. VAT) · KRW 158,400,000 (incl. VAT 10%)</td></tr>
+    <tr><td>Sat GBR drop (additional)</td><td>Sat 101-105 booking dropped (saves KRW 10.2M D-1 discount day) — GBR setup moved to Sun (no Sun program conflict).</td></tr>
+    <tr><td>v1.7 TOTAL (base + addendum, after Sat-drops)</td><td><strong>KRW 432,564,000</strong> (≈ $288,376 @1,500/USD) — saved KRW 21.78M total (9.6M Auditorium + 10.2M GBR Sat, + VAT)</td></tr>
+    <tr><td>Hours</td><td>09:00–18:00 standard. Extended hours require advance arrangement and overtime fees.</td></tr>
+    </table>
+    <h3 style="margin-top:12px;">Plenary sessions moved to Auditorium</h3>
+    <table>
+    <tr><th>Day</th><th>Session(s)</th><th>Was → Now</th></tr>
+    <tr><td>Sun 6/18</td><td>Auditorium Setup + GBR Setup (CL/RD)</td><td>Saturday setup moved to Sunday — Auditorium first used Mon, GBR first used Mon. Sat bookings for both dropped → saves KRW 19.8M total (9.6M + 10.2M).</td></tr>
+    <tr><td>Mon 6/19</td><td>PODS Opening &amp; Keynote</td><td>201-203 (918 TH) → Auditorium (1,080 TH + LED)</td></tr>
+    <tr><td>Tue 6/20</td><td>SIGMOD Opening + Keynote 1; Awards Lunch (Dosirak)</td><td>101-105 (1,800 TH) → Auditorium</td></tr>
+    <tr><td>Wed 6/21</td><td>SIGMOD Keynote 2; DEI Keynote</td><td>101-105 (RD) → Auditorium (TH). Business Meeting <em>not</em> separately scheduled — handled at banquet or built into AM keynote slots.</td></tr>
+    <tr><td>Thu 6/22</td><td>Award Talks + Closing Keynote 3</td><td>101-105 (1,800 TH) → Auditorium</td></tr>
+    </table>
+    <h3 style="margin-top:12px;">Strategic benefits</h3>
+    <ul style="font-size:12px;margin-left:18px;line-height:1.6;">
+      <li><strong>Eliminates Theater↔Round Table flips</strong> on Grand Ballroom (Tue evening + Wed night) — only CL↔RD remain (faster, lower overtime).</li>
+      <li><strong>GBR 5-partition (CL) freed</strong> for parallel sessions on Tue/Thu → absorbs the 250→350 paper surge.</li>
+      <li><strong>Better plenary experience</strong>: built-in 20m × 6m LED screen, fixed sightlines, premium acoustics.</li>
+      <li><strong>Wed lunch slot</strong> simplified to seated lunch + parallel posters only (no Business Meeting overlap).</li>
+    </ul>
+    <h3 style="margin-top:12px;">350-paper allocation (v1.7)</h3>
+    <table>
+    <tr><th>Block</th><th>Day / Time</th><th>R Slots</th><th>I Slots</th><th>Note</th></tr>
+    <tr><td>Morning Parallel</td><td>Tue 11:00–12:30</td><td>11 R</td><td>—</td><td>GBR 5-partition (101-105) + ASEM (202-203) + 205/206/210</td></tr>
+    <tr><td>Afternoon Parallel</td><td>Tue 14:00–15:30</td><td>10 R</td><td>2 I</td><td>Panel 1 → Auditorium; GBR 5-partition + 202/203/205/206/210</td></tr>
+    <tr><td>Late Afternoon</td><td>Tue 16:00–17:30</td><td>9 R</td><td>—</td><td>GBR 5-partition + ASEM 203 + 205/206/210</td></tr>
+    <tr><td>Morning Parallel</td><td>Wed 11:00–12:30</td><td>2 R</td><td>—</td><td>GBR 101-105 <strong>standby</strong> (already RD, Business Lunch service prep 11:00-12:30 — no sessions immediately before lunch). PODS 8 in 201, R sessions in 202/203.</td></tr>
+    <tr style="background:#fff3e0;"><td>Afternoon Parallel</td><td>Wed 14:00–15:30</td><td>2 R</td><td>1 I</td><td>Industry 3 <strong>moved 206 → Auditorium R1</strong> (~120 TH section). 202/203 + PODS 9 (201).</td></tr>
+    <tr style="background:#fff3e0;"><td>Late Afternoon</td><td>Wed 16:00–17:30</td><td>4 R</td><td>1 I</td><td>R33 <strong>moved 206 → Auditorium R1</strong>. <strong>103/104 active</strong> (banquet prep on 101/102/105). + 202/Aud-R1. Posters 3 & 4 in 205/209.</td></tr>
+    <tr style="background:#fff3e0;"><td>DEI Bird-of-a-Feather</td><td>Wed 17:30–18:30</td><td>—</td><td>—</td><td>New slot in <strong>203</strong> (TH 306). Overlaps 18:00-18:30 overtime — extended HVAC + rental hours arrangement needed.</td></tr>
+    <tr><td>Morning Parallel</td><td>Thu 10:00–11:30</td><td>9 R</td><td>—</td><td>GBR 5-partition + ASEM 201/202 + 205/206/209</td></tr>
+    <tr><td>Afternoon Parallel (MAX)</td><td>Thu 14:00–15:30</td><td><strong>8 R</strong></td><td>—</td><td>11-parallel. <strong>Tutorial 3 dropped → R(105)</strong> added. No lunch partition flip needed.</td></tr>
+    <tr><td>Late Afternoon</td><td>Thu 16:00–17:30</td><td><strong>7 R</strong></td><td>1 I</td><td>R53 <strong>moved 203 → 105</strong> (Demo B takedown conflict in 203). 203 empty after Demo. Merged with former Tutorial 3 cont slot — 1 R session in 105.</td></tr>
+    <tr style="font-weight:700;border-top:2px solid var(--border)"><td colspan="2">Total</td><td><strong>59 R</strong></td><td>5 I</td><td>vs 350 papers ÷ 6 = 59 needed — <span style="color:var(--warn)">0 buffer</span> (exact match)</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;">Latest review fixes: (a) <strong>Sat Auditorium booking dropped</strong> — setup moved to Sun (Auditorium first used Mon); saves KRW 9.6M D-1 discount day. (b) <strong>Wed 14:00 Industry 3 + 16:00 R33</strong> moved 206 → <strong>Auditorium R1 sub-section</strong> (~120 TH; 206 was too small at TH 60). (c) <strong>Thu 16:00 R53</strong> moved 203 → 105 (Demo B takedown conflict); merged with former Tutorial 3 cont slot. (d) <strong>Posters: 95 each × 4 sessions = 380 total</strong> (350 R + 30 I) — 95 double-sided boards × 2 rooms × 2 time slots. (e) Fri Tutorials 8-11 in 201/202 — <strong>PENDING COEX inquiry on Fri availability</strong>. Final: 59 R + 5 I (exactly meets 350÷6=59).</p>
+    <h3 style="margin-top:12px;">Contract compliance (addendum-specific)</h3>
+    <ul style="font-size:12px;margin-left:18px;line-height:1.6;color:#555;">
+      <li><strong>Hours 09:00–18:00:</strong> Setup/teardown NOT included in rental window. Overtime by advance arrangement only.</li>
+      <li><strong>Fixed seating:</strong> No CL/RD/BQ reconfiguration possible. Plan only TH events.</li>
+      <li><strong>Overflow live-stream:</strong> If attendees > 1,080, broadcast to ASEM 201-203 (918 TH) requires <em>prior COEX approval</em> (Op.Reg. Art.18).</li>
+      <li><strong>Lobby use:</strong> Only after 18:00, floor protection required. KRW 20,000/sqm/day (excl. VAT).</li>
+      <li><strong>Quotation validity:</strong> 7 days from issue (2025-07-01). Must lock pricing via confirmation reply.</li>
+    </ul>
   </div>
 
   <div class="card"><h2>1. Day-by-Day Lunch Plan</h2>
@@ -1500,8 +1785,10 @@ function renderAssumptions(){
     <tr><th>Where</th><th>When</th><th>Count</th><th>Rooms</th><th>Rationale</th></tr>
     <tr><td>PODS Sessions 1-3</td><td>Tue (during main conf.)</td><td>3</td><td>201</td><td>PODS sessions integrated into main days to maximize attendance.</td></tr>
     <tr><td>PODS Sessions 4-6</td><td>Wed (during main conf.)</td><td>3</td><td>201 (AM RD), 201 (PM TH)</td><td>Wed: 201 in RD for morning (banquet Rounds setup), TH for afternoon. Moved from 105 due to banquet prep.</td></tr>
-    <tr><td>SIGMOD Tutorials 1-3</td><td>Thu afternoon</td><td>3</td><td>201, 205, 105</td><td>Reduced GBR capacity handled via ASEM overflow + live stream.</td></tr>
-    <tr><td>SIGMOD Tutorials 4-7</td><td>Fri</td><td>4</td><td>104, 105</td><td>Remaining tutorials on Friday with workshops.</td></tr>
+    <tr><td>SIGMOD Tutorials 1-2</td><td>Thu afternoon</td><td>2</td><td>201, 205</td><td>v1.7: <strong>Tutorial 3 dropped</strong> (105 freed for R session) to absorb 350-paper allocation.</td></tr>
+    <tr><td>SIGMOD Tutorials 4-7</td><td>Fri AM+PM</td><td>4</td><td>104, 105</td><td>Tutorials on Friday with workshops.</td></tr>
+    <tr><td>SIGMOD Tutorials 8-9</td><td>Fri AM (08:30-12:30)</td><td>2</td><td>201, 202</td><td>Audit fix: added in idle ASEM rooms.</td></tr>
+    <tr><td>SIGMOD Tutorials 10-11</td><td>Fri PM (13:30-17:00)</td><td>2</td><td>201, 202</td><td>Audit fix: added in idle ASEM rooms.</td></tr>
     </table>
     <p style="font-size:11px;color:var(--muted);margin-top:8px;">Total: ${CFG.numTutorials} tutorials. Problem: all on periphery days = late-arriving attendees miss them. Solution (Wook-Shin Han): use Wed Rounds setup to free rooms for some tutorials on main days.</p>
   </div>
@@ -1533,7 +1820,8 @@ function renderAssumptions(){
   <div class="card"><h2>5. D-1 and Evening-Before Setup</h2>
     <table>
     <tr><th>When</th><th>What</th><th>Where</th><th>Notes</th></tr>
-    <tr><td><strong>Sat 6/17 (D-1)</strong></td><td>Full venue setup</td><td>Grand Ballroom (101-105), ASEM (201-203), Office (211)</td><td>D-1 discount on 101-105 (KRW 10.2M vs 25.5M). Initial Theater configuration + registration area.</td></tr>
+    <tr><td><strong>Sat 6/17 (D-1)</strong></td><td>Partial setup — <strong>ASEM + Office only</strong></td><td>ASEM (201-203), Office (211)</td><td>v1.7: GBR (101-105) and Auditorium Sat bookings <strong>DROPPED</strong> — both moved to Sun (Sun has no GBR program; Auditorium first used Mon). Saves KRW 19.8M total. ASEM Sat retained for Sun 8:30 workshop start.</td></tr>
+    <tr><td><strong>Sun 6/18</strong></td><td>GBR + Auditorium Setup (during workshops)</td><td>101-105 (GBR), Auditorium</td><td>v1.7: GBR setup CL/RD ready for Wed banquet; Auditorium LED 20×6m + AV calibration. Workshops on 2F do not interfere.</td></tr>
     <tr><td><strong>Tue 18:00-22:00</strong></td><td>Theater → Round Table</td><td>101-105 (Grand Ballroom)</td><td>Convert GBR from Theater (1,800 TH) to Round Table (1,020 RD) for Wed keynotes + banquet. Overnight setup.</td></tr>
     <tr><td><strong>Wed 10:30</strong></td><td>Poster 1 prep (2hr)</td><td>206, 209</td><td>Poster board setup and signage arrangement. 10:30-12:30 → Poster Session 1 at 12:30.</td></tr>
     <tr><td><strong>Wed 14:00</strong></td><td>Poster 2 prep (1hr)</td><td>206, 209</td><td>Reconfigure after Poster 1. 14:00-15:00 → Poster Session 2 at 16:00.</td></tr>
@@ -1542,16 +1830,20 @@ function renderAssumptions(){
     </table>
   </div>
 
-  <div class="card"><h2>6. Poster Sessions</h2>
+  <div class="card"><h2>6. Poster Sessions (v1.7 — 4 sessions × 95 posters = 380 total)</h2>
     <table>
     <tr><th>Item</th><th>Detail</th></tr>
-    <tr><td>Total posters</td><td>${CFG.posterPapers} papers across 2 sessions</td></tr>
-    <tr><td>Per session</td><td>${CFG.postersPerSession} posters (split: ~40 in 206, ~100 in 209)</td></tr>
-    <tr><td>Rooms</td><td>206 (CL:36, flow capacity ~40) + 209 (CL:90, flow capacity ~100)</td></tr>
-    <tr><td>Setup</td><td>Poster 1 Prep: 2hr (10:30-12:30). Poster 2 Prep: 1hr (14:00-15:00). Boards installed in advance.</td></tr>
-    <tr><td>Sessions</td><td>Poster 1: Wed 12:30-14:00 (during lunch). Poster 2: Wed 16:00-17:30.</td></tr>
+    <tr><td>Sessions</td><td><strong>4 poster sessions</strong> (PS1–PS4) × <strong>95 posters each</strong> = <strong>380 total displays</strong></td></tr>
+    <tr><td>Coverage</td><td>Matches 350 Research + 30 Industry = <strong>380 papers</strong> — every paper gets a poster slot.</td></tr>
+    <tr><td>Boards</td><td>95 <strong>double-sided</strong> boards per room → 190 display surfaces per time slot (95 in 205 + 95 in 209).</td></tr>
+    <tr><td>Rooms</td><td><strong>205 (swap: was 206)</strong> + <strong>209</strong> — equal board capacity.</td></tr>
+    <tr><td>Setup</td><td>Poster 1 Prep: 2hr (Wed 10:30-12:30). Poster 2 Prep: 1hr (Wed 14:00-15:00). Boards installed in advance.</td></tr>
+    <tr><td>Time slots</td><td>
+      • <strong>PS1 (205) + PS2 (209)</strong>: Wed 12:30-14:00 (during lunch) — 190 displays<br>
+      • <strong>PS3 (205) + PS4 (209)</strong>: Wed 16:00-17:30 (late afternoon) — 190 displays<br>
+      • Total: 380 displays across both time slots
+    </td></tr>
     <tr><td>Surcharge</td><td>50% surcharge may apply (Key Terms #2 — non-meeting use). Clarify with COEX.</td></tr>
-    <tr><td>Improvement</td><td>Enclosed rooms (206/209) reduce noise — a long-standing SIGMOD complaint.</td></tr>
     </table>
   </div>
 
@@ -1578,11 +1870,12 @@ function renderAssumptions(){
     <p style="font-size:11px;color:var(--muted);margin-top:8px;">Caterer: Shinsegae Food (COEX-designated, mandatory). F&amp;B is NOT included in venue contract (Meeting Room Rental Only). Separate arrangement required.</p>
   </div>
 
-  <div class="card"><h2>9. Room Roles by Day</h2>
+  <div class="card"><h2>9. Room Roles by Day (v1.7)</h2>
     <table>
     <tr><th>Room</th><th>Sat</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>
-    <tr><td><strong>101-105</strong></td><td>Setup</td><td>-</td><td>PODS Keynote (201-203)</td><td>Plenary + Sessions</td><td>Rounds all day + Banquet (19:00)</td><td>Plenary + Sessions</td><td>DEEM (101), GRADES-NDA (102), DataEd/Provenance (103)</td></tr>
-    <tr><td><strong>201-203</strong></td><td>Setup</td><td>HILDA (201), LLM-DPM (202), NOVAS/QData (203)</td><td>DaMoN (201), PODS Keynote→Ses (201-203/202-203)</td><td>Sessions + PODS Sessions</td><td>Overflow lunch + live stream</td><td>Sessions + Tutorials</td><td>-</td></tr>
+    <tr style="background:#f3e5f5;"><td><strong>Auditorium (3F)</strong></td><td><span style="color:var(--muted)">— (dropped)</span></td><td><strong>Setup (LED check)</strong> — moved from Sat</td><td>PODS Keynote</td><td><strong>Opening + Keynote 1 + Awards</strong></td><td><strong>Keynote 2 + DEI Keynote</strong><br><span style="font-size:10px;">+ R1 sub-section (Industry 3 PM, R33 late PM)</span></td><td><strong>Award Talks + Keynote 3</strong></td><td>Tutorial plenary</td></tr>
+    <tr><td><strong>101-105</strong></td><td><span style="color:var(--muted)">— (Sat booking dropped)</span></td><td><strong>Setup (CL, no TH)</strong> — moved from Sat</td><td>5-partition CL (parallel)</td><td><strong>5-partition CL (parallel sessions)</strong></td><td>Rounds all day + Banquet (19:00)</td><td><strong>5-partition CL (parallel sessions)</strong></td><td>DEEM (101), GRADES-NDA (102), DataEd/Provenance (103)</td></tr>
+    <tr><td><strong>201-203</strong></td><td>Setup</td><td>HILDA (201), LLM-DPM (202), NOVAS/QData (203)</td><td>DaMoN (201), PODS Ses (202-203)</td><td>Sessions + PODS Sessions</td><td>Overflow lunch + live stream</td><td>Sessions + Tutorials</td><td>-</td></tr>
     <tr><td><strong>204</strong></td><td>-</td><td>Storage</td><td>24hr Hold / Storage</td><td>24hr Hold</td><td>24hr Hold</td><td>24hr Hold</td><td>Storage</td></tr>
     <tr><td><strong>205</strong></td><td>-</td><td>aiDM</td><td>-</td><td>Sessions</td><td>DEI / Sessions</td><td>Tutorials / Sessions</td><td>DBPL (AM)</td></tr>
     <tr><td><strong>206</strong></td><td>-</td><td>-</td><td>-</td><td>Sessions</td><td>Poster (prep+sessions)</td><td>Sessions</td><td style="color:var(--err);">N/A</td></tr>
