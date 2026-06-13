@@ -21,7 +21,7 @@
   info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
     (PVLDB)
   is_co-corresponding_author: true
-  is_corresponding_author: true
+  is_corresponding_author: false
   is_demo: true
   link: 
   month: Aug.
@@ -36,7 +36,7 @@
   info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
     (PVLDB)
   is_co-corresponding_author: true
-  is_corresponding_author: true
+  is_corresponding_author: false
   link: 
   month: Aug.
   title: 'TurboLynx: Schemaless Graph Engine Strikes Back for General-Purpose Analytics'
