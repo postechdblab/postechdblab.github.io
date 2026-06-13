@@ -1,11 +1,41 @@
 - ISSN: 2150-8097
-  authors: Lee, T., Ha, J., Tak, B., and Han, W.
+  authors: Ha, J., Park, Y., and Han, W.
   description: null
   highlight: 0
   image: null
   info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
     (PVLDB)
   is_co-corresponding_author: false
+  is_corresponding_author: true
+  is_demo: true
+  link: 
+  month: Aug.
+  title: 'CADENZA in Action: Breaking the Monolith with Intent-Dependent Plan Spaces for Semantic Queries'
+  year: 2026
+  
+- ISSN: 2150-8097
+  authors: Lee, T., Ha, J., Tak, B., and Han, W.
+  description: null
+  highlight: 0
+  image: null
+  info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
+    (PVLDB)
+  is_co-corresponding_author: true
+  is_corresponding_author: true
+  is_demo: true
+  link: 
+  month: Aug.
+  title: 'TurboLynx in Action: A Schemaless Graph Engine for General-Purpose Analytics'
+  year: 2026
+
+- ISSN: 2150-8097
+  authors: Lee, T., Ha, J., Tak, B., and Han, W.
+  description: null
+  highlight: 0
+  image: null
+  info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
+    (PVLDB)
+  is_co-corresponding_author: true
   is_corresponding_author: true
   link: 
   month: Aug.
