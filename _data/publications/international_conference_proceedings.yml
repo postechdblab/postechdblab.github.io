@@ -67,6 +67,8 @@
   is_corresponding_author: true
   is_demo: false
   link: https://openreview.net/pdf?id=8KE9qvKhM4
+  git: https://github.com/pshlego/SPARTA
+  ppt: https://iclr.cc/media/PosterPDFs/ICLR%202026/10011215.png?t=1771766164.126033
   month: April
   title: 'SPARTA: Scalable and Principled Benchmark of Tree-Structured Multi-hop QA over Text and Tables'
   year: 2026
