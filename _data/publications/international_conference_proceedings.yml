@@ -22,7 +22,7 @@
   is_co-corresponding_author: true
   is_corresponding_author: false
   is_demo: false
-  link: 
+  link: https://drive.google.com/file/d/1QeKZwEmCa3MFmJOTKW-qhUt1fmayCOhP/view?usp=sharing
   git: https://github.com/Leesangoh/VAP
   month: July
   title: 'Bring My Cup! Personalizing Vision-Language-Action Models with Visual Attentive Prompting'
@@ -37,7 +37,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false  
-  link: 
+  link: https://drive.google.com/file/d/1IxaHY6YUZbmT4psG-2oRVzIqNPhgb1ZM/view?usp=sharing
   git: https://failureisfeedback.github.io
   month: July
   title: 'FAILURE IS FEEDBACK: History-Aware Backtracking for Agentic Traversal in Multimodal Graphs'
