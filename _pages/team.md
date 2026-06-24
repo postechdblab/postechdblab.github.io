@@ -245,37 +245,55 @@ Jump to [Professor](#professor), [Research Professor](#research-professor), [Pos
 <div class="row"><BR>
 </div>
   
-<!-- <div class="row">
-<div class="col-sm-6 clearfix">
-<h4>Jueun Kim</h4>
-<i>Bachelor Student
-</div>
-</div>
--->
-<!-- <div class="row">
-<div class="col-sm-6 clearfix">
-<h4>Sunho Cha</h4>
-<i>Bachelor Student
-</div>
-</div>
--->
-
-<!--
 <div class="row">
 <div class="col-sm-6 clearfix">
-<h4>Yoonho Kim</h4>
+<h4>Inseong Baek</h4>
+<i>Bachelor Student
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>Junwoo Hong</h4>
+<i>Bachelor Student
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>Minwoo Kim</h4>
 <i>Bachelor Student
 </div>
 </div>    
 
-
 <div class="row">
 <div class="col-sm-6 clearfix">
-<h4>HyoJeong Yun</h4> 
+<h4>Woojin Lee</h4> 
 <i>Bachelor Student
 </div>
 </div> 
--->
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>Junho Moon</h4>
+<i>Bachelor Student
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>Suho Noh</h4>
+<i>Bachelor Student
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>Gain Shin</h4>
+<i>Bachelor Student
+</div>
+</div>
+
 <!--
 ## Administration Staff
 -->
