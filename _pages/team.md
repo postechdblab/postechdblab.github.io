@@ -395,7 +395,7 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="row">
 <div class="col-sm-6 clearfix">
 <h4><a href="https://kr.linkedin.com/in/kyoungmin-kim-60420ab1">Kyoungmin Kim</a></h4>
-<i>Post-Doctor, EPEL, Lausanne, Switzerland 
+<i>Assistant Professor, KAIST, Korea
 </div>
 </div>
 
