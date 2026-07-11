@@ -9,6 +9,8 @@
   is_corresponding_author: true
   is_demo: true
   link: https://drive.google.com/file/d/19AQ4dpsoE5WwBpdpR_eQVNy5-_MDW_Nw/view?usp=sharing
+  ppt: 
+  git: 
   month: Aug.
   title: 'CADENZA in Action: Breaking the Monolith with Intent-Dependent Plan Spaces for Semantic Queries'
   year: 2026
@@ -24,6 +26,8 @@
   is_corresponding_author: false
   is_demo: true
   link: https://drive.google.com/file/d/1dpDQcC8QYWoLG_ox_x1bHjVvR9mrUCUS/view?usp=sharing
+  ppt: 
+  git: https://github.com/postechdblab/TurboLynx-Demo
   month: Aug.
   title: 'TurboLynx in Action: A Schemaless Graph Engine for General-Purpose Analytics'
   year: 2026
@@ -38,6 +42,8 @@
   is_co-corresponding_author: true
   is_corresponding_author: false
   link: https://dlnext.acm.org/doi/10.14778/3797919.3797932
+  ppt: 
+  git: https://github.com/turbolynx-dslab/TurboLynx
   month: Aug.
   title: 'TurboLynx: Schemaless Graph Engine Strikes Back for General-Purpose Analytics'
   year: 2026
@@ -52,6 +58,8 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   link: https://dl.acm.org/doi/10.14778/3705829.3705856
+  ppt: 
+  git: 
   month: Sept.
   title: 'Themis: A GPU-accelerated Relational Query Execution Engine'
   year: 2025
