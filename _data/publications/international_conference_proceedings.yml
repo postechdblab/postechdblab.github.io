@@ -39,10 +39,11 @@
   is_corresponding_author: true
   is_demo: false  
   link: https://drive.google.com/file/d/1IxaHY6YUZbmT4psG-2oRVzIqNPhgb1ZM/view?usp=sharing
-  git: https://failureisfeedback.github.io
+  git: https://github.com/joohyung00/failure_is_feedback
   month: July
   title: 'FAILURE IS FEEDBACK: History-Aware Backtracking for Agentic Traversal in Multimodal Graphs'
   year: 2026
+  ppt: https://docs.google.com/presentation/d/1_Y8NjO9HLK75uBY-6IGF_WvJ4EJz2b_8/edit?usp=drivesdk&ouid=107893369645455108100&rtpof=true&sd=true
 
 - ISSN: null
   authors: Park, Y., Lee, T., Tak, B., and Han, W.
