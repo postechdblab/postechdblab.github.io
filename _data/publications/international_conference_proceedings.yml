@@ -1,19 +1,4 @@
 - ISSN: null
-  authors: Cha, S., Park, S., and Han, W.
-  description: null
-  highlight: 0
-  image: null
-  info: In Proc., the 2026 Conference on Empirical Methods in Natural Language Processing, EMNLP, Budapest, Hungary
-  is_co-corresponding_author: false
-  is_corresponding_author: true
-  is_demo: false
-  link: 
-  ppt: 
-  month: October
-  title: 'TRACE: Table–Text Relationalization and Completion of Evidence for Coverage-Sensitive QA'
-  year: 2027
-  
-- ISSN: null
   authors: Ha, J., Park, Y., and Han, W.
   description: null
   highlight: 0
@@ -27,6 +12,21 @@
   month: June
   title: 'CADENZA: Compiling Natural-Language Intent into Task-Specific Operator DAGs for Semantic Query Processing'
   year: 2027
+
+- ISSN: null
+  authors: Cha, S., Park, S., and Han, W.
+  description: null
+  highlight: 0
+  image: null
+  info: In Proc., the 2026 Conference on Empirical Methods in Natural Language Processing, EMNLP, Budapest, Hungary
+  is_co-corresponding_author: false
+  is_corresponding_author: true
+  is_demo: false
+  link: 
+  ppt: 
+  month: October
+  title: 'TRACE: Table–Text Relationalization and Completion of Evidence for Coverage-Sensitive QA'
+  year: 2026
 
 - ISSN: null
   authors: Lee, S., Mo, S., and Han, W.
