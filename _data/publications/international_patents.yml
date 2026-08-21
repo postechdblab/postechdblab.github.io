@@ -27,7 +27,7 @@
   description: null
   highlight: 0
   image: null
-  info: U.S. App No. 19/283.091
+  info: U.S. App No. 19/283,091
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
@@ -39,12 +39,12 @@
   description: null
   highlight: 0
   image: null
-  info: U.S. App No. 19/144.304
+  info: U.S. App No. 19/144,304
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
   month: Jun.
-  title: GPU-Based Query Processing Accleration Method and Computing System
+  title: GPU-based Query Processing Acceleration Method and Computing System
   year: 2025
 - ISSN: null
   authors: Wook-Shin Han, Sungho Park, Juhyun Yun, and Jeong-Hoon Lee
@@ -63,7 +63,7 @@
   description: null
   highlight: 0
   image: null
-  info: U.S. App No. 18/935.330
+  info: U.S. App No. 18/935,330
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
@@ -87,7 +87,7 @@
   description: null
   highlight: 0
   image: null
-  info: U.S. App No. 63/610.344
+  info: U.S. App No. 63/610,344
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
@@ -104,7 +104,7 @@
   is_corresponding_author: false
   link: null
   month: Dec.
-  title: Method and Apparatus for Accelerating SQL Analytic Queries on GPU
+  title: GPU-based Query Processing Acceleration Method and Computing System
   year: 2023
 - ISSN: null
   authors: Wook-Shin Han, Yeonsu Park, and Kijae Hong 
@@ -200,6 +200,6 @@
   is_corresponding_author: false
   link: null
   month: Feb.
-  title: An Inverted Index Structure Using Subindexes and Large Objects for Tight
-    Coupling of Information Retrieval with Database Management Systems
+  title: Inverted Index Storage Structure Using Subindexes and Large Objects for
+    Tight Coupling of Information Retrieval with Database Management Systems
   year: 2002
