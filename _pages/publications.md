@@ -163,6 +163,15 @@ For undergrads who are interested in big data, data management, and database sys
 
 {% endfor %}
 
+## Keynotes
+
+{% for publi in site.data.publications.keynotes %}
+
+  **{{ publi.title }}** <br />
+  {{publi.info}}, {{ publi.month }} {{ publi.year }}
+
+{% endfor %}
+
 ## Invited Talks
 
 {% for publi in site.data.publications.invited_talks %}

@@ -3,25 +3,12 @@
   description: null
   highlight: 0
   image: null
-  info: DASFAA, Korea
+  info: "eBay, USA"
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
-  month: April
-  title: The Long Journey from Subgraphs to Autonomous Agents - Evaluation of Graph Intelligence
-  year: 2026
-  
-- ISSN: null
-  authors: null
-  description: null
-  highlight: 0
-  image: null
-  info: ACM SIGMOD, China
-  is_co-corresponding_author: false
-  is_corresponding_author: false
-  link: null
-  month: June
-  title: Natural Language Exploration with Relational Databases in Chatbot
+  month: September
+  title: "Towards Scalable and Incremental Graph Processing Engines"
   year: 2021
 
 - ISSN: null
@@ -29,12 +16,389 @@
   description: null
   highlight: 0
   image: null
-  info: IBM Almaden Research Center, USA
+  info: "Korea University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: June
+  title: "DualSim: Parallel Subgraph Enumeration in a Massive Graph on a Single Machine"
+  year: 2017
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Kyung Hee University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: March
+  title: "DualSim: Parallel Subgraph Enumeration in a Massive Graph on a Single Machine"
+  year: 2017
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Sungkyunkwan University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: March
+  title: "DualSim: Parallel Subgraph Enumeration in a Massive Graph on a Single Machine"
+  year: 2017
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the Software Convergence Symposium 2017 (SWCS 2017), Seoul, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: January
+  title: "Big Graph Data Processing Techniques"
+  year: 2017
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Apache CouchDB, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: January
+  title: "Big Graph Data Processing"
+  year: 2017
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Korea University, Korea"
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
   month: April
-  title: Efficient Evaluation of Partial Match Queries for XML Documents Using Information Retrieval Techniques 
+  title: "Recent Research Progress in Databases"
+  year: 2016
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Samsung Electronics, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: January
+  title: "Data Processing Techniques"
+  year: 2016
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Korea University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: December
+  title: "Taming Subgraph Isomorphism for RDF Query Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Hong Kong Baptist University, Hong Kong"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: August
+  title: "Taming Subgraph Isomorphism for RDF Query Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Facebook, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: July
+  title: "Big Graph Data Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Sookmyung Women's University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: May
+  title: "Big Graph Data Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Kyungpook National University, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: January
+  title: "Big Graph Data Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "SAP Labs Korea, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: January
+  title: "Big Graph Data Processing"
+  year: 2015
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Ulsan National Institute of Science and Technology, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: December
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Korea Advanced Institute of Science and Technology, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: December
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the Hong Kong University of Science and Technology, Hong Kong"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: July
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the University of Hong Kong, Hong Kong"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: July
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the Chinese University of Hong Kong, Hong Kong"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: July
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "University of Illinois at Chicago, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: March
+  title: "Big Graph Data Processing"
+  year: 2014
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Google, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: November
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "IBM, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: October
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "HP, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: October
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Facebook, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: October
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Oracle, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: October
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Distinguished Seminar, KT, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: October
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Data Streams, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: September
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "Samsung Electronics, Korea"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: August
+  title: "Big Graph Data Processing"
+  year: 2013
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the 4th Int'l Workshop with Mentors on Databases (iDB), Web and Information Management for Young Researchers, Nagoya, Japan"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: July
+  title: "New Approach for Processing Ranked Subsequence Matching Based on Ranked Union"
+  year: 2012
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "the 1st Int'l Workshop with Mentors on Databases (iDB), Web and Information Management for Young Researchers, Fukushima, Japan"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: September
+  title: "Advanced Query Optimization Techniques in a Parallel Computing Environment"
+  year: 2008
+
+- ISSN: null
+  authors: null
+  description: null
+  highlight: 0
+  image: null
+  info: "IBM Almaden Research Center, USA"
+  is_co-corresponding_author: false
+  is_corresponding_author: false
+  link: null
+  month: April
+  title: "Efficient Evaluation of Partial Match Queries for XML Documents Using Information Retrieval Techniques"
   year: 2006
 
 - ISSN: null
@@ -42,10 +406,10 @@
   description: null
   highlight: 0
   image: null
-  info: IBM Almaden Research Lab
+  info: "IBM Almaden Research Lab., USA"
   is_co-corresponding_author: false
   is_corresponding_author: false
   link: null
   month: July
-  title: Prefetching Based on the Type-Level Access Pattern in Object-Relational DBMSs
-  year: 2006
+  title: "Prefetching Based on the Type-Level Access Pattern in Object-Relational DBMSs"
+  year: 2001
