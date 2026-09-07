@@ -46,22 +46,6 @@
   number_educ: 1
   education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
 
-- name: TaeSung Lee
-  homepage: https://sites.google.com/dblab.postech.ac.kr/tslee
-  photo: tslee.jpeg
-  info: PhD (integrated)
-  email: tslee@dblab.postech.ac.kr
-  number_educ: 1
-  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea 
-
-- name: WonSeok Lee
-  homepage: https://wslee2265.github.io/online-cv/ 
-  photo: wslee.jpeg
-  info: PhD (integrated)
-  email: wslee@dblab.postech.ac.kr
-  number_educ: 1
-  education1: Bachelor, Pohang University of Science and Technology (POSTECH), South Korea
-
 - name: InHyuk Na (Entrepreneurial Leave)
   photo: ihna.png
   info: PhD (integrated)

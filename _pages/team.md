@@ -282,13 +282,6 @@ Jump to [Professor](#professor), [Research Professor](#research-professor), [Pos
 
 <div class="row">
 <div class="col-sm-6 clearfix">
-<h4>Suho Noh</h4>
-<i>Bachelor Student
-</div>
-</div>
-
-<div class="row">
-<div class="col-sm-6 clearfix">
 <h4>Gain Shin</h4>
 <i>Bachelor Student
 </div>
@@ -427,6 +420,19 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 </div>
 </div>
 
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4><a href="https://wslee2265.github.io/online-cv/">WonSeok Lee</a></h4>
+<i>Post Doc., POSTECH, Korea
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4>TaeSung Lee</h4>
+</div>
+</div>
+
   
 ### MSs
 
@@ -546,6 +552,12 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 <div class="col-sm-6 clearfix">
 <h4>Jeongeum Seok</h4>
 <i> Samsung Electoronics, Korea  
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6 clearfix">
+<h4><a href="https://leejyg.github.io">JooYoung Lee</a></h4>
 </div>
 </div>
 
