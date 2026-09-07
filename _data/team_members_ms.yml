@@ -1,4 +1,13 @@
 
+- name: Seungah Jang
+  homepage: https://seungah-jang.github.io
+  photo: sajang.png
+  info: MS
+  email: sajang@dblab.postech.ac.kr
+  number_educ: 1
+  education1: Bachelor, Jeju National University, South Korea
+
+
 - name: HyoJeong Yun
   homepage: https://hyojeongyunn.github.io/hyojeongyunn/
   photo: hyojeongyun.jpeg
