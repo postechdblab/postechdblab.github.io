@@ -422,7 +422,7 @@ After Aug. 2013 (after Prof. Han moved to POSTECH)
 
 <div class="row">
 <div class="col-sm-6 clearfix">
-<h4><a href="https://wslee2265.github.io/online-cv/">WonSeok Lee</a></h4>
+<h4><a href="https://www.wonseoklee.com">WonSeok Lee</a></h4>
 <i>Post Doc., POSTECH, Korea
 </div>
 </div>
