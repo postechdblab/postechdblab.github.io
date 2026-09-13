@@ -1,4 +1,19 @@
 - ISSN: null
+  authors: Yun, T., Lee, T., Lee, J., Kim, K., Tak, B., and Han, W.
+  description: null
+  highlight: 0
+  image: null
+  info: In Proc., 53rd Int’l Conf. on Management of Data, ACM SIGMOD, Huntington Beach, CA, USA
+  is_co-corresponding_author: false
+  is_corresponding_author: true
+  is_demo: false
+  link: 
+  ppt: 
+  month: June
+  title: 'Cache Replacement in Direct-Access Cloud OLAP—An Experimental Comparison and Practical Guidance'
+  year: 2027
+  
+- ISSN: null
   authors: Ha, J., Park, Y., and Han, W.
   description: null
   highlight: 0
