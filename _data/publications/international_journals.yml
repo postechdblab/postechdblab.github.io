@@ -8,7 +8,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: true
-  link: https://drive.google.com/file/d/19AQ4dpsoE5WwBpdpR_eQVNy5-_MDW_Nw/view?usp=sharing
+  link: https://www.vldb.org/pvldb/vol19/p4634-ha.pdf
   ppt: https://youtu.be/nGlYnVEuqNk
   git: https://github.com/postechdblab/CADENZA
   month: Aug.
@@ -25,7 +25,7 @@
   is_co-corresponding_author: true
   is_corresponding_author: false
   is_demo: true
-  link: https://drive.google.com/file/d/1dpDQcC8QYWoLG_ox_x1bHjVvR9mrUCUS/view?usp=sharing
+  link: https://www.vldb.org/pvldb/vol19/p4830-han.pdf
   ppt: https://www.youtube.com/watch?v=DwdaBWL3cWs
   git: https://github.com/postechdblab/TurboLynx-Demo
   month: Aug.
@@ -532,7 +532,7 @@
   info: IEEE Transactions on Knowledge and Data Engineering, Vol. 21, No. 2, pp. 220-233
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.158.260
+  link: https://ieeexplore.ieee.org/document/4585380
   month: Feb.
   title: Cost-Based Predictive Spatio-Temporal Join
   year: 2009
