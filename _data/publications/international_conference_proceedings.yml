@@ -84,7 +84,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: 
+  link: https://ieeexplore.ieee.org/document/11629275
   month: May
   title: 'Batcher: Learning to Construct Cost-Efficient Batches of Small Queries in Big Data Processing Platforms'
   year: 2026
@@ -210,7 +210,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: https://dl.acm.org/doi/abs/10.1145/3639300
+  link: https://dl.acm.org/doi/10.1145/3639300
   ppt: https://docs.google.com/presentation/d/1QSGkefMTCgnpE8ailSLcFnDdxNOgaTCy/edit?usp=sharing&ouid=107893369645455108100&rtpof=true&sd=true
   git: https://github.com/postechdblab/ASM
   month: June
@@ -298,7 +298,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: https://www.computer.org/csdl/proceedings-article/cvpr/2023/012900l1808/1PORVLUifNm
+  link: https://ieeexplore.ieee.org/document/10204170
   month: June
   title: 'Generalizable Implicit Neural Representations via Instance Pattern Composers'
   year: 2023
@@ -356,7 +356,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: https://www.computer.org/csdl/proceedings-article/cvpr/2022/694600l1513/1H1j9AbZXBm
+  link: https://ieeexplore.ieee.org/document/9879532
   month: June
   title: 'Autoregressive Image Generation using Residual Quantization'
   year: 2022
@@ -383,7 +383,7 @@
   info: In Proc., 38th Int'l Conf. on Data Engineering, (Virtual) Kuala Lumpur, Malaysia
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: https://www.computer.org/csdl/proceedings-article/icde/2022/088300a872/1FwFwLEQelO
+  link: https://ieeexplore.ieee.org/document/9835665
   month: May
   title: 'Efficient Graph Isomorphism Query Processing using Degree Sequences and Color-Label Distributions'
   year: 2022
@@ -424,7 +424,7 @@
     Xian, Shaanxi, China
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: https://dl.acm.org/doi/abs/10.1145/3448016.3457246
+  link: https://dl.acm.org/doi/10.1145/3448016.3457246
   month: Jun.
   title: Combining Sampling and Synopses with Worst-Case Optimal Runtime and Quality
     Guarantees for Graph Pattern Cardinality Estimation
@@ -513,7 +513,7 @@
   info: In Proc. 44th Int'l Conf. on Management of Data, ACM SIGMOD, Houston, USA
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: https://dl.acm.org/citation.cfm?id=3196917
+  link: https://dl.acm.org/doi/10.1145/3183713.3196917
   month: Jun.
   title: 'TurboFlux: A Fast Continuous Subgraph Matching System for Streaming Graph
     Data'
@@ -527,7 +527,7 @@
   info: In Proc. 44th Int'l Conf. on Management of Data, ACM SIGMOD, Houston, USA
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: https://dl.acm.org/citation.cfm?id=3183713.3196915
+  link: https://dl.acm.org/doi/10.1145/3183713.3196915
   month: Jun.
   title: 'TurboGraph++: A Scalable and Fast Graph Analytics System'
   year: 2018
@@ -555,7 +555,7 @@
     USA
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: http://dl.acm.org/citation.cfm?id=2915209&CFID=809483035&CFTOKEN=29044645
+  link: https://dl.acm.org/doi/10.1145/2882903.2915209
   month: Jun.
   title: 'DualSim: Parallel Subgraph Enumeration in a Massive Graph on a Single Machine'
   year: 2016
@@ -570,7 +570,7 @@
     USA
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: http://dl.acm.org/citation.cfm?id=2903734&CFID=809483035&CFTOKEN=29044645
+  link: https://dl.acm.org/doi/10.1145/2882903.2903734
   month: Jun.
   title: Hybrid Garbage Collection for Multi-Version Concurrency Control in SAP HANA
   year: 2016
@@ -583,7 +583,7 @@
   info: In Proc. 32nd Int'l Conf. on Data Engineering (ICDE 2016), Helsinki, Filand
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=7498396&url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel7%2F7491900%2F7498210%2F07498396.pdf%3Farnumber%3D7498396
+  link: https://ieeexplore.ieee.org/document/7498396
   month: May
   title: 'DSP-CC: I/O Efficient Parallel Computation of Connected Components in Billion-scale
     Networks (Extended Abstract)'
@@ -598,7 +598,7 @@
     Sydney, Australia
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=2783322
+  link: https://dl.acm.org/doi/10.1145/2783258.2783322
   month: Aug.
   title: Fast and Robust Parallel SGD Matrix Factorization
   year: 2015
@@ -611,7 +611,7 @@
   info: In Proc. 40th Int'l conf. on Management of Data, ACM SIGMOD, Snowbird, Utah
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=2588563
+  link: https://dl.acm.org/doi/10.1145/2588555.2588563
   month: Jun.
   title: 'OPT: A New Framework for Overlapped and Parallel Triangulation in Large-scale
     Graphs'
@@ -626,7 +626,7 @@
     Chicago, Illinois
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=2487575.2487581&coll=DL&dl=ACM&CFID=244747254&CFTOKEN=59063050
+  link: https://dl.acm.org/doi/10.1145/2487575.2487581
   month: Aug.
   title: 'TurboGraph: A Fast Parallel Graph Engine Handling Billion-scale Graphs in
     a Single PC'
@@ -640,7 +640,7 @@
   info: In Proc. 39th Int'l conf. on Management of Data, ACM SIGMOD, New York, USA
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=2465300
+  link: https://dl.acm.org/doi/10.1145/2463676.2465300
   month: Jun.
   title: 'TurboISO: Towards UltraFast and Robust Subgraph Isomorphism Search in Large
     Graph Databases'
@@ -655,7 +655,7 @@
     conjunction with BIBM conf., Philadelphia, USA
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6470238&tag=1
+  link: https://ieeexplore.ieee.org/document/6470238
   month: Oct.
   title: Mapping the Field of Bioinformatics with a Content and Co-authorship Analysis
   year: 2012
@@ -670,7 +670,7 @@
     Busan, South Korea
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://www.springerlink.com/content/k232582677u36327/
+  link: https://link.springer.com/chapter/10.1007/978-3-642-29035-0_30
   month: Apr.
   title: Data Management Challenges and Opportunities in Cloud Computing
   year: 2012
@@ -684,7 +684,7 @@
     conjunction with BIBM conf., Atlanta, GA
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6112433
+  link: https://ieeexplore.ieee.org/document/6112433
   month: Nov.
   title: Extracting Biomedical Concepts from Fulltext by Relative Importance in a
     Graph Model
@@ -699,7 +699,7 @@
     (DTMBIO 2011), in conjunction with CIKM conf., Glasgow, U.K.
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: http://dl.acm.org/citation.cfm?id=2064711
+  link: https://dl.acm.org/doi/10.1145/2064696.2064711
   month: Oct.
   title: On Supporting Efﬁcient Updates of Regular Expression Indexes in RDF Databases
   year: 2011
@@ -712,7 +712,7 @@
   info: In Proc. 37th Int'l Conf. on Management of Data, ACM SIGMOD, Athens, Greece
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1989371
+  link: https://dl.acm.org/doi/10.1145/1989323.1989371
   month: Jun.
   title: A New Approach for Processing Ranked Subsequence Matching Based on Ranked
     Union
@@ -726,7 +726,7 @@
   info: In Proc. 37th Int'l Conf. on Management of Data, ACM SIGMOD, Athens, Greece
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1989464
+  link: https://dl.acm.org/doi/10.1145/1989323.1989464
   month: Jun.
   title: 'iGraph in Action: Performance Analysis of Disk-Based Graph Indexing Techniques'
   year: 2011
@@ -739,7 +739,7 @@
   info: In Proc. 37th Int'l Conf. on Management of Data, ACM SIGMOD, Athens, Greece
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1989398
+  link: https://dl.acm.org/doi/10.1145/1989323.1989398
   month: Jun.
   title: Exact Indexing for Support Vector Machines
   year: 2011
@@ -753,7 +753,7 @@
     (DTMBIO 2010), in conjunction with CIKM conf., Toronto, Canada
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1871885
+  link: https://dl.acm.org/doi/10.1145/1871871.1871885
   month: Oct.
   title: Dynamic Concept Ontology Construction for PubMed Queries
   year: 2010
@@ -766,7 +766,7 @@
   info: In Proc. 26th Int'l Conf. on Data Engineering (ICDE 2010), Los Angeles, USA
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://www.computer.org/csdl/proceedings/icde/2010/5445/00/05447932-abs.html
+  link: https://ieeexplore.ieee.org/document/5447932
   month: Mar.
   title: On Supporting Effective Web Extraction
   year: 2010
@@ -780,7 +780,7 @@
     in conjunction with SIGKDD conf., Washington, D.C., USA
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://www.springerlink.com/content/a06r18053kq3mp47/fulltext.pdf
+  link: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-S12-S4
   month: Jul.
   title: Combining Active Learning and Semi-supervised Learning Techniques to Extract
     Protein Interaction Sentences
@@ -795,7 +795,7 @@
     Island
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1559853
+  link: https://dl.acm.org/doi/10.1145/1559845.1559853
   month: Jun.
   title: Dependency-Aware Reordering for Parallelizing Query Optimization in Multi-Core
     CPUs
@@ -810,7 +810,7 @@
     Hong Kong
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1646100
+  link: https://dl.acm.org/doi/10.1145/1645953.1646100
   month: Nov.
   title: Efficient Feature Weighting Methods for Ranking
   year: 2009
@@ -824,7 +824,7 @@
     (in conjunction with ACM CIKM), Hong Kong
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1651328
+  link: https://dl.acm.org/doi/10.1145/1651318.1651328
   month: Nov.
   title: Enabling Multi-Level Relevance Feedback on PubMed by Integrating Rank Learning
     into DBMS
@@ -852,7 +852,7 @@
   info: In Proc. 33rd Int'l Conf. on Management of Data, ACM SIGMOD, Beijing, China
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1247569
+  link: https://dl.acm.org/doi/10.1145/1247480.1247569
   month: Jun.
   title: Progressive Optimization in a Shared-Nothing Parallel Database
   year: 2007
@@ -865,7 +865,7 @@
   info: In Proc. 16th Int'l World Wide Web Conf. (WWW), Banff, Canada
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1242715
+  link: https://dl.acm.org/doi/10.1145/1242572.1242715
   month: May
   title: Mapping-Driven XML Transformation
   year: 2007
@@ -934,7 +934,7 @@
   info: In Proc. 11th Int'l Conf. on Database Systems for Advanced Applications (DASFAA)
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: https://koasas.kaist.ac.kr/handle/10203/100829
+  link: https://link.springer.com/chapter/10.1007/11733836_28
   month: Apr.
   title: 'Type-Level Access Pattern View: A Technique for Enhancing Prefetching Performance'
   year: 2006
@@ -962,7 +962,7 @@
   info: In Proc. the 21st IEEE Int'l Conf. on Data Engineering (ICDE), Tokyo, Japan
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1410222&tag=1
+  link: https://ieeexplore.ieee.org/document/1410222
   month: Apr.
   title: 'Odysseus: a High-Performance ORDBMS Tightly-Coupled with IR Features'
   year: 2005
@@ -991,7 +991,7 @@
     pp. 382-393
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=564735
+  link: https://dl.acm.org/doi/10.1145/564691.564735
   month: Jun.
   title: 'General Match: A Subsequence Matching Method in Time-Series Databases Based
     on Generalized Windows'
@@ -1006,7 +1006,7 @@
     Germany, pp. 651-660
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=914880
+  link: https://ieeexplore.ieee.org/document/914880
   month: Apr.
   title: Prefetching Based on the Type-Level Access Pattern in Object-Relational DBMSs
   year: 2001
@@ -1020,7 +1020,7 @@
     Washington, DC, pp. 94-101
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?doid=354756.354806
+  link: https://dl.acm.org/doi/10.1145/354756.354806
   month: Nov.
   title: Estimating Nested Selectivity in Object-Oriented Databases
   year: 2000
@@ -1034,7 +1034,7 @@
     , pp. 598-697
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=884786
+  link: https://ieeexplore.ieee.org/document/884786
   month: Oct.
   title: '2D-CHI: A Tunable Two-Dimensional Class Hierarchy Index for Object- Oriented
     Databases'
