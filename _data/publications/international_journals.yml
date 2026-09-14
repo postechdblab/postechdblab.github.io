@@ -506,7 +506,7 @@
   info: BMC Bioinformatics
   is_co-corresponding_author: false
   is_corresponding_author: true
-  link: http://dl.acm.org/citation.cfm?id=1651328
+  link: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-S2-S6
   month: null
   title: Enabling multi-level relevance feedback on PubMed by integrating rank learning
     into DBMS

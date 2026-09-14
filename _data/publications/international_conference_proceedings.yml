@@ -824,7 +824,7 @@
     (in conjunction with ACM CIKM), Hong Kong
   is_co-corresponding_author: false
   is_corresponding_author: false
-  link: http://dl.acm.org/citation.cfm?id=1651328
+  link: https://dl.acm.org/doi/10.1145/1651318.1651328
   month: Nov.
   title: Enabling Multi-Level Relevance Feedback on PubMed by Integrating Rank Learning
     into DBMS
