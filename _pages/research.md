@@ -32,6 +32,7 @@ We build the full stack from data systems to autonomous agents. Our engines make
 - **TRIAL**: Token Relations and Importance Aware Late-interaction for Accurate Text Retrieval. *EMNLP 2025*.
 - **SAFE**: Schema-Driven Approximate Distance Join for Efficient Knowledge Graph Querying. *EMNLP 2025*.
 - **HELIOS**: Harmonizing Early Fusion, Late Fusion, and LLM Reasoning for Multi-Granular Table-Text Retrieval. *ACL 2025*.
+
 <br>
 ## 2. AI Database
 
@@ -46,15 +47,16 @@ We build the full stack from data systems to autonomous agents. Our engines make
 - **Themis**: A GPU-accelerated Relational Query Execution Engine. *VLDB 2025*.
 - **ASM**: Harmonizing Autoregressive Model, Sampling, and Multi-dimensional Statistics Merging for Cardinality Estimation. *SIGMOD 2024*.
 - **DoppelGanger++**: Towards Fast Dependency Graph Generation for Database Replay. *SIGMOD 2024*.
-<div class="demo-row">
-  <div class="demo-card">
-    <div class="demo-frame"><iframe src="https://www.youtube-nocookie.com/embed/nGlYnVEuqNk?rel=0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="demo-caption"><b>CADENZA in Action</b> — semantic queries compiled into intent-dependent operator DAGs (VLDB 2026 Demo)</div>
-  </div>
-  <div class="demo-card">
-    <div class="demo-frame"><iframe src="https://www.youtube-nocookie.com/embed/DwdaBWL3cWs?rel=0" allowfullscreen loading="lazy"></iframe></div>
-    <div class="demo-caption"><b>TurboLynx in Action</b> — the world's fastest embedded graph DBMS (VLDB 2026 Demo) · <a href="https://turbolynx.io">turbolynx.io</a></div>
-  </div>
+
+<div class="demo-row" markdown="0">
+<div class="demo-card">
+<div class="demo-frame"><iframe src="https://www.youtube-nocookie.com/embed/nGlYnVEuqNk?rel=0" allowfullscreen loading="lazy"></iframe></div>
+<div class="demo-caption"><b>CADENZA in Action</b> — semantic queries compiled into intent-dependent operator DAGs (VLDB 2026 Demo)</div>
+</div>
+<div class="demo-card">
+<div class="demo-frame"><iframe src="https://www.youtube-nocookie.com/embed/DwdaBWL3cWs?rel=0" allowfullscreen loading="lazy"></iframe></div>
+<div class="demo-caption"><b>TurboLynx in Action</b> — the world's fastest embedded graph DBMS (VLDB 2026 Demo) · <a href="https://turbolynx.io">turbolynx.io</a></div>
+</div>
 </div>
 
 <br>
@@ -63,19 +65,20 @@ We build the full stack from data systems to autonomous agents. Our engines make
 <p class="area-intro">Vision-language-action (VLA) models let robots follow open-ended language instructions, but they struggle with what makes a task <i>yours</i>—"bring <i>my</i> cup." We study how to personalize and ground VLA policies with lightweight visual prompting and in-context adaptation, without retraining the underlying model, and how to connect embodied agents to the knowledge and retrieval infrastructure we build for enterprise agents.</p>
 
 - **Bring My Cup!** Personalizing Vision-Language-Action Models with Visual Attentive Prompting. *ICML 2026*.
-<div class="demo-row">
-  <div class="demo-card">
-    <div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_stuffed_toy_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
-    <div class="demo-caption"><b>"Put my stuffed toy into the plastic bowl"</b> — real-robot personalization with VAP</div>
-  </div>
-  <div class="demo-card">
-    <div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_pouch_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
-    <div class="demo-caption"><b>"Put my pouch into the plastic bowl"</b> — real-robot personalization with VAP</div>
-  </div>
-  <div class="demo-card">
-    <div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_cat_figurine_into_the_plastic_bowl_and_put_my_brother's_owl_figurine_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
-    <div class="demo-caption"><b>Multi-user, multi-object</b> — "put my cat figurine … and my brother's owl figurine into the plastic bowl"</div>
-  </div>
+
+<div class="demo-row" markdown="0">
+<div class="demo-card">
+<div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_stuffed_toy_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
+<div class="demo-caption"><b>"Put my stuffed toy into the plastic bowl"</b> — real-robot personalization with VAP</div>
+</div>
+<div class="demo-card">
+<div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_pouch_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
+<div class="demo-caption"><b>"Put my pouch into the plastic bowl"</b> — real-robot personalization with VAP</div>
+</div>
+<div class="demo-card">
+<div class="demo-frame"><video src="https://vap-project.github.io/static/videos/put_my_cat_figurine_into_the_plastic_bowl_and_put_my_brother's_owl_figurine_into_the_plastic_bowl/cam_merged.mp4" controls muted loop playsinline preload="metadata"></video></div>
+<div class="demo-caption"><b>Multi-user, multi-object</b> — "put my cat figurine … and my brother's owl figurine into the plastic bowl"</div>
+</div>
 </div>
 
 <br>
