@@ -37,7 +37,7 @@
   is_co-corresponding_author: false
   is_corresponding_author: true
   is_demo: false
-  link: https://arxiv.org/abs/2608.30468
+  link: 
   ppt: 
   month: December
   title: 'Hi-Q: Hierarchical Evidence-guided Query Refinement for Multi-Hop Question Answering'
