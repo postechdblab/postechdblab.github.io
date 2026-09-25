@@ -44,6 +44,21 @@
   year: 2026
 
 - ISSN: null
+  authors: Park, S., Kim, W., Tan, R., Zhang, J., Han, W., Gao, P., Park, C., Lin, Q., Rajmohan, S., and Zhang, D.
+  description: null
+  highlight: 0
+  image: null
+  info: In Proc., 40th Annual Conference on Neural Information Processing Systems, NeurIPS, Sydney, Australia
+  is_co-corresponding_author: true
+  is_corresponding_author: false
+  is_demo: false
+  link: 
+  ppt: 
+  month: December
+  title: 'AutoSaddler: Automatic Harness Optimization with Durable Updates from Agent Execution Traces'
+  year: 2026
+
+- ISSN: null
   authors: Cha, S., Park, S., and Han, W.
   description: null
   highlight: 0
