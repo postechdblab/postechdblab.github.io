@@ -49,8 +49,8 @@
   highlight: 0
   image: null
   info: In Proc., 40th Annual Conference on Neural Information Processing Systems, NeurIPS, Sydney, Australia
-  is_co-corresponding_author: false
-  is_corresponding_author: true
+  is_co-corresponding_author: true
+  is_corresponding_author: false
   is_demo: false
   link: 
   ppt: 
