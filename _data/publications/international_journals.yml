@@ -22,8 +22,8 @@
   image: null
   info: In 52nd Int'l Conf. on Very Large Data Bases (VLDB) / Proc. the VLDB Endowment
     (PVLDB)
-  is_co-corresponding_author: true
-  is_corresponding_author: false
+  is_co-corresponding_author: false
+  is_corresponding_author: true
   is_demo: true
   link: https://drive.google.com/file/d/1dpDQcC8QYWoLG_ox_x1bHjVvR9mrUCUS/view?usp=sharing
   ppt: https://www.youtube.com/watch?v=DwdaBWL3cWs
