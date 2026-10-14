@@ -1,14 +1,14 @@
 ---
 title: "Postdoctoral Researcher Position — Data Systems Lab, POSTECH"
-layout: textlay
+layout: postdoc
 excerpt: "Join the Data Systems Lab at POSTECH as a Postdoctoral Researcher working at the intersection of data systems and AI."
 sitemap: false
 permalink: /postdoc/
 ---
 
-# Postdoctoral Researcher Position — Data Systems Lab, POSTECH
+The Data Systems Lab at POSTECH ([https://dslab.postech.ac.kr](https://dslab.postech.ac.kr)), directed by Prof. Wook-Shin Han, invites applications for a Postdoctoral Researcher position.
 
-The Data Systems Lab at POSTECH ([https://dslab.postech.ac.kr](https://dslab.postech.ac.kr)), directed by Prof. Wook-Shin Han, invites applications for a Postdoctoral Researcher position. The lab works at the intersection of data systems and AI, and recently published at SIGMOD, VLDB, NeurIPS, ICML, and ACL.
+The lab works at the intersection of data systems and AI, and recently published at SIGMOD, VLDB, NeurIPS, ICML, and ACL.
 
 ## Research topics
 
