@@ -49,7 +49,7 @@ layout: default
     </div>
   </div>
 
-  <!-- ===== Bottom row: Photo carousel  ·  Research participation ===== -->
+  <!-- ===== Bottom row: Photo carousel  ·  Join us ===== -->
   <div class="row home-grid-row home-grid-row--matched">
 
     <!-- Bottom-left: Photo carousel (7/12) -->
@@ -84,25 +84,25 @@ layout: default
       </div>
     </div>
 
-    <!-- Bottom-right: Research Participation (5/12) -->
+    <!-- Bottom-right: Postdoctoral and internship openings (5/12) -->
     <div class="col-md-5 home-col">
-      <div class="home-internship">
-        <div class="home-internship__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-          </svg>
-        </div>
-        <div class="home-internship__label">Join us</div>
-        <h4 class="home-internship__title">연구참여 · Research Internship</h4>
-        <p class="home-internship__desc">
-          We are currently <a href="{{ site.url }}{{ site.baseurl }}/internship"><b>hiring interns (연구 참여학생 모집)</b></a>. An amazing opportunity for undergrads to experience world-class Big Data research and prepare for graduate school.
-        </p>
-        <p class="home-internship__tagline">You could be a rising-<b>STAR</b> of the future.</p>
-        <a href="{{ site.url }}{{ site.baseurl }}/internship" class="home-internship__cta">
-          자세히 보기 <span aria-hidden="true">→</span>
-        </a>
-      </div>
+      <section class="home-join" aria-labelledby="home-join-title">
+        <h2 class="home-join__label" id="home-join-title">Join us</h2>
+        <article class="home-opening" aria-labelledby="postdoc-opening-title">
+          <h3 class="home-opening__title" id="postdoc-opening-title">Postdoctoral Researcher</h3>
+          <p class="home-opening__desc">Lead research at the intersection of data systems and AI.</p>
+          <a href="{{ site.url }}{{ site.baseurl }}/postdoc/" class="home-opening__cta">
+            View position <span aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="home-opening" aria-labelledby="internship-opening-title">
+          <h3 class="home-opening__title" id="internship-opening-title">연구참여 · Research Internship</h3>
+          <p class="home-opening__desc">Gain hands-on experience in data systems research and prepare for graduate school.</p>
+          <a href="{{ site.url }}{{ site.baseurl }}/internship" class="home-opening__cta">
+            자세히 보기 <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
     </div>
   </div>
 
@@ -152,21 +152,15 @@ layout: default
       height: 680px;
       max-height: 680px;
     }
-    /* Row 2: photo carousel and internship card, fixed height 300px */
-    .home-grid-row--matched {
-      align-items: stretch;
-      height: 300px;
-    }
-    .home-grid-row--matched > .home-col {
-      display: flex;
-      flex-direction: column;
-      height: 300px;
-    }
+    /* Row 2 grows with the openings; the photo matches its height. */
     .home-grid-row--matched > .home-col > * {
-      flex: 1 1 auto;
-      height: 300px;
-      max-height: 300px;
-      box-sizing: border-box;
+      height: auto;
+      max-height: none;
+      min-height: 360px;
+    }
+    .home-grid-row--matched .home-carousel {
+      position: absolute;
+      inset: 0;
     }
   }
 
@@ -352,64 +346,52 @@ layout: default
     transform-origin: center 75%;
   }
 
-  /* ---------- Research internship card (matches other cards) ---------- */
-  .home-internship {
-    position: relative;
+  /* ---------- Join us: two independent openings ---------- */
+  .home-join {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .home-join__label {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .home-opening {
+    flex: 1 1 auto;
     background: #fafafa;
     border: 1px solid #e3e3e3;
     border-radius: 8px;
     padding: 14px 18px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
   }
-  .home-internship__icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #eef2f6;
-    color: #5a7a98;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 6px;
-  }
-  .home-internship__icon svg { width: 18px; height: 18px; }
-  .home-internship__label {
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 2px;
-  }
-  .home-internship__title {
+  .home-opening__title {
     margin: 0 0 8px;
     font-weight: 700;
     font-size: 17px;
+    line-height: 1.4;
     color: #222;
   }
-  .home-internship__desc {
+  .home-opening__desc {
     font-size: 13px;
     line-height: 1.5;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     color: #333;
   }
-  .home-internship__tagline {
-    font-size: 12.5px;
-    color: #666;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  .home-internship__cta {
+  .home-opening__cta {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     margin-top: auto;
     align-self: flex-start;
-    padding: 5px 14px;
+    padding: 7px 14px;
     background: transparent;
-    color: #337ab7 !important;
+    color: #286090 !important;
     border: 1px solid #cfd8e3;
     border-radius: 4px;
     font-size: 12.5px;
@@ -417,13 +399,22 @@ layout: default
     text-decoration: none !important;
     transition: background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .home-internship__cta:hover {
-    background: #337ab7;
-    border-color: #337ab7;
+  .home-opening__cta:hover,
+  .home-opening__cta:focus {
+    background: #286090;
+    border-color: #286090;
     color: #fff !important;
   }
-  .home-internship__cta span { transition: transform .15s ease; }
-  .home-internship__cta:hover span { transform: translateX(2px); }
+  .home-opening__cta:focus-visible {
+    outline: 2px solid #286090;
+    outline-offset: 3px;
+  }
+  @media (max-width: 991px) {
+    .home-grid-row--matched .home-card--photos {
+      height: 300px;
+      margin-bottom: 20px;
+    }
+  }
 
   /* ---------- Collaborators box (fieldset style) ---------- */
   .home-collab-row {
